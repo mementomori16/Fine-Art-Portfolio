@@ -1,0 +1,44 @@
+'use client';
+
+import React, { useEffect, useRef } from 'react';
+import './home.scss'; 
+import VideoPage from '../../VideoPage/VideoPage';
+import Categories from '../Categories/Categories';
+
+
+const Home: React.FC = () => {
+    // Reference to the Text section
+    const textSectionRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        document.body.style.backgroundColor = '#171717';
+        return () => {
+            document.body.style.backgroundColor = ''; 
+        };
+    }, []);
+
+    const handleScrollToNext = () => {
+        if (textSectionRef.current) {
+            textSectionRef.current.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start' 
+            });
+        }
+    };
+
+    return (
+        <div className="homepage-wrapper">
+            {/* Pass the scroll handler to the Hero component */}
+            
+            {/* Wrapper around the target component to attach the Ref */}
+            <div ref={textSectionRef}>
+                
+                <Categories />
+            </div>
+
+           
+        </div>
+    );
+};
+
+export default Home;

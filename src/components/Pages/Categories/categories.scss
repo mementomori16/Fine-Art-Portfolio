@@ -1,0 +1,110 @@
+@use "../../../../app/global.scss" as *;
+
+.categories-section {
+    padding: $space-xxxxl 0;
+    width: 100%;
+    background-color: #171717;
+    min-height: 100vh;
+
+    .categories-header {
+        margin-bottom: $space-xxl;
+        border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1);
+        padding-bottom: $space-sm;
+        
+        .categories-title {
+            color: #ffffff; 
+            font-size: $font-size-h2; 
+            font-weight: $font-weight-bold;
+            text-align: left;
+            text-transform: uppercase;
+            letter-spacing: 0.4rem;
+            margin: 0;
+
+            @media (max-width: $breakpoint-sm) {
+                font-size: $font-size-h3;
+                letter-spacing: 0.2rem;
+            }
+        }
+    }
+}
+
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: $space-xl;
+
+    @media (max-width: $breakpoint-lg) {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+
+    @media (max-width: $breakpoint-md) {
+        grid-template-columns: 1fr; 
+    }
+}
+
+.category-card {
+    text-decoration: none;
+    transition: transform 0.4s ease;
+    display: flex;
+    flex-direction: column;
+
+    &:hover {
+        transform: translateY(-10px);
+        .category-image-wrapper .category-img { transform: scale(1.05); }
+        .category-overlay { opacity: 1; }
+    }
+
+    .category-image-wrapper {
+        position: relative;
+        height: 25rem; // Adjust this for your preferred painting height
+        overflow: hidden;
+        border-radius: $border-radius-sm;
+        background: #111111;
+        margin-bottom: $space-md;
+        box-shadow: $shadow-lg;
+
+        .category-img {
+            object-fit: cover;
+            opacity: 0.9; 
+            transition: transform 0.6s ease;
+        }
+
+        .category-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+
+            span {
+                color: #fff;
+                border: 0.0625rem solid #fff;
+                padding: 0.5rem 1.2rem;
+                text-transform: uppercase;
+                font-size: 0.75rem;
+                letter-spacing: 0.1rem;
+                font-weight: $font-weight-bold;
+            }
+        }
+    }
+
+    .category-info {
+        h3 {
+            color: #ffffff; 
+            font-size: $font-size-md;
+            font-weight: $font-weight-bold;
+            text-transform: uppercase; 
+            letter-spacing: 1.5px;
+            text-align: center;
+            margin: 0;
+            
+            @media (max-width: $breakpoint-sm) {
+                font-size: 1.1rem;
+            }
+        }
+    }
+}

@@ -1,0 +1,72 @@
+@use '../../../app/global.scss' as global;
+
+.studio-video-master {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9; 
+  background: #000;
+  overflow: hidden; 
+  border-radius: 0.5rem;
+  
+  &.is-expanded {
+    aspect-ratio: auto;
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+  }
+}
+
+.video-inner-container {
+  position: absolute; 
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  transition: transform 1.5s ease-in-out; 
+
+  &.zoomed-view {
+    /* 1.27 scale to fully hide all YT icons */
+    transform: scale(1.39); 
+  }
+
+  &.normal-view {
+    transform: scale(1);
+  }
+
+  .video-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+}
+
+.custom-player-ui {
+  position: absolute;
+  bottom: global.$space-md;
+  right: global.$space-md;
+  z-index: 110;
+  display: flex;
+  gap: global.$space-xs;
+  pointer-events: auto; 
+
+  .ui-pill {
+    /* Transparent Premium Style for all buttons */
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    padding: 0.6rem 1.2rem;
+    border-radius: global.$border-radius-xl;
+    font-size: 0.6rem;
+    font-weight: global.$font-weight-bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background 0.3s;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+  }
+}

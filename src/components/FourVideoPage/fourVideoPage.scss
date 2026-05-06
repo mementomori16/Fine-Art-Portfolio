@@ -1,0 +1,47 @@
+@use "sass:color";
+@use "../../../app/global.scss" as *;
+
+.four-page-layout.masterclass-final-clean {
+    .video-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: $space-xl;
+        width: 100%;
+        margin-top: $space-lg;
+
+        @media (max-width: $breakpoint-md) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .video-card-container {
+        display: flex;
+        flex-direction: column;
+        gap: $space-sm;
+
+        .grid-video-title {
+            @include services-heading;
+            font-size: 0.8rem;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 0.2rem;
+            cursor: pointer;
+            text-align: left;
+
+            &:hover {
+                opacity: 0.7;
+            }
+        }
+    }
+
+    .video-click-wrapper {
+        width: 100%;
+        
+        // This ensures your original .studio-video-master stays inside the grid cell
+        :global(.studio-video-master) {
+            width: 100% !important;
+            max-width: none !important;
+            margin: 0 !important;
+        }
+    }
+}

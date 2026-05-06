@@ -1,0 +1,62 @@
+// src/components/backtoTop.scss
+@import '../../../app/global.scss';
+
+.back-to-top-minimal {
+  position: fixed;
+  // Using your spacing variables for consistent margins
+  bottom: $space-xxl; 
+  right: $space-lg;
+  z-index: 1000;
+  cursor: pointer;
+  
+  // Transition logic
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease-in-out, transform 0.3s ease;
+
+  &.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .arrow-icon {
+    // 1.5rem matches your original requested scale
+    font-size: 1.5rem; 
+    font-weight: $font-weight-bold;
+    
+    // Soft gray via white opacity - perfect for dark backgrounds
+    color: rgba($color-text-white, 0.4); 
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    
+    // Ensure no unwanted box/circle
+    background: none;
+    border: none;
+  }
+
+  // Purely functional hover - no color change to avoid noise
+  &:hover .arrow-icon {
+    color: rgba($color-text-white, 0.4);
+  }
+
+  // Visual feedback on click using rem-based scaling
+  &.clicked {
+    transform: scale(0.9);
+    .arrow-icon {
+      color: rgba($color-text-white, 0.7);
+    }
+  }
+
+  // Mobile adjustment using your breakpoint variable
+  @media (max-width: $breakpoint-sm) {
+    bottom: $space-xl;
+    right: $space-md;
+    
+    .arrow-icon {
+      font-size: 1.25rem; // Slightly smaller for mobile
+    }
+  }
+}

@@ -1,0 +1,55 @@
+@use "sass:color";
+@import "../../../app/global.scss"; // Adjust this path if global.scss is elsewhere
+
+.cookie-banner {
+  position: fixed;
+  bottom: $space-lg;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 600px;
+  background-color: $color-navbar; 
+  color: $color-text-white;
+  padding: $space-md $space-lg;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-xl;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  // Explicitly defined media query to prevent "expected" errors
+  @media screen and (min-width: #{$breakpoint-md}) {
+    flex-direction: row;
+    justify-content: space-between;
+    bottom: $space-xl;
+  }
+
+  .cookie-text {
+    font-size: $font-size-sm;
+    margin-bottom: $space-md;
+    color: $color-navbar-title;
+    text-align: center;
+
+    @media screen and (min-width: #{$breakpoint-md}) {
+      margin-bottom: 0;
+      text-align: left;
+      padding-right: $space-lg;
+    }
+  }
+
+  .cookie-buttons {
+    display: flex;
+    gap: $space-sm;
+    flex-shrink: 0;
+
+    // These use the classes from your global.scss
+    button {
+      padding: $space-xs $space-md;
+      font-size: $font-size-xs;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+  }
+}

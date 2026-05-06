@@ -1,0 +1,223 @@
+@use "sass:color";
+@import '../../../app/global.scss';
+
+// Height calculation for the sticky header
+$header-mobile-height: calc(2rem + 2 * #{$space-sm});
+
+.header-mobile {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-color: $color-navbar;
+  padding: $space-sm $space-lg; 
+  z-index: 1000;
+  box-shadow: $shadow-sm;
+  box-sizing: border-box;
+}
+
+.navbarmobile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px; 
+  margin: 0 auto;
+
+  .mobile-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none !important;
+
+    .mobile-logo-img {
+      height: 2.5rem; 
+      width: auto;
+      object-fit: contain;
+    }
+  }
+
+  .mobile-right {
+    display: flex;
+    align-items: center;
+    gap: $space-md;
+  }
+
+  .basket-icon {
+    position: relative;
+    color: #ffffff; 
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      color: $color-button-blue-2;
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -6px;
+      right: -8px;
+      background-color: $color-danger;
+      color: white;
+      font-size: 0.7rem;
+      font-weight: bold;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .mobile-hamburger {
+    cursor: pointer;
+    z-index: 1010;
+    .hamburger-react {
+      color: #ffffff; 
+    }
+    svg path {
+      stroke-width: 2px !important;
+    }
+  }
+}
+
+.mobile-menu {
+  position: fixed;
+  left: 0;
+  transform: translateX(-100%);
+  top: $header-mobile-height; 
+  height: calc(100vh - #{$header-mobile-height});
+  background-color: $color-navbar;
+  list-style: none;
+  padding: $space-lg;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  align-items: flex-start;
+  gap: $space-lg;
+  visibility: hidden;
+  transition: transform 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  z-index: 1005;
+
+  // --- RESPONSIVE WIDTHS ---
+  
+  // Covers all small phones edge-to-edge (iPhone SE, Galaxy Note 3, etc.)
+  width: 100%; 
+
+  &.active {
+    transform: translateX(0);
+    visibility: visible;
+  }
+
+  // Tablets: slide out partially
+  @media (min-width: 600px) {
+    width: 60vw;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  // Desktop: maintain a professional drawer width
+  @media (min-width: 1200px) {
+    width: 25vw;
+  }
+
+  .mobile-item {
+    width: 100%;
+
+    &.search-item {
+      display: flex;
+      justify-content: flex-start;
+      .search-bar-container {
+        width: 100%;
+        max-width: 100%;
+        padding-right: $space-sm;
+        .search-bar { 
+          width: 100% !important; 
+          font-size: 1.15rem; 
+        }
+      }
+    }
+
+    .mobile-link {
+      color: #ffffff; 
+      font-family: $font-family-base;
+      font-size: 1.25rem; 
+      font-weight: $font-weight-semibold;
+      text-decoration: none;
+      position: relative;
+      padding: 0.75rem 0; // Increased tap target for small screens
+      transition: color 0.3s ease-in-out;
+      text-align: left;
+      letter-spacing: 0.02rem;
+      white-space: nowrap;
+      display: block;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: $color-navbar-title-hover;
+        transition: width 0.3s ease-in-out;
+      }
+
+      &:hover, &.active {
+        color: $color-navbar-title-hover;
+        &::after { width: 100%; }
+      }
+    }
+
+    .mobile-submenu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s ease-in-out;
+      display: flex;
+      flex-direction: column;
+
+      &.open {
+        max-height: 800px;
+        margin-top: $space-sm;
+        padding-left: $space-md;
+        border-left: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .mobile-sublink {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: $space-sm 0;
+        color: #ffffff; 
+        opacity: 0.9;
+        text-decoration: none;
+        font-size: 1.15rem; 
+        font-weight: $font-weight-semibold;
+        transition: all 0.2s ease;
+
+        &:active {
+          color: $color-navbar-title-hover;
+          padding-left: 4px;
+        }
+      }
+    }
+  }
+}
+
+body.menu-open {
+  position: relative;
+  overflow: hidden; 
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    opacity: 1;
+    visibility: visible;
+  }
+}
