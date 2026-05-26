@@ -92,7 +92,7 @@ const ViewGallery: React.FC<ViewGalleryProps> = ({ images, currentImageId, onClo
 
       <TransformWrapper
         ref={setTransformWrapperRef}
-        onTransformed={handleTransform}
+        onTransform={handleTransform}
         centerOnInit={true}
         maxScale={maxScale}
         initialScale={1}
