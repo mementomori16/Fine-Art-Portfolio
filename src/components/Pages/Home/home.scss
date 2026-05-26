@@ -166,3 +166,23 @@
         }
     }
 }
+// =========================================================================
+// Force MysteriousCurtain wrapper to expand with your homepage content
+// =========================================================================
+
+// This targets the curtain container that wraps your homepage content block
+
+
+// Ensure your root page wrapper flows naturally down the page canvas
+.homepage-wrapper {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 100vh;
+  position: relative !important;
+  background-color: #171717;
+}
+
+// =========================================================================
+// Your original .courses-page-root styles remain untouched below
+// =========================================================================

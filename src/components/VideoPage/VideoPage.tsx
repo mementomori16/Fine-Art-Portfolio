@@ -1,25 +1,16 @@
 "use client";
 
 import React from 'react';
-import { useTranslation } from 'react-i18next'; // Ensure i18n is configured for Next.js
-import VideoPlayer from '../VideoPlayer/VideoPlayer'; // Update path as needed
+import VideoPlayer from '../VideoPlayer/VideoPlayer';
 import './videoPage.scss';
 
 const VideoPage: React.FC = () => {
-    const { t } = useTranslation();
-    const myVideoId = "rWHMvqnIGmE"; 
+    // Correct video identifier
+    const myVideoId = "4-twr7Wgs14"; 
 
     return (
         <section className="text-component-section masterclass-final-clean">
             <div className="container">
-                <header className="text-header">
-                    <h2 className="text-main-title">{t('masterclass.title')}</h2>
-                </header>
-                
-                <div className="subtitle-wrapper">
-                    <h3 className="text-subtitle masterclass-sub-size">{t('masterclass.subtitle')}</h3>
-                </div>
-
                 <div className="video-centering-wrapper">
                     <VideoPlayer videoId={myVideoId} />
                 </div>

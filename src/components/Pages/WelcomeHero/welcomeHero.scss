@@ -1,0 +1,116 @@
+.heroSection {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: black;
+}
+
+/* ========================= */
+/* 🎬 SMOOTH TRANSITION TO NEXT SECTION */
+/* ========================= */
+
+.heroSection::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 30vh;
+  z-index: 6;
+  pointer-events: none;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,0.4) 40%,
+    rgba(0,0,0,0.75) 70%,
+    rgba(15,15,15,1) 100%
+  );
+}
+
+/* ========================= */
+/* SLIDES */
+/* ========================= */
+
+.slideContainer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.slideContainer.active {
+  opacity: 1;
+}
+
+/* ========================= */
+/* IMAGE */
+/* ========================= */
+
+.imageContainer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  animation: containerDrift 16s ease-in-out infinite;
+}
+
+.imageContainer img {
+  object-fit: cover;
+}
+
+/* 🎬 CINEMATIC DRIFT */
+
+@keyframes containerDrift {
+  0% { transform: scale(1.02) translate(0,0); }
+  25% { transform: scale(1.05) translate(-1%, -1%); }
+  50% { transform: scale(1.03) translate(-2%, 1%); }
+  75% { transform: scale(1.06) translate(1%, -1%); }
+  100% { transform: scale(1.02) translate(0,0); }
+}
+
+/* ========================= */
+/* 🎬 PURE CINEMATIC VIGNETTE (NO FOG) */
+/* ========================= */
+
+.lightOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 50% 45%,   /* 🎯 focus slightly above center */
+      rgba(0,0,0,0) 0%,    /* clean center */
+      rgba(0,0,0,0) 45%,   /* keep image untouched */
+      rgba(0,0,0,0.35) 65%,/* start darkening */
+      rgba(0,0,0,0.8) 85%, /* strong vignette */
+      rgba(0,0,0,1) 100%   /* edges */
+    );
+}
+
+/* ========================= */
+/* AUDIO BUTTON */
+/* ========================= */
+
+.audioButton {
+  position: absolute;
+  right: 40px;
+  bottom: 12%;
+  z-index: 10;
+
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+                  

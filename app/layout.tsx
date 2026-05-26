@@ -1,12 +1,8 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
 import NavMobile from "../src/components/NavMobile/NavMobile";
 import Footer from "../src/components/Footer/Footer";
 import BackToTop from "../src/components/BacktoTop/BacktoTop";
 import CookieBanner from "../src/components/CookieBanner/CookieBanner";
-import MysteriousCurtain from "../src/components/MysteriousCurtain/MysteriousCurtain";
+import LayoutClientManager from "../src/components/LayoutClientWrapper/LayoutClientWrapper";
 
 // Custom SCSS
 import "./global.scss";
@@ -17,27 +13,16 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const pathname = usePathname();
-  const isHome = pathname === "/";
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "instant" });
-  }, [pathname]);
-
   return (
     <html lang="en">
       <body className="app-container">
         <NavMobile />
 
         <main className="main-content">
-          {/* We only show the curtain on the homepage root */}
-          {isHome ? (
-            <MysteriousCurtain>
-              {children}
-            </MysteriousCurtain>
-          ) : (
-            children
-          )}
+          {/* Wraps the child view state in the path conditional manager */}
+          <LayoutClientManager>
+            {children}
+          </LayoutClientManager>
         </main>
 
         <BackToTop />

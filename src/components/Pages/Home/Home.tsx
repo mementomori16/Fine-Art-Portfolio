@@ -1,14 +1,16 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
-import './home.scss'; 
+import WelcomeHero from '../WelcomeHero/WelcomeHero'; // Adjust this import path if needed to match where your file sits
 import VideoPage from '../../VideoPage/VideoPage';
 import Categories from '../Categories/Categories';
+import './home.scss'; 
 
+const TypedWelcomeHero = WelcomeHero as React.ComponentType<{ onArrowClick: () => void }>;
 
 const Home: React.FC = () => {
-    // Reference to the Text section
-    const textSectionRef = useRef<HTMLDivElement>(null);
+    // Reference point targeting the Video component wrapper right below the slider
+    const videoSectionRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         document.body.style.backgroundColor = '#171717';
@@ -17,9 +19,10 @@ const Home: React.FC = () => {
         };
     }, []);
 
+    // Fires when the WelcomeHero scroll arrow is clicked
     const handleScrollToNext = () => {
-        if (textSectionRef.current) {
-            textSectionRef.current.scrollIntoView({ 
+        if (videoSectionRef.current) {
+            videoSectionRef.current.scrollIntoView({ 
                 behavior: 'smooth',
                 block: 'start' 
             });
@@ -28,15 +31,10 @@ const Home: React.FC = () => {
 
     return (
         <div className="homepage-wrapper">
-            {/* Pass the scroll handler to the Hero component */}
-            
-            {/* Wrapper around the target component to attach the Ref */}
-            <div ref={textSectionRef}>
-                
+            <WelcomeHero />
+            <div>
                 <Categories />
             </div>
-
-           
         </div>
     );
 };
