@@ -94,8 +94,46 @@ export default function WelcomeHero() {
       })}
 
       <button onClick={toggleSound} className="audioButton">
-        {isMuted ? '🔇' : '🔊'}
-      </button>
+  {isMuted ? (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+      <path
+        d="M11 5L6 9H2V15H6L11 19V5Z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+      <line
+        x1="18"
+        y1="6"
+        x2="6"
+        y2="18"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  ) : (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+  <path
+    d="M11 5L6 9H2V15H6L11 19V5Z"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinejoin="round"
+  />
+
+  {/* ✅ optically centered slash */}
+  <line
+    x1="18.5"
+    y1="6.5"
+    x2="5.5"
+    y2="19.5"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+  />
+</svg>
+  )}
+</button>
     </section>
   );
 }

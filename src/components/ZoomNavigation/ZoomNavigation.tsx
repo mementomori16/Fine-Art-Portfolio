@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import './ZoomNavigation.scss';
+import './zoomNavigation.scss';
 
 interface TransformState {
   scale: number;

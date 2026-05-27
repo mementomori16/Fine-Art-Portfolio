@@ -1,0 +1,29 @@
+{
+  "gallery": {
+    "pageTitle": "Art Gallery",
+    "viewImage": "View Image",
+    "categories": {
+      "oil": "Oil Paintings"
+    }
+  },
+  "paintings": {
+    "oil": {
+      "item1": {
+        "title": "Serenade in Crimson",
+        "date": "Oil on Canvas, 2024"
+      },
+      "item2": {
+        "title": "Whispering Meadows",
+        "date": "Oil on Linen, 2025"
+      },
+      "item3": {
+        "title": "Ethereal Dusk",
+        "date": "Oil on Panel, 2025"
+      },
+      "item4": {
+        "title": "Echoes of Antiquity",
+        "date": "Oil on Canvas, 2026"
+      }
+    }
+  }
+}

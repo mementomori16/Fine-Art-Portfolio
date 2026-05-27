@@ -80,10 +80,12 @@ $header-mobile-height: calc(2rem + 2 * #{$space-sm});
 }
 
 .mobile-menu {
-  position: fixed;
+  // Changed to absolute so it tracks relative to the sticky parent container
+  position: absolute;
   left: 0;
   transform: translateX(-100%);
-  top: $header-mobile-height; 
+  // Set to 100% so it always starts precisely where the header ends
+  top: 100%; 
   height: calc(100vh - #{$header-mobile-height});
   background-color: $color-navbar;
   list-style: none;
@@ -98,8 +100,6 @@ $header-mobile-height: calc(2rem + 2 * #{$space-sm});
   z-index: 1005;
 
   // --- RESPONSIVE WIDTHS ---
-  
-  // Covers all small phones edge-to-edge (iPhone SE, Galaxy Note 3, etc.)
   width: 100%; 
 
   &.active {
@@ -120,6 +120,7 @@ $header-mobile-height: calc(2rem + 2 * #{$space-sm});
 
   .mobile-item {
     width: 100%;
+   list-style: none;
 
     &.search-item {
       display: flex;
@@ -142,7 +143,7 @@ $header-mobile-height: calc(2rem + 2 * #{$space-sm});
       font-weight: $font-weight-semibold;
       text-decoration: none;
       position: relative;
-      padding: 0.75rem 0; // Increased tap target for small screens
+      padding: 0.75rem 0;
       transition: color 0.3s ease-in-out;
       text-align: left;
       letter-spacing: 0.02rem;

@@ -4,11 +4,11 @@
  */
 export interface Painting {
     id: string;
-    titleKey: string;     // Reference for i18n translation
-    slug: string;         // URL-friendly name (e.g., 'mystic-forest')
-    category: 'landscapes' | 'portraits' | 'abstract' | 'street-art';
-    cloudinaryId: string; // The specific public ID from your Cloudinary library
-    isFeatured?: boolean; // Optional: mark specific paintings for the home page
+    titleKey: string;     
+    slug: string;         
+    category: 'landscapes' | 'portraits' | 'abstract' | 'street-art' | 'oil'; // Added 'oil' here
+    cloudinaryId: string; 
+    isFeatured?: boolean; 
 }
 
 export interface CategoryCover {
