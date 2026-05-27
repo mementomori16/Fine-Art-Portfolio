@@ -1,3 +1,5 @@
+import "../src/i18n"; // <--- Add this at the very top line
+
 import NavMobile from "../src/components/NavMobile/NavMobile";
 import Footer from "../src/components/Footer/Footer";
 import BackToTop from "../src/components/BacktoTop/BacktoTop";
@@ -19,7 +21,6 @@ export default function RootLayout({
         <NavMobile />
 
         <main className="main-content">
-          {/* Wraps the child view state in the path conditional manager */}
           <LayoutClientManager>
             {children}
           </LayoutClientManager>
