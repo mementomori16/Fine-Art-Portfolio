@@ -8,6 +8,7 @@ import { CATEGORY_COVERS } from '../../../../app/data/paintings';
 import './categories.scss';
 
 const Categories: React.FC = () => {
+    // FIXED: Removed explicit string namespace to match default engine behavior
     const { t } = useTranslation();
 
     return (
@@ -30,10 +31,6 @@ const Categories: React.FC = () => {
                                     src={category.cloudinaryId}
                                     alt={t(category.titleKey)}
                                     fill
-                                    /* 
-                                       Next.js tells Cloudinary to serve ~100kb version 
-                                       for thumbnails based on these sizes 
-                                    */
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                                     className="category-img"
                                     priority={true} 

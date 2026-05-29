@@ -2,7 +2,6 @@
 
 import React, { useEffect, useRef } from 'react';
 import WelcomeHero from '../WelcomeHero/WelcomeHero'; // Adjust this import path if needed to match where your file sits
-import VideoPage from '../../VideoPage/VideoPage';
 import Categories from '../Categories/Categories';
 import './home.scss'; 
 

@@ -1,29 +1,26 @@
 {
-  "gallery": {
+  "categories": {
     "pageTitle": "Art Gallery",
-    "viewImage": "View Image",
-    "categories": {
-      "oil": "Oil Paintings"
-    }
+    "oil_paintings": "Oil",
+    "drawings": "Drawings",
+    "watercolors": "Watercolors",
+    "other_works": "Other Works"
+  },
+  "common": {
+    "viewGallery": "View Gallery"
   },
   "paintings": {
     "oil": {
       "item1": {
-        "title": "Serenade in Crimson",
-        "date": "Oil on Canvas, 2024"
-      },
-      "item2": {
-        "title": "Whispering Meadows",
-        "date": "Oil on Linen, 2025"
-      },
-      "item3": {
-        "title": "Ethereal Dusk",
-        "date": "Oil on Panel, 2025"
-      },
-      "item4": {
-        "title": "Echoes of Antiquity",
-        "date": "Oil on Canvas, 2026"
+        "title": "Vanitas",
+        "medium": "Oil on Canvas",
+        "size": "120 x 60 cm"
       }
+    },
+    "urban_echo": {
+      "title": "Urban Echo",
+      "medium": "Graphite on Paper",
+      "size": "30 x 40 cm"
     }
   }
 }

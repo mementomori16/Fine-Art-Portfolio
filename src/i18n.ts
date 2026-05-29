@@ -2,23 +2,21 @@
 
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import resourcesToBackend from 'i18next-resources-to-backend';
+import englishData from '../public/locales/english.json';
 
-// Initialize i18next only once
 if (!i18n.isInitialized) {
   i18n
     .use(initReactI18next)
-    .use(
-      resourcesToBackend(
-        (language: string, namespace: string) =>
-          import(`../public/locales/${language}.json`)
-      )
-    )
     .init({
-      fallbackLng: 'english', // matches public/locales/english.json
-      lng: 'english',
+      resources: {
+        en: {
+          translation: englishData // Stores data inside the default 'translation' bucket
+        }
+      },
+      lng: 'en',
+      fallbackLng: 'en',
       interpolation: {
-        escapeValue: false, // React already safeguards against XSS
+        escapeValue: false,
       },
     });
 }

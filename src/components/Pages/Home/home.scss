@@ -2,7 +2,6 @@
 
 .courses-page-root {
     width: 100%;
-    // Removed hard background to inherit #171717 from Home
     padding: $space-xxxxl 0;
 
     @media (max-width: $breakpoint-md) {
@@ -10,7 +9,6 @@
     }
 
     .container {
-        // This keeps the side gaps identical to Reviews/Text
         max-width: 1200px; 
         margin: 0 auto;
         padding: 0 1.5rem;
@@ -183,6 +181,3 @@
   background-color: #171717;
 }
 
-// =========================================================================
-// Your original .courses-page-root styles remain untouched below
-// =========================================================================

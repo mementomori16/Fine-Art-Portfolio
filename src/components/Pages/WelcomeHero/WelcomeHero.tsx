@@ -12,6 +12,7 @@ const DESKTOP_SLIDES = [
   { id: 5, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1779785075/IMGP3286PH26-3-500b_hfmhx2.jpg', duration: 3100 },
   { id: 6, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1779787009/DSC_0973ph2026CLOSEUP2_tutyef.jpg', duration: 3100 },
   { id: 7, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1779788009/photoshoped-2_2025-500kb_uvbxge.jpg', duration: 3100 },
+   { id: 8, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032416/IMG_5405-500kb_xeo7dh.jpg', duration: 3100 },
 ];
 
 const MOBILE_SLIDES = [

@@ -3,8 +3,20 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import './mysteriousCurtain.scss';
 
-export default function MysteriousCurtain({ children }: { children: React.ReactNode }) {
-  const [isOpen, setIsOpen] = useState(false);
+interface CurtainProps {
+  children: React.ReactNode;
+  forceOpen: boolean;
+  onOpen: () => void;
+}
+
+export default function MysteriousCurtain({ children, forceOpen, onOpen }: CurtainProps) {
+  // Use the layout state to determine the starting position
+  const [isOpen, setIsOpen] = useState(forceOpen);
+
+  const handleOpen = () => {
+    setIsOpen(true);
+    onOpen(); // Permanently saves the open status in LayoutClientManager
+  };
 
   const transition: any = {
     duration: 2.8,
@@ -14,7 +26,7 @@ export default function MysteriousCurtain({ children }: { children: React.ReactN
   return (
     <div
       className={`curtain-wrapper ${isOpen ? 'is-open' : ''}`}
-      onClick={() => setIsOpen(true)}
+      onClick={handleOpen}
     >
       {/* CONTENT (hidden before open) */}
       <div
@@ -38,7 +50,7 @@ export default function MysteriousCurtain({ children }: { children: React.ReactN
       {/* LEFT */}
       <motion.div
         className="curtain-half left"
-        initial={{ width: '50%' }}
+        initial={{ width: forceOpen ? '0%' : '50%' }}
         animate={{
           width: isOpen ? '0%' : '50%',
           x: isOpen ? '-5%' : '0%',
@@ -49,7 +61,7 @@ export default function MysteriousCurtain({ children }: { children: React.ReactN
       {/* RIGHT */}
       <motion.div
         className="curtain-half right"
-        initial={{ width: '50%' }}
+        initial={{ width: forceOpen ? '0%' : '50%' }}
         animate={{
           width: isOpen ? '0%' : '50%',
           x: isOpen ? '5%' : '0%',

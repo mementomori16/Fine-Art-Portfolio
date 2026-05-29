@@ -5,8 +5,8 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
 import { PAINTINGS, CATEGORY_COVERS } from '../../data/paintings';
-import ViewGallery from '../../../src/components/ViewGallery/ViewGallery'; // Adjust path to your ViewGallery file
-
+import ViewGallery from '../../../src/components/ViewGallery/ViewGallery';
+import './page.scss'; 
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -24,45 +24,63 @@ export default function CategoryPage({ params }: PageProps) {
   const filteredPaintings = PAINTINGS.filter((p) => p.category === slug);
   const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null);
 
-  const formattedImagesForModal = filteredPaintings.map((p) => ({
-    url: p.cloudinaryId,
-    title: t(p.titleKey),
-    date: t(`${p.titleKey}_date`) || "" 
-  }));
+  const formattedImagesForModal = filteredPaintings.map((p) => {
+    const baseKey = p.titleKey.replace('.title', ''); 
+    const mediumKey = `${baseKey}.medium`;
+    const sizeKey = `${baseKey}.size`;
+    
+    return {
+      url: p.cloudinaryId,
+      title: t(p.titleKey),
+      date: `${t(mediumKey)} — ${t(sizeKey)}` 
+    };
+  });
 
   return (
-    <main className="category-gallery-page" style={{ padding: "4rem 0" }}>
-      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 1.5rem" }}>
+    <main className="category-gallery-page">
+      <div className="container">
         
-        <header style={{ textAlign: "center", marginBottom: "3rem" }}>
-          <h1 style={{ fontSize: "2.5rem", fontWeight: 300 }}>{t(currentCategory.titleKey)}</h1>
+        <header className="section-header">
+          <h1 className="category-main-title">
+            {t(currentCategory.titleKey)}
+          </h1>
         </header>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "2rem" }}>
-          {filteredPaintings.map((painting, index) => (
-            <div 
-              key={painting.id} 
-              style={{ cursor: "pointer" }}
-              onClick={() => setActiveImageIndex(index)} 
-            >
-              <div style={{ position: "relative", aspectRatio: "4/3", overflow: "hidden" }}>
-                <Image
-                  src={painting.cloudinaryId}
-                  alt={t(painting.titleKey)}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  style={{ objectFit: "cover" }}
-                />
+        {/* Updated semantic layout wrapper class name identifier */}
+        <div className="artwork-grid">
+          {filteredPaintings.map((painting, index) => {
+            const baseKey = painting.titleKey.replace('.title', '');
+            const mediumKey = `${baseKey}.medium`;
+            const sizeKey = `${baseKey}.size`;
+
+            return (
+              <div 
+                key={painting.id} 
+                className="artwork-card"
+                onClick={() => setActiveImageIndex(index)} 
+              >
+                <div className="image-wrapper">
+                  <Image
+                    src={painting.cloudinaryId}
+                    alt={t(painting.titleKey)}
+                    fill
+                    // Optimized viewport calculations target 33vw instead of 25vw max boundaries
+                    sizes="(max-width: 576px) 100vw, (max-width: 992px) 50vw, 33vw"
+                    className="gallery-img"
+                  />
+                </div>
+                <div className="metadata-side">
+                  <h3 className="artwork-title">{t(painting.titleKey)}</h3>
+                  <span className="artwork-medium">{t(mediumKey)}</span>
+                  <span className="artwork-size">{t(sizeKey)}</span>
+                </div>
               </div>
-              <div style={{ padding: "1rem 0" }}>
-                <h3 style={{ margin: 0, fontSize: "1.1rem", fontWeight: 400 }}>{t(painting.titleKey)}</h3>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {filteredPaintings.length === 0 && (
-          <p style={{ textAlign: "center", color: "#666" }}>No artwork added yet.</p>
+          <p className="empty-notice">No artwork added yet.</p>
         )}
       </div>
 
