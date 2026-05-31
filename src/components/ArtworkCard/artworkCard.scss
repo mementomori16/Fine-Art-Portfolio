@@ -1,7 +1,7 @@
 @use "../../../app/global.scss" as *;
 
 /* =========================
-   PAGE WRAPPER
+   PAGE
 ========================= */
 
 .category-gallery-page {
@@ -10,7 +10,7 @@
   background: #171717;
 }
 
-/* ✅ FIX: NO MORE CONFLICT WITH GLOBAL .container */
+/* ✅ IMPORTANT: not .container */
 .category-container {
   max-width: 75rem;
   margin: 0 auto;
@@ -24,17 +24,17 @@
 
 .section-header {
   margin-bottom: 3rem;
-  border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding-bottom: 1rem;
+}
 
-  .category-main-title {
-    color: #ffffff;
-    font-size: 2rem;
-    font-weight: 600;
-    letter-spacing: 0.4rem;
-    text-transform: uppercase;
-    margin: 0;
-  }
+.category-main-title {
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 0.4rem;
+  text-transform: uppercase;
+  margin: 0;
 }
 
 /* =========================
@@ -44,37 +44,11 @@
 .artwork-grid {
   display: grid;
 
-  /* ✅ KEY FIX: prevents cutting + overflow */
+  /* 🔥 KEY FIX */
   grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
 
   gap: 2rem;
   align-items: start;
-}
-
-/* =========================
-   CARD STYLE (OVERRIDES)
-========================= */
-
-.artwork-card {
-  width: 100%;
-}
-
-/* ✅ FIX: remove ugly fixed height */
-.artwork-card img {
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  display: block;
-
-  /* ✅ less "cheap UI" */
-  border-radius: 0.25rem;
-
-  transition: transform 0.5s ease;
-}
-
-/* subtle hover */
-.artwork-card:hover img {
-  transform: scale(1.03);
 }
 
 /* =========================

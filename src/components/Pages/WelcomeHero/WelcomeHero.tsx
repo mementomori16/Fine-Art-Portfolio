@@ -5,14 +5,15 @@ import Image from 'next/image';
 import './welcomeHero.scss';
 
 const DESKTOP_SLIDES = [
-  { id: 1, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1779620844/ph2026kineret-2-500kb_qzscpo.jpg', duration: 3100 },
+  { id: 1, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613764/IMG_4691-ph2026-500kb_ep3ujr.jpg', duration: 3100 },
   { id: 2, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613732/IMG_8469ph2026-500kb_fipv2h.jpg', duration: 2000 },
-  { id: 3, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613728/IMG_7653ph26-500kb_dn9hk7.jpg', duration: 2000 },
+  { id: 3, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1779781882/detail2021-ph2026_l7zv21.jpg', duration: 2000 },
   { id: 4, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613680/IMG_4838ph2026-2-500kb_qsqudt.jpg', duration: 3100 },
   { id: 5, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1779785075/IMGP3286PH26-3-500b_hfmhx2.jpg', duration: 3100 },
   { id: 6, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1779787009/DSC_0973ph2026CLOSEUP2_tutyef.jpg', duration: 3100 },
-  { id: 7, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1779788009/photoshoped-2_2025-500kb_uvbxge.jpg', duration: 3100 },
-   { id: 8, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032416/IMG_5405-500kb_xeo7dh.jpg', duration: 3100 },
+  { id: 7, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1780072416/ed500kb_eb2ppw.jpg', duration: 3100 },
+  { id: 8, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1779779810/varnished-and-photoshoped-small-2-16-9_l7ip9v.jpg', duration: 3100 },
+  { id: 9, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1780066797/scanned_small._detail-ph2026-500kb_mjxh6o.jpg', duration: 3100 },
 ];
 
 const MOBILE_SLIDES = [

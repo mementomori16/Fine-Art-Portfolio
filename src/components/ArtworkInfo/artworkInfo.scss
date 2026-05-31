@@ -1,0 +1,71 @@
+@use "../../../app/global.scss" as *;
+
+.artwork-info {
+  width: 100%;
+  max-width: 420px;
+  padding: 40px 20px;
+  color: #cfc7c7;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  h1 {
+    font-size: 26px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: #e8e3e3;
+    letter-spacing: 0.5px;
+  }
+
+  p {
+    font-size: 14px;
+    margin: 4px 0;
+    color: #a8a2a2;
+  }
+
+  .meta {
+    margin-bottom: 25px;
+  }
+
+  .description {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-top: 10px;
+    color: #b5adad;
+  }
+
+  .actions {
+    margin-top: 30px;
+    display: flex;
+    gap: 10px;
+  }
+
+  button {
+    background: transparent;
+    border: 1px solid #6f6a6a;
+    color: #cfc7c7;
+    padding: 8px 14px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: #cfc7c7;
+      color: #ffffff;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .artwork-info {
+    max-width: 100%;
+    padding: 20px 10px;
+    text-align: center;
+
+    .actions {
+      justify-content: center;
+    }
+  }
+}

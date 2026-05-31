@@ -1,0 +1,49 @@
+@use "../../../global.scss" as *;
+
+.artwork-page {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #1c1a1a;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  padding: 4rem 2rem;
+
+  .artwork-layout {
+    width: 100%;
+    max-width: 120rem;
+
+    display: flex;
+    gap: 4rem;
+
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 64rem) {
+  .artwork-page {
+    padding: 3rem 1.5rem;
+
+    .artwork-layout {
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+  }
+}
+
+@media (max-width: 40rem) {
+  .artwork-page {
+    padding: 2rem 1rem;
+
+    .artwork-layout {
+      gap: 2rem;
+    }
+  }
+}
