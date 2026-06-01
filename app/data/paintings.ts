@@ -1,3 +1,5 @@
+import { buildResponsiveImage } from "../../src/utils/paintingsAdapter";
+
 export interface PaintingImageSet {
     small: string;
     medium: string;
@@ -21,20 +23,17 @@ export interface CategoryCover {
 }
 
 /**
- * Creates responsive image set from a single Cloudinary base image.
- * IMPORTANT: this assumes your filenames already contain "-500kb" style marker.
+ * Automatically maps to the robust Cloudinary URL transformer utility.
+ * No link updates or string replacements required.
  */
-const makeImageSet = (baseUrl: string): PaintingImageSet => ({
-    small: baseUrl.replace('500kb', '120kb'),
-    medium: baseUrl.replace('500kb', '250kb'),
-    large: baseUrl
-});
+const makeImageSet = (baseUrl: string): PaintingImageSet => {
+    return buildResponsiveImage(baseUrl.trim());
+};
 
 export const PAINTINGS: Painting[] = [
     // =========================
     // OIL PAINTINGS
     // =========================
-    
     {
         id: "oil_02",
         titleKey: "paintings.oil.item2.title",
@@ -56,7 +55,6 @@ export const PAINTINGS: Painting[] = [
         category: "oil-paintings",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032416/IMG_4906_photoshoped_12.2025-500kb_xdkpzo.jpg")
     },
-    
     {
         id: "oil_06",
         titleKey: "paintings.oil.item6.title",
@@ -85,7 +83,6 @@ export const PAINTINGS: Painting[] = [
         category: "oil-paintings",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1779702849/ph2026edgein-500kb_cdva8b.jpg")
     },
-    
     {
         id: "oil_11",
         titleKey: "paintings.oil.item11.title",
@@ -102,7 +99,7 @@ export const PAINTINGS: Painting[] = [
     },
 
     // ==========================================
-    // 2. DRAWINGS CATEGORY (10 Items)
+    // 2. DRAWINGS CATEGORY
     // ==========================================
     {
         id: "drw_01",
@@ -174,7 +171,7 @@ export const PAINTINGS: Painting[] = [
         category: "drawings",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032413/IMG_3012closeup500kb_xo89iy.jpg")
     },
-     {
+    {
         id: "drw_11",
         titleKey: "paintings.drawings.item11.title",
         slug: "charcoal-depths",
@@ -188,14 +185,14 @@ export const PAINTINGS: Painting[] = [
         category: "drawings",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032411/IMG_20161119_202342-500kb_wsdt7u.jpg")
     },
-     {
+    {
         id: "drw_13",
         titleKey: "paintings.drawings.item13.title",
         slug: "monochromatic-flow",
         category: "drawings",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1780058220/Anna_Palestine_22.08.2026-500kb_qyfbpj.jpg")        
     },
-     {
+    {
         id: "drw_14",
         titleKey: "paintings.drawings.item14.title",
         slug: "charcoal-depths",
@@ -216,7 +213,7 @@ export const PAINTINGS: Painting[] = [
         category: "drawings",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1780059850/dorna_scanned-ph2026-500kb_kmobkt.jpg")
     },
-     {
+    {
         id: "drw_17",
         titleKey: "paintings.drawings.item17.title",
         slug: "charcoal-depths",
@@ -237,7 +234,7 @@ export const PAINTINGS: Painting[] = [
         category: "drawings",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1780066162/Lena_scannedph26-500kb_lg9xnu.jpg")
     },
-     {
+    {
         id: "drw_20",
         titleKey: "paintings.drawings.item20.title",
         slug: "monochromatic-flow",
@@ -249,11 +246,11 @@ export const PAINTINGS: Painting[] = [
         titleKey: "paintings.drawings.item21.title",
         slug: "monochromatic-flow",
         category: "drawings",
-        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1780067263/IMG_3445500kb_yti8g7.jpg ") 
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1780067263/IMG_3445500kb_yti8g7.jpg") 
     },
 
     // ==========================================
-    // 3. WATERCOLORS CATEGORY (3 Items)
+    // 3. WATERCOLORS CATEGORY
     // ==========================================
     {
         id: "wat_01",
@@ -274,7 +271,7 @@ export const PAINTINGS: Painting[] = [
         titleKey: "paintings.watercolors.item3.title",
         slug: "misty-reflections",
         category: "watercolors",
-        images : makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032416/IMG_7751photoshoped_2-2025-500kb_gsfrqk.jpg")
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032416/IMG_7751photoshoped_2-2025-500kb_gsfrqk.jpg")
     },
     {
         id: "wat_04",
@@ -306,7 +303,7 @@ export const PAINTINGS: Painting[] = [
     },
 
     // ==========================================
-    // 4. OTHER WORKS CATEGORY (3 Items)
+    // 4. OTHER WORKS CATEGORY
     // ==========================================
     {
         id: "oth_01",
@@ -343,7 +340,7 @@ export const PAINTINGS: Painting[] = [
         category: "other-works",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032410/Copy_of_marble_sculpture_of_Lely_Venus_2_c._BCE_on_a_piece_of_anchient_Roman_marble_found_in_Caesarea_Israel._Acrylic_on_Marble._2018_ph_1225-500kb_sipdo4.jpg")
     },
-      {
+    {
         id: "oth_06",
         titleKey: "paintings.other.item6.title",
         slug: "sculptural-study",

@@ -5,24 +5,18 @@ import Image from 'next/image';
 import './welcomeHero.scss';
 
 const DESKTOP_SLIDES = [
-  { id: 1, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613764/IMG_4691-ph2026-500kb_ep3ujr.jpg', duration: 3100 },
-  { id: 2, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613732/IMG_8469ph2026-500kb_fipv2h.jpg', duration: 2000 },
-  { id: 3, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1779781882/detail2021-ph2026_l7zv21.jpg', duration: 2000 },
+  { id: 1, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1779787009/DSC_0973ph2026CLOSEUP2_tutyef.jpg', duration: 3100 },
+  { id: 2, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1779785075/IMGP3286PH26-3-500b_hfmhx2.jpg', duration: 2000 },
+  { id: 3, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1779782494/Vanitas_ph2026500KB2_gyxk8l.jpg', duration: 2000 },
   { id: 4, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613680/IMG_4838ph2026-2-500kb_qsqudt.jpg', duration: 3100 },
-  { id: 5, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1779785075/IMGP3286PH26-3-500b_hfmhx2.jpg', duration: 3100 },
-  { id: 6, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1779787009/DSC_0973ph2026CLOSEUP2_tutyef.jpg', duration: 3100 },
-  { id: 7, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1780072416/ed500kb_eb2ppw.jpg', duration: 3100 },
-  { id: 8, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1779779810/varnished-and-photoshoped-small-2-16-9_l7ip9v.jpg', duration: 3100 },
-  { id: 9, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1780066797/scanned_small._detail-ph2026-500kb_mjxh6o.jpg', duration: 3100 },
+  { id: 5, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1779779810/varnished-and-photoshoped-small-2-16-9_l7ip9v.jpg', duration: 3100 },
 ];
 
 const MOBILE_SLIDES = [
   { id: 13, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613717/IMGP3286PH26-2-500b_nidce0.jpg', duration: 3100 },
-  { id: 14, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1779702842/IMG_4906_photoshoped_2026-2_-500kb_dgqsps.jpg', duration: 3000 },
-  { id: 15, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1779781882/detail2021-ph2026_l7zv21.jpg', duration: 3000 },
-  { id: 16, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1779793833/photoshoped_2026_Royal_Gore._Oil_on_canvas_111_x_200_cm._2008._500kb_iyxrpi.jpg', duration: 3100 },
-  { id: 17, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613731/varnished-and-photoshoped-small-2-500kb_jgndqr.jpg', duration: 3000 },
-  { id: 18, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1779792941/IMG_0354-2026-3500kb_yixqtl.jpg', duration: 3000 },
+  { id: 14, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1779781882/detail2021-ph2026_l7zv21.jpg', duration: 3000 },
+  { id: 15, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613717/The_best_photo_Autopsia_of_a_commited_suicide_girl%D0%B7%D1%8026500kb_bup3cx.jpg', duration: 3000 },
+  { id: 16, url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1779779810/varnished-and-photoshoped-small-2-16-9_l7ip9v.jpg', duration: 3000 },
 ];
 
 const AUDIO_SRC =
