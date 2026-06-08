@@ -1,8 +1,8 @@
 @use "../../../app/global.scss" as *;
 
-/* =========================
-   PAGE WRAPPER
-========================= */
+/* =========================================================================
+    PAGE & CONTAINER STYLING
+========================================================================= */
 
 .category-gallery-page {
   width: 100%;
@@ -10,79 +10,174 @@
   background: #171717;
 }
 
-/* ✅ FIX: NO MORE CONFLICT WITH GLOBAL .container */
 .category-container {
-  max-width: 75rem;
-  margin: 0 auto;
-  padding: 2rem 1.5rem;
   width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 2rem;
 }
 
-/* =========================
-   HEADER
-========================= */
+/* =========================================================================
+    HEADER & NAVIGATION STYLING
+========================================================================= */
 
 .section-header {
-  margin-bottom: 3rem;
-  border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1);
-  padding-bottom: 1rem;
+  margin-bottom: 3.5rem; // Increased space to breathe over the navigation links
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
 
-  .category-main-title {
-    color: #ffffff;
-    font-size: 2rem;
-    font-weight: 600;
-    letter-spacing: 0.4rem;
+.category-main-title {
+  color: #ffffff;
+  font-size: 2.2rem;
+  font-weight: 600;
+  letter-spacing: 0.35rem;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.subcategory-filter-menu {
+  display: flex;
+  gap: 1.5rem;
+  border-bottom: 1px solid $color-secondary;
+  padding-bottom: 1.2rem; // Added breathing room above the line boundary split
+
+  .filter-btn {
+    background: none;
+    border: none;
+    color: $color-text-light;
+    font-family: $font-family-base;
+    font-size: 1rem;
     text-transform: uppercase;
-    margin: 0;
+    letter-spacing: 0.15rem;
+    cursor: pointer;
+    padding: 0.25rem 0;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    border-bottom: 2px solid transparent;
+
+    &:hover {
+      color: #ffffff;
+    }
+
+    &.active {
+      color: #ffffff;
+      border-color: #ffffff;
+      font-weight: 500;
+    }
   }
 }
 
-/* =========================
-   GRID (FIXED)
-========================= */
+/* =========================================================================
+    FRONTAL SUB-DIRECTORY ENTRY SELECTIONS
+========================================================================= */
+
+.subcategory-visual-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.2rem;
+  padding-top: 1.5rem; // Pushes down cards cleanly away from the menu line
+
+  .sub-cover-card {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+
+    .sub-cover-title {
+      color: #ffffff; // Swapped from gray to main title match visibility option
+      font-family: $font-family-base;
+      font-size: 1.15rem;
+      font-weight: 500;
+      letter-spacing: 0.2rem;
+      text-transform: uppercase;
+      margin: 0 0 1.5rem 0; // Padding room explicitly between text label and image block
+      text-align: center;
+      transition: opacity 0.2s ease;
+    }
+
+    .image-wrapper {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      background-color: #222222;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+        filter: none; // Completely removed grayscale filters - natural raw assets only
+      }
+    }
+
+    &:hover {
+      .sub-cover-title {
+        opacity: 0.8;
+      }
+
+      .image-wrapper {
+        border-color: rgba(255, 255, 255, 0.25);
+        transform: translateY(-4px);
+
+        img {
+          transform: scale(1.02);
+        }
+      }
+    }
+  }
+}
+
+/* =========================================================================
+    ARTWORK GRID DISPLAY GALLERY
+========================================================================= */
 
 .artwork-grid {
   display: grid;
-
-  /* ✅ KEY FIX: prevents cutting + overflow */
-  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
-
-  gap: 2rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.2rem;
   align-items: start;
 }
 
-/* =========================
-   CARD STYLE (OVERRIDES)
-========================= */
-
-.artwork-card {
-  width: 100%;
+/* TABLET LAYOUT BREAKPOINT */
+@media (max-width: 1024px) {
+  .artwork-grid,
+  .subcategory-visual-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-/* ✅ FIX: remove ugly fixed height */
-.artwork-card img {
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  display: block;
+/* MOBILE PHONE LAYOUT BREAKPOINT */
+@media (max-width: 640px) {
+  .artwork-grid,
+  .subcategory-visual-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
 
-  /* ✅ less "cheap UI" */
-  border-radius: 0.25rem;
+  .category-container {
+    padding: 1.5rem 1.2rem;
+  }
 
-  transition: transform 0.5s ease;
-}
+  .section-header {
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
 
-/* subtle hover */
-.artwork-card:hover img {
-  transform: scale(1.03);
-}
+  .subcategory-filter-menu {
+    gap: 1rem;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 0.8rem;
+    -webkit-overflow-scrolling: touch;
+    
+    .filter-btn {
+      font-size: 0.9rem;
+    }
+  }
 
-/* =========================
-   EMPTY STATE
-========================= */
-
-.empty-notice {
-  text-align: center;
-  color: rgba(255, 255, 255, 0.6);
-  margin-top: 2rem;
+  .subcategory-visual-grid .sub-cover-card .sub-cover-title {
+    margin-bottom: 1rem;
+  }
 }

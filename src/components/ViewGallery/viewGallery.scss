@@ -1,40 +1,36 @@
-@use "../../../app/global.scss" as *;
-
 .viewGallery {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background: #222020;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  padding: 20px;
   z-index: 2000;
 
   .close-button {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 1.5rem;
+    right: 1.5rem;
     background: transparent;
-    color: rgb(132, 126, 126);
     border: none;
-    font-size: 1.8rem;
+    color: #888;
+    font-size: 1.6rem;
     cursor: pointer;
-    transition: color 0.3s;
-    z-index: 2005;
+    z-index: 10;
 
     &:hover {
-      color: #dadada;
+      color: #fff;
     }
   }
 
-  .react-transform-wrapper, .react-transform-component {
-    flex-grow: 1; 
-    width: 100% !important;
-    height: 100% !important;
+  .react-transform-wrapper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .react-transform-component {
+    width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -42,134 +38,121 @@
 
   .largeImage {
     max-width: 100%;
-    max-height: 100%;
-    border-radius: 1.5px;
-    opacity: 0; 
-    transition: opacity 0.6s ease-in-out;
-    will-change: opacity;
+    max-height: 80vh;
+    object-fit: contain;
+    transition: opacity 0.5s ease;
   }
 
+  /* ✅ FIXED INFO (smaller title + correct spacing) */
   .imageInfo {
     position: absolute;
-    left: 20px;
-    bottom: 20px;
-    color: rgb(188, 179, 179);
-    text-align: left;
-    z-index: 2001;
-    transition: opacity 0.4s ease;
+    left: 1.5rem;
+    bottom: 6rem;
+    color: #bbb;
 
     .imageTitle {
-      font-size: 18px;
+      font-size: 0.95rem;
       margin: 0;
     }
 
     .imageDate {
-      font-size: 12px;
+      font-size: 0.7rem;
       margin: 0;
     }
   }
 
+  /* THUMBNAILS */
   .thumbnailsContainer {
-    margin-top: 20px;
     width: 100%;
+    background: #1a1a1a;
+    padding: 1rem 0;
     display: flex;
     justify-content: center;
-    z-index: 2002;
   }
 
   .thumbnails {
     display: flex;
-    margin-top: 20px;
-    
-    .thumbnailContainer {
-      margin: 0 5px;
-      
-      .thumbnail {
-        width: 60px;
-        height: 60px;
-        object-fit: cover;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        border: 2px solid transparent;
+    gap: 0.6rem;
 
-        &.active {
-          border-color: #dadada;
-          transform: scale(1.05);
-        }
+    .thumbnail {
+      width: 3.5rem;
+      height: 3.5rem;
+      object-fit: cover;
+      cursor: pointer;
+      opacity: 0.6;
+      border-radius: 0.25rem;
 
-        &:hover:not(.active) {
-          opacity: 0.8;
-        }
+      &.active {
+        opacity: 1;
+        border: 0.1rem solid #ddd;
+      }
+
+      &:hover {
+        opacity: 1;
       }
     }
   }
 
+  /* ✅ FIXED ZOOM BUTTONS (original look restored) */
   .zoomControls {
     position: absolute;
-    top: 20px; 
-    left: 20px; 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    z-index: 2002;
+    top: 1.5rem;
+    left: 1.5rem;
 
     .zoomButton {
+      display: block;
+      margin-bottom: 0.5rem;
+
       background: transparent;
-      color: rgb(132, 126, 126);
-      border: 2px solid rgb(132, 126, 126);
+      border: 0.1rem solid #888;
+      color: #888;
+
+      width: 2rem;
+      height: 2rem;
+
       border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      font-size: 1.1rem;
+
       cursor: pointer;
-      margin: 5px;
+
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.3s;
+
+      transition: all 0.2s ease;
+
+      span {
+        font-size: 1rem;
+        line-height: 1;
+      }
 
       &:hover {
-        background: rgba(255, 255, 255, 0.1);
-        color: #dadada;
-        border-color: #dadada;
+        color: #fff;
+        border-color: #fff;
+        background: transparent;
       }
     }
   }
 
   .arrow {
     position: absolute;
-    background: transparent;
-    color: rgb(135, 134, 134);
-    border: none;
+    top: 50%;
+    transform: translateY(-50%);
     font-size: 2rem;
+    color: #888;
+    background: none;
+    border: none;
     cursor: pointer;
-    transition: color 0.3s;
-    z-index: 2001;
 
     &:hover {
-      color: #b8b7b7;
+      color: #fff;
     }
 
     &.top-left {
-      left: 20px;
-      top: 50%;
-      transform: translateY(-50%);
+      left: 1.5rem;
     }
 
     &.top-right {
-      right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-  }
-}
-
-@media (max-width: 768px) {
-  .viewGallery {
-    .arrow,
-    .imageInfo {
-      display: none;
+      right: 1.5rem;
     }
   }
 }

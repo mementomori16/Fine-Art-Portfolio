@@ -20,7 +20,7 @@ const MOBILE_SLIDES = [
 ];
 
 const AUDIO_SRC =
-  'https://res.cloudinary.com/dpayqcrg5/video/upload/v1779620423/Music_Eduard_Sasolov_sun5js.mp4';
+  'https://res.cloudinary.com/dpayqcrg5/video/upload/v1780349012/Audio_%D0%92%D0%B0%D0%B4%D0%B8%D0%BC_%D0%A5%D1%80%D0%B0%D0%BF%D0%B0%D1%87%D0%BE%D0%B2_%D0%A4%D1%96%D0%BD%D0%B0%D0%BB_1982_o2x8vg.webm';
 
 export default function WelcomeHero() {
   const [currentIndex, setCurrentIndex] = useState(0);

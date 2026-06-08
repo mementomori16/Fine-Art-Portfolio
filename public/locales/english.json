@@ -6,6 +6,12 @@
     "watercolors": "Watercolors",
     "other_works": "Other Works"
   },
+  "subcategories": {
+    "all": "All",
+    "portraits": "Portraits",
+    "nude": "Nude",
+    "general": "All works"
+  },
   "common": {
     "viewGallery": "View Gallery"
   },

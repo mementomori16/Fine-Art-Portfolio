@@ -21,12 +21,12 @@
 
   .thumbnails {
     display: flex;
-    gap: 10px;
-    margin-top: 15px;
+    gap: 0.6rem;
+    margin-top: 1rem;
 
     img {
-      width: 60px;
-      height: 60px;
+      width: 3.5rem;
+      height: 3.5rem;
       object-fit: cover;
       cursor: pointer;
       opacity: 0.6;
@@ -34,12 +34,25 @@
 
       &.active {
         opacity: 1;
-        border: 1px solid #ccc;
+        border: 0.06rem solid #ccc;
       }
 
       &:hover {
         opacity: 1;
       }
+    }
+  }
+
+  .back-button {
+    margin-top: 1.2rem;
+    background: none;
+    border: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    color: #777;
+
+    &:hover {
+      color: #000;
     }
   }
 }

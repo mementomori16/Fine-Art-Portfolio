@@ -17,11 +17,8 @@ export default function ArtworkPage() {
   const { t } = useTranslation();
   const params = useParams();
 
-  // ✅ SAFE param handling
   const slug = Array.isArray(params.slug) ? params.slug[0] : params.slug;
-  const category = Array.isArray(params.category)
-    ? params.category[0]
-    : params.category;
+  const category = Array.isArray(params.category) ? params.category[0] : params.category;
 
   const painting = PAINTINGS.find(
     (p) => p.id === slug && p.category === category
