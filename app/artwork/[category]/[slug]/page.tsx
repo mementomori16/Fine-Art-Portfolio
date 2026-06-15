@@ -38,9 +38,11 @@ export default function ArtworkPage() {
 
   return (
     <main className="artwork-page">
-      <div className="artwork-layout">
-        <ArtworkViewer images={images} />
-        <ArtworkInfo painting={painting} />
+      <div className="artwork-container">
+        <div className="artwork-layout">
+          <ArtworkViewer images={images} />
+          <ArtworkInfo painting={painting} />
+        </div>
       </div>
     </main>
   );

@@ -1,0 +1,339 @@
+@use "../../app/global.scss" as *;
+
+/* =========================================================================
+    1. CORE ARCHITECTURAL CANVAS CONFIGURATION
+========================================================================= */
+.about-page {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+    overflow-x: hidden;
+
+    background: radial-gradient(
+        circle at 50% 50%,
+        #1a1a1a 0%,
+        #080808 65%,
+        #020202 100%
+    ) fixed !important;
+}
+
+.about-ambient-glow {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    background: 
+        radial-gradient(ellipse at 50% -5%, rgba(255, 235, 180, 0.12) 0%, rgba(255, 210, 120, 0.02) 45%, transparent 80%),
+        radial-gradient(circle at 50% 45%, rgba(255, 225, 150, 0.25) 0%, rgba(255, 185, 95, 0.1) 25%, transparent 70%);
+    transform: translateZ(0);
+}
+
+/* =========================================================================
+    2. FIXED CONTINUOUS EDITORIAL GRID WITH INTEGRATED HEADER TRACK
+========================================================================= */
+.about-interlocking-grid,
+.about-editorial-grid {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 4rem 2rem 8rem 2rem; // Unified padding with top layout parameters
+    
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    row-gap: 4rem;
+    column-gap: 3.5rem;
+}
+
+/* DYNAMIC TRACK OVERRIDES */
+.grid-full-width {
+    grid-column: 1 / span 12;
+}
+
+.main-lead-block {
+    grid-column: 1 / span 7;
+}
+
+.primary-portrait-block {
+    grid-column: 8 / span 5;
+    grid-row: 2 / span 2; // Anchored directly below the full-width structural title row
+}
+
+.bio-text-block-one {
+    grid-column: 1 / span 7;
+}
+
+.secondary-image-block-one {
+    grid-column: 1 / span 5;
+    margin-top: 0.5rem;
+}
+
+.bio-text-block-two {
+    grid-column: 6 / span 7;
+}
+
+.exhibitions-block {
+    grid-column: 1 / span 12;
+    margin-top: 3rem;
+}
+
+/* =========================================================================
+    3. FLUID & RESPONSIVE TYPOGRAPHY HEADER (MATCHED SPEC)
+========================================================================= */
+.section-header {
+    margin-bottom: 2rem; // Optimized margin to coordinate with lead paragraph
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.category-main-title {
+    color: $color-text-white;
+    font-family: $font-family-base;
+    font-weight: $font-weight-light;
+    
+    // ✨ FLUID FONT SYSTEM MATCHED SPEC
+    font-size: clamp(1.75rem, 4vw, 3.25rem);
+    letter-spacing: clamp(0.25rem, 0.8vw, 0.6rem);
+    
+    text-transform: uppercase;
+    margin: 0;
+    position: relative;
+    width: 100%;
+    word-wrap: break-word;
+    white-space: normal;
+
+    &::after {
+        content: '';
+        display: block;
+        width: 40px;
+        height: 1px;
+        background: rgba(255, 235, 180, 0.35);
+        margin: $space-md auto 0 auto;
+    }
+}
+
+/* =========================================================================
+    4. BODY CONTENT & SEGMENT TYPOGRAPHY
+========================================================================= */
+.lead-paragraph {
+    color: #ffffff;
+    font-family: $font-family-base;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+    margin: 0;
+}
+
+.bio-section {
+    margin-bottom: 3.5rem;
+
+    &:last-of-type {
+        margin-bottom: 0;
+    }
+
+    h2 {
+        color: #ffffff;
+        font-family: $font-family-base;
+        font-size: 1.45rem; 
+        font-weight: 500;
+        letter-spacing: 0.15rem;
+        text-transform: uppercase;
+        margin: 0 0 1.3rem 0;
+    }
+
+    p {
+        color: rgba(255, 255, 255, 0.88);
+        font-family: $font-family-base;
+        font-size: 1rem;
+        line-height: 1.8;
+        margin: 0 0 1.2rem 0;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+/* =========================================================================
+    5. MEDIA ARCHITECTURE FRAMEWORKS
+========================================================================= */
+.image-wrapper {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    background-color: #161616;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: $border-radius-md;
+    box-shadow: $shadow-lg;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(1.01) contrast(1.03);
+    }
+
+    &:hover {
+        transform: translateY(-4px);
+        border-color: rgba(255, 235, 180, 0.15);
+    }
+}
+
+.grid-separator {
+    border: 0;
+    height: 1px;
+    background: rgba(255, 235, 180, 0.12);
+    margin: 0 0 3.5rem 0;
+}
+
+/* EXHIBITIONS ROW DESIGN BLOCK */
+.exhibitions-section {
+    .exhibitions-list {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .exhibition-item {
+        display: flex;
+        align-items: flex-start;
+        padding: 1.1rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        gap: 3rem;
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    .exhibition-year {
+        font-family: $font-family-base;
+        color: rgba(255, 235, 180, 0.8);
+        font-size: 1rem;
+        font-weight: 500;
+        min-width: 60px;
+    }
+
+    .exhibition-info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .exhibition-title {
+        font-family: $font-family-base;
+        color: #ffffff;
+        font-size: 1.05rem;
+        line-height: 1.4;
+    }
+
+    .exhibition-location {
+        font-family: $font-family-base;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.9rem;
+    }
+}
+
+/* =========================================================================
+    6. PLATFORM RESPONSIVENESS (MOBILE TRACK OVERRIDES)
+========================================================================= */
+@media (max-width: 64rem) {
+    .about-editorial-grid,
+    .about-interlocking-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 3.5rem;
+        padding: 3rem 3.5rem 5rem 3.5rem;
+    }
+
+    .grid-item {
+        width: 100%;
+        max-width: 650px;
+        margin: 0 auto !important;
+    }
+    
+    .primary-portrait-block {
+        order: -1; // Pushes look to top on compressed layouts
+    }
+}
+
+@media (max-width: $breakpoint-sm) {
+    .about-editorial-grid,
+    .about-interlocking-grid {
+        padding: 2.5rem 1.5rem 4rem 1.5rem;
+        gap: 3rem;
+    }
+
+    .lead-paragraph {
+        font-size: 1.05rem;
+    }
+
+    .bio-section {
+        margin-bottom: 2.5rem;
+        h2 { font-size: 1.25rem; }
+        p { font-size: 0.95rem; }
+    }
+
+    .exhibitions-section {
+        .exhibition-item {
+            gap: 1.5rem;
+        }
+    }
+}
+
+/* =========================================================================
+    EXHIBITIONS HEADER & ARTFACTS TYPOGRAPHY INTERACTION
+========================================================================= */
+.exhibitions-header-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+
+    // Direct fix to keep h2 margin controlled inside the flex setup
+    h2 {
+        margin-bottom: 0 !important;
+        width: auto !important;
+        
+        &::after {
+            display: none !important; // Hides underline block within this specific layout group
+        }
+    }
+}
+
+.artfacts-external-link {
+    font-family: $font-family-base;
+    font-size: 0.85rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.12rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    padding-bottom: 4px;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+    transition: color 0.3s ease, border-color 0.3s ease;
+
+    &:hover {
+        color: rgba(255, 235, 180, 0.9);
+        border-bottom-color: rgba(255, 235, 180, 0.6);
+    }
+}
+
+/* Ensure mobile layout collapses link correctly underneath title */
+@media (max-width: $breakpoint-sm) {
+    .exhibitions-header-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+}

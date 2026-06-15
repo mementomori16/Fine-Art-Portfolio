@@ -26,18 +26,38 @@ export default function ArtworkViewer({ images }: Props) {
 
   return (
     <div className="viewer">
-      {/* MAIN IMAGE */}
-      <div className="main-image" onClick={() => setOpen(true)}>
-        {/* loading="eager" forces the raw HTML img element to fetch instantly with text */}
-        <img src={images[current].url} alt="artwork" loading="eager" />
+      
+      {/* MASTER LUXURY DISPLAY BOUNDS */}
+      <div className="main-image-exhibit-container">
+        
+        {/* BACK GLOW EFFECT */}
+        <div className="viewer-ambient-glow" />
+
+        {/* SPOTLIGHT BEAM */}
+        <div className="viewer-spotlight-beam" />
+
+        {/* CLICKABLE REGION / LUXURY THIN MOULDING FRAME */}
+        <div className="viewer-luxury-edge" onClick={() => setOpen(true)}>
+          <div className="viewer-canvas-container">
+            <img 
+              src={images[current].url} 
+              alt="masterpiece artwork" 
+              loading="eager" 
+              className="viewer-masterpiece-image"
+            />
+          </div>
+        </div>
+
+        {/* FLOATING DEEP ANCHOR SHADOW */}
+        <div className="viewer-floor-shadow" />
       </div>
 
-      {/* THUMBNAILS (NOW USING thumbnail) */}
+      {/* THUMBNAILS COMPACT TRACK */}
       <div className="thumbnails">
         {images.map((img, i) => (
           <img
             key={i}
-            src={img.thumbnail || img.url}   // ✅ FIXED
+            src={img.thumbnail || img.url}
             className={i === current ? "active" : ""}
             onClick={() => setCurrent(i)}
             alt={`thumbnail-${i}`}
@@ -50,7 +70,7 @@ export default function ArtworkViewer({ images }: Props) {
         ← {t("artwork.back")}
       </button>
 
-      {/* VIEWER MODAL */}
+      {/* VIEWER FULLSCREEN MODAL */}
       {open && (
         <ViewGallery
           images={images}

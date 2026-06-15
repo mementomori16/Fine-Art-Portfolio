@@ -1,39 +1,228 @@
 @use "../../../app/global.scss" as *;
 
+/* ==========================================================================
+    1. ARTWORK CARD LAYOUT & TRANSITIONS
+========================================================================== */
 .artwork-card {
-  width: 100%;
-  cursor: pointer;
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    outline: none;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+    &:hover {
+        transform: translateY(-10px);
+
+        // Activates matching background lighting effects
+        .category-ambient-glow {
+            opacity: 0.95;
+            transform: scale(1.15);
+            background: radial-gradient(
+                circle,
+                rgba(255, 225, 150, 0.85),
+                rgba(255, 175, 85, 0.45),
+                transparent 72%
+            );
+            filter: blur(4.5rem);
+        }
+
+        .category-luxury-edge {
+            box-shadow:
+                0 0 0 0.06rem rgba(0, 0, 0, 0.95),
+                0 1.2rem 2.5rem rgba(0, 0, 0, 0.8);
+        }
+
+        .category-artwork-title {
+            color: $color-text-white;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
+        }
+
+        .category-curatorial-meta {
+            color: rgba(255, 235, 180, 0.85); // Transition typography labels dynamically to gold
+        }
+    }
 }
 
-/* IMAGE WRAPPER */
-.image-wrapper {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 4 / 5;
-
-  background: #0d0d0d;
-  overflow: hidden;
-
-  /* 🔥 CONSISTENT HIGH-END LOOK */
-  border-radius: 2px;
+/* ==========================================================================
+    2. THE CANVAS IMAGE WRAPPER FRAME
+========================================================================= */
+.category-frame-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* IMAGE */
-.gallery-img {
-  object-fit: cover;
-  transition: transform 0.5s ease;
+/* ==========================================================================
+    3. THE LUXURY GOLD FRAME STRUCT
+========================================================================= */
+.category-luxury-edge {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0.22rem; 
+    background: #3a3a3a;
+    border-radius: 0.1rem;
+    z-index: 2;
+    box-sizing: border-box;
+
+    box-shadow:
+        0 0 0 0.06rem rgba(0, 0, 0, 0.88),
+        0 0.7rem 1.8rem rgba(0, 0, 0, 0.65);
+    
+    transition: box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.artwork-card:hover .gallery-img {
-  transform: scale(1.03);
+/* Inner gold liner shadow */
+.category-luxury-edge::before {
+    content: '';
+    position: absolute;
+    inset: 0.12rem;
+    border-radius: 0.06rem;
+    box-shadow:
+        inset 0 0 0 0.06rem rgba(255, 255, 255, 0.07),
+        inset 0 0.3rem 0.5rem rgba(0, 0, 0, 0.4);
+    z-index: 4;
+    pointer-events: none;
 }
 
-/* TITLE */
-.artwork-card h3 {
-  margin-top: 0.8rem;
+/* Natural profile directional glare reflection */
+.category-luxury-edge::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        125deg,
+        rgba(255, 255, 255, 0.14),
+        rgba(255, 255, 255, 0.04),
+        transparent 45%
+    );
+    opacity: 0.4;
+    z-index: 5;
+    pointer-events: none;
+}
 
-  color: #ffffff;
-  font-size: 0.85rem;
-  letter-spacing: 0.18rem;
-  text-transform: uppercase;
+/* ==========================================================================
+    4. IMAGE EMBEDDING PROFILE
+========================================================================= */
+.category-canvas-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: $color-text-dark3;
+    border-radius: 0.06rem;
+    z-index: 3;
+}
+
+.category-masterpiece-image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    
+    box-shadow:
+        0 0 0 0.06rem rgba(0, 0, 0, 0.75),
+        0 0.25rem 0.6rem rgba(0, 0, 0, 0.65);
+}
+
+.artwork-missing-canvas {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-error;
+    font-family: $font-family-base;
+    font-size: $font-size-xxs;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    background: #0d0d0d;
+}
+
+/* ==========================================================================
+    5. INTERACTION AMBIENT LIGHTING GLOWS
+========================================================================= */
+.category-ambient-glow {
+    position: absolute;
+    inset: -25%;
+    opacity: 0.55;
+    background: radial-gradient(
+        circle,
+        rgba(255, 220, 140, 0.75),
+        rgba(255, 180, 90, 0.4),
+        transparent 70%
+    );
+    filter: blur(3.8rem);
+    z-index: 0;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.category-spotlight-beam {
+    position: absolute;
+    top: -12%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140%;
+    height: 60%;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(255, 235, 180, 0.16),
+        rgba(255, 210, 120, 0.07),
+        transparent 70%
+    );
+    filter: blur(1.8rem);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Drop shadow plane anchoring frame to floor space */
+.category-floor-shadow {
+    position: absolute;
+    bottom: -1.4rem;
+    width: 65%;
+    height: 1.8rem;
+    background: radial-gradient(
+        ellipse,
+        rgba(0, 0, 0, 0.75),
+        transparent 72%
+    );
+    filter: blur(0.6rem);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* ==========================================================================
+    6. LABELS AND CURATORIAL DATA TYPOGRAPHY
+========================================================================= */
+.category-curatorial-details {
+    margin-top: $space-lg; 
+    text-align: center;
+    position: relative;
+    z-index: 6;
+    width: 100%;
+
+    .category-artwork-title {
+        color: rgba(255, 255, 255, 0.9);
+        font-family: $font-family-base;
+        font-weight: $font-weight-normal;
+        font-size: $font-size-sm;
+        letter-spacing: 0.18rem;
+        text-transform: uppercase;
+        margin: 0 0 $space-xs 0;
+        transition: color 0.4s ease;
+    }
+
+    .category-curatorial-meta {
+        color: $color-text-light;
+        font-family: $font-family-base;
+        font-weight: $font-weight-light;
+        font-size: $font-size-xxs;
+        letter-spacing: 0.16rem;
+        text-transform: uppercase;
+        transition: color 0.4s ease;
+    }
 }

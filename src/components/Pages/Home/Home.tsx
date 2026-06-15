@@ -11,13 +11,6 @@ const Home: React.FC = () => {
     // Reference point targeting the Video component wrapper right below the slider
     const videoSectionRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        document.body.style.backgroundColor = '#171717';
-        return () => {
-            document.body.style.backgroundColor = ''; 
-        };
-    }, []);
-
     // Fires when the WelcomeHero scroll arrow is clicked
     const handleScrollToNext = () => {
         if (videoSectionRef.current) {

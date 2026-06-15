@@ -1,49 +1,69 @@
 @use "../../../global.scss" as *;
 
+/* =========================================================================
+   1. MAIN PAGE WRAPPER (THE SHOWROOM)
+========================================================================= */
 .artwork-page {
   width: 100%;
   min-height: 100vh;
-  background-color: #1c1a1a;
-
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
 
+  background: radial-gradient(
+    circle at 50% 30%,
+    #2a2a2a 0%,
+    #0c0c0c 65%,
+    #050505 100
+  ) fixed !important;
+}
+
+/* =========================================================================
+   2. INNER CONTAINER (THE BLOCKED LAYER FIXED)
+========================================================================= */
+.artwork-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 4rem 2rem;
+  background: transparent !important;
+}
+
+/* =========================================================================
+   3. INNER CONTENT LAYOUT
+========================================================================= */
+.artwork-layout {
+  display: flex;
+  gap: 4rem;
+  align-items: flex-start;
+  justify-content: space-between;
+  background: transparent !important;
+  width: 100%;
+}
+
+/* =========================================================================
+   4. PLATFORM RESPONSIVENESS
+========================================================================= */
+// 🔥 TABLETS & LANDSCAPE IPADS: Stack the viewer and text layout earlier
+@media (max-width: 75rem) { // ~1200px and down
+  .artwork-container {
+    padding: 3rem 2rem;
+  }
 
   .artwork-layout {
-    width: 100%;
-    max-width: 120rem;
-
-    display: flex;
-    gap: 4rem;
-
-    align-items: flex-start;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3.5rem;
   }
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 64rem) {
-  .artwork-page {
-    padding: 3rem 1.5rem;
-
-    .artwork-layout {
-      flex-direction: column;
-      gap: 2.5rem;
-    }
-  }
-}
-
-@media (max-width: 40rem) {
-  .artwork-page {
+@media (max-width: 40rem) { // Mobile
+  .artwork-container {
     padding: 2rem 1rem;
+  }
 
-    .artwork-layout {
-      gap: 2rem;
-    }
+  .artwork-layout {
+    gap: 2.5rem;
   }
 }

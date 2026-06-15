@@ -479,7 +479,7 @@ export const CATEGORY_COVERS: CategoryCover[] = [
         id: "cat_2", 
         slug: "drawings", 
         titleKey: "categories.drawings", 
-        cloudinaryId: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613764/IMG_4691-ph2026-500kb_ep3ujr.jpg" 
+        cloudinaryId: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1781512656/IMG_32273closeup-500kb-2_tbymvy.jpg" 
     },
     { 
         id: "cat_3", 

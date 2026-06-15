@@ -1,139 +1,328 @@
 @use "../../../../app/global.scss" as *;
 
+/* ==========================================================================
+   1. SECTION CONTAINER (THE DARK GALLERY ROOM)
+   ========================================================================== */
 .categories-section {
-    padding: 5rem 0 7rem 0;
+    padding: 0 2rem 10rem 2rem; 
     width: 100%;
-    background: #000;
-
-    .categories-header {
-        margin-bottom: $space-xxxxl;
-        padding: 0 $space-xl;
-
-        .categories-title {
-            color: #ffffff;
-            font-size: 2.6rem;
-            font-weight: $font-weight-bold;
-            text-transform: uppercase;
-            letter-spacing: 0.4rem;
-            line-height: 1.1;
-            margin-bottom: $space-md;
-
-            /* ❌ removed that weird line */
-        }
-
-        .categories-subtitle {
-            color: rgba(255,255,255,0.55);
-            letter-spacing: 0.2rem;
-            text-transform: uppercase;
-            font-size: 0.7rem;
-        }
-    }
-}
-
-/* DESKTOP */
-.categories-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: $space-xxl;
-
-    width: 100%;
-    padding: 0 $space-xl;
     box-sizing: border-box;
+    overflow: hidden;
+
+    background: radial-gradient(
+        circle at 50% 42%,
+        #2a2a2a 0%,
+        #0c0c0c 60%,
+        #050505 100%
+    );
 }
 
-/* 🔥 MOBILE FIX (THIS WAS THE MAIN PROBLEM) */
-@media (max-width: 768px) {
-    .categories-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        padding: 0 1.2rem;
+/* ==========================================================================
+   2. HEADER BLOCK (FLUID MAIN TITLE SYSTEM)
+   ========================================================================== */
+.categories-header {
+    padding-top: 6.5rem; 
+    margin-bottom: 5.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    .categories-title {
+        color: $color-text-white; 
+        font-family: $font-family-base;
+        font-weight: $font-weight-light;
+        
+        // ✨ FLUID SIZE: Scales up safely from mobile h4 sizing up to larger presence
+        font-size: clamp(1.75rem, 4.2vw, 3.25rem);
+        letter-spacing: clamp(0.3rem, 0.8vw, 0.6rem);
+        
+        text-transform: uppercase;
+        margin: 0 0 $space-md 0;
+        width: 100%;
+        word-wrap: break-word;
+    }
+
+    .categories-line-divider {
+        width: 40px;
+        height: 1px;
+        background: rgba(255, 235, 180, 0.35); 
+        margin-bottom: $space-md;
+    }
+
+    .categories-subtitle {
+        color: $color-text-light;
+        font-weight: $font-weight-normal;
+        
+        // Made subtitle slightly clearer on adaptive viewports
+        font-size: clamp(0.7rem, 1.2vw, 0.85rem);
+        letter-spacing: clamp(0.18rem, 0.4vw, 0.3rem);
+        
+        text-transform: uppercase;
+        margin: 0;
     }
 }
 
-.category-card {
+/* ==========================================================================
+   3. THE GRID (1 SINGLE ROW / 4 COLUMNS BASELINE)
+   ========================================================================== */
+.categories-museum-grid {
+    display: grid;
+    // Expanded limits to support larger, more legible card sizes
+    grid-template-columns: repeat(4, minmax(200px, 260px)); 
+    max-width: 1450px;
+    margin: 0 auto;
+    gap: 4rem 3rem;
+    
+    align-items: flex-end; 
+    justify-content: center;
+    width: 100%;
+}
+
+/* ==========================================================================
+   4. CARD BEHAVIOR & INTERACTION EASING
+   ========================================================================== */
+.category-museum-card {
     text-decoration: none;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    outline: none;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 
-    .category-image-wrapper {
-        position: relative;
-        width: 100%;
-        aspect-ratio: 4 / 5;
+    &:hover {
+        transform: translateY(-10px);
 
-        /* 🔥 BIGGER on mobile */
-        max-height: 420px;
-
-        overflow: hidden;
-        border-radius: $border-radius-md;
-        background: #0a0a0a;
-        box-shadow: $shadow-lg;
-    }
-
-    .category-img {
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
-
-        filter: brightness(1.02) contrast(1.05);
-        transition: transform 0.5s ease;
-    }
-
-    &:hover .category-img {
-        transform: scale(1.04);
-    }
-
-    .category-image-wrapper::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-
-        background: linear-gradient(
-            to bottom,
-            rgba(0,0,0,0) 60%,
-            rgba(0,0,0,0.75) 100%
-        );
-    }
-
-    .category-content {
-        position: absolute;
-        bottom: 1.2rem;
-        left: 1.2rem;
-        right: 1.2rem; /* 🔥 prevents overflow */
-        z-index: 2;
-
-        h3 {
-            color: #fff;
-            font-size: 1.2rem;
-            font-weight: $font-weight-bold;
-            letter-spacing: 0.18rem;
-            text-transform: uppercase;
-
-            text-shadow: 0 2px 8px rgba(0,0,0,0.8);
-
-            /* 🔥 FIX: prevent ugly wrapping */
-            line-height: 1.2;
-            word-break: break-word;
+        .category-ambient-glow {
+            opacity: 0.95;
+            transform: scale(1.15);
+            background: radial-gradient(
+                circle,
+                rgba(255, 225, 150, 0.85),
+                rgba(255, 175, 85, 0.45),
+                transparent 72%
+            );
+            filter: blur(4.5rem);
         }
 
-        span {
-            color: rgba(255,255,255,0.8);
-            font-size: 0.6rem;
-            letter-spacing: 0.15rem;
-            text-transform: uppercase;
+        .category-luxury-edge {
+            box-shadow:
+                0 0 0 0.06rem rgba(0, 0, 0, 0.95),
+                0 1.2rem 2.5rem rgba(0, 0, 0, 0.8);
+        }
 
-            text-shadow: 0 2px 6px rgba(0,0,0,0.8);
+        .category-artwork-title {
+            color: $color-text-white;
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
+        }
+
+        .category-curatorial-meta {
+            color: rgba(255, 235, 180, 0.95); 
         }
     }
 }
 
-/* 🔥 SMALL PHONE EXTRA FIX */
-@media (max-width: 480px) {
-    .category-image-wrapper {
-        max-height: 380px;
+/* ==========================================================================
+   5. FRAME WRAPPER
+   ========================================================================== */
+.category-frame-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ==========================================================================
+   6. CSS LUXURY THIN GOLD FRAME
+   ========================================================================== */
+.category-luxury-edge {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0.22rem; 
+    background: #3a3a3a;
+    border-radius: 0.1rem;
+    z-index: 2;
+    box-sizing: border-box;
+
+    box-shadow:
+        0 0 0 0.06rem rgba(0, 0, 0, 0.88),
+        0 0.7rem 1.8rem rgba(0, 0, 0, 0.65);
+    
+    transition: box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.category-luxury-edge::before {
+    content: '';
+    position: absolute;
+    inset: 0.12rem;
+    border-radius: 0.06rem;
+    box-shadow:
+        inset 0 0 0 0.06rem rgba(255, 255, 255, 0.07),
+        inset 0 0.3rem 0.5rem rgba(0, 0, 0, 0.4);
+    z-index: 4;
+    pointer-events: none;
+}
+
+.category-luxury-edge::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        125deg,
+        rgba(255, 255, 255, 0.14),
+        rgba(255, 255, 255, 0.04),
+        transparent 45%
+    );
+    opacity: 0.4;
+    z-index: 5;
+    pointer-events: none;
+}
+
+/* ==========================================================================
+   7. ARTWORK CANVAS COMPARTMENT
+   ========================================================================== */
+.category-canvas-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: $color-text-dark3;
+    border-radius: 0.06rem;
+    z-index: 3;
+}
+
+.category-masterpiece-image {
+    object-fit: cover; 
+    width: 100%;
+    height: 100%;
+    
+    box-shadow:
+        0 0 0 0.06rem rgba(0, 0, 0, 0.75),
+        0 0.25rem 0.6rem rgba(0, 0, 0, 0.65);
+}
+
+/* ==========================================================================
+   8. VISUAL AMBIENT LIGHTING EFFECTS
+   ========================================================================== */
+.category-ambient-glow {
+    position: absolute;
+    inset: -25%;
+    opacity: 0.55;
+    background: radial-gradient(
+        circle,
+        rgba(255, 220, 140, 0.75),
+        rgba(255, 180, 90, 0.4),
+        transparent 70%
+    );
+    filter: blur(3.8rem);
+    z-index: 0;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.category-spotlight-beam {
+    position: absolute;
+    top: -12%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140%;
+    height: 60%;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(255, 235, 180, 0.16),
+        rgba(255, 210, 120, 0.07),
+        transparent 70%
+    );
+    filter: blur(1.8rem);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* ==========================================================================
+   9. DROP LAYER FLOATING SHADOW
+   ========================================================================== */
+.category-floor-shadow {
+    position: absolute;
+    bottom: -1.4rem;
+    width: 65%;
+    height: 1.8rem;
+    background: radial-gradient(
+        ellipse,
+        rgba(0, 0, 0, 0.75),
+        transparent 72%
+    );
+    filter: blur(0.6rem);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* ==========================================================================
+   10. CURATORIAL LABEL TYPOGRAPHY (INCREASED VISIBILITY)
+   ========================================================================== */
+.category-curatorial-details {
+    margin-top: $space-lg; 
+    text-align: center;
+    position: relative;
+    z-index: 6;
+    width: 100%;
+
+    .category-artwork-title {
+        color: rgba(255, 255, 255, 0.95);
+        font-family: $font-family-base;
+        font-weight: $font-weight-normal;
+        
+        // ✨ INCREASED FONT SCALE: Upgraded to fluid clamp to guarantee visibility on tablets
+        font-size: clamp(1rem, 1.6vw, 1.25rem);
+        letter-spacing: clamp(0.14rem, 0.3vw, 0.25rem);
+        
+        text-transform: uppercase;
+        margin: 0 0 $space-xs 0;
+        transition: color 0.4s ease;
+        word-wrap: break-word;
     }
 
-    .category-content h3 {
-        font-size: 1.05rem;
-        letter-spacing: 0.12rem;
+    .category-curatorial-meta {
+        color: rgba(200, 200, 200, 0.85); // Boosted basic contrast weight profile
+        font-family: $font-family-base;
+        font-weight: $font-weight-light;
+        
+        // Fluid meta text to ensure readability matches titles
+        font-size: clamp(0.65rem, 1vw, 0.75rem);
+        letter-spacing: 0.16rem;
+        
+        text-transform: uppercase;
+        transition: color 0.4s ease;
+    }
+}
+
+/* ==========================================================================
+   11. RESPONSIVITY CONTROL STACK (OPTIMIZED FOR IPAD & TABLETS)
+   ========================================================================== */
+@media (max-width: 68rem) { // Tablets & Landscape iPads
+    .categories-header {
+        padding-top: 5rem;
+        margin-bottom: 4rem;
+    }
+
+    .categories-museum-grid {
+        // Drops to 2-column format seamlessly to give cards breathing room and legibility
+        grid-template-columns: repeat(2, minmax(200px, 250px));
+        gap: 4.5rem 3.5rem;
+    }
+}
+
+@media (max-width: $breakpoint-sm) { // Mobile Viewports
+    .categories-header {
+        padding-top: 4rem;
+        margin-bottom: 3.5rem;
+    }
+
+    .categories-museum-grid {
+        grid-template-columns: minmax(200px, 250px);
+        gap: 4.5rem;
     }
 }

@@ -51,7 +51,7 @@ $color-border-subtle-2: #dbdbdb;
 $color-border-light: #EBEBEB;
 
 // --- G. Navigation & Legacy Colors ---
-$color-navbar:rgb(32, 32, 32);
+$color-navbar: rgb(32, 32, 32);
 $color-navbar-title: #dcdcdc;
 $color-navbar-title-hover: #ffffff;
 $color-button: rgb(80, 79, 79); 
@@ -124,7 +124,6 @@ $shadow-xl: 0 1.25rem 1.5rem rgba(0, 0, 0, 0.15);
 $border-radius-sm: 0.25rem;
 $border-radius-md: 0.5rem;
 $border-radius-lg: 0.75rem;
-$border-radius-xl: 1.2rem;
 
 // 7. MIXINS
 // ----------------------------------------------------
@@ -210,10 +209,17 @@ $border-radius-xl: 1.2rem;
     margin-bottom: $space-sm;
     font-family: $font-family-base;
 }
+@mixin services-heading {
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 0.15rem;
+  text-transform: uppercase;
+}
 
 
-// 8. GLOBAL STYLES (Base Elements and Utility Classes)
+// 8. GLOBAL STYLES
 // ----------------------------------------------------
+
 * { 
     box-sizing: border-box; 
 }
@@ -224,6 +230,9 @@ html {
     padding: 0;
     width: 100%;
     overflow-x: hidden; 
+
+    height: 100%;                // ✅ FIX
+    background: transparent;     // ✅ FIX
 }
 
 body {
@@ -231,17 +240,19 @@ body {
     font-size: 1rem;
     line-height: 1.6;
     color: $color-text-white;
-    background-color: #171717;
+
+    background: transparent;     // ✅ FIX (this was breaking your gradient)
+
     margin: 0;
     padding: 0;
     width: 100%;
     min-height: 100vh;
+
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
 }
 
-// Next.js layout structure fixes
 .app-container {
     display: flex;
     flex-direction: column;
@@ -249,12 +260,14 @@ body {
     width: 100%;
     margin: 0;
     padding: 0;
+    background: transparent !important;
 }
 
 .main-content {
     flex: 1 0 auto;
     width: 100%;
     padding: 0;
+    background: transparent !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -422,7 +435,7 @@ a {
         padding-right: $space-lg;
     }
     @media (max-width: $breakpoint-sm) {
-        padding-left: $space-md; // Ensures content doesn't hit edge
+        padding-left: $space-md; 
         padding-right: $space-md;
     }
 }
@@ -452,8 +465,6 @@ a {
     }
 }
 
-// --- THEATRE CURTAIN STYLES ---
-// --- CLEAN NEUTRAL GRAY CURTAIN ---
 .curtain-wrapper {
   position: relative;
   width: 100%;
@@ -468,24 +479,16 @@ a {
   top: 0;
   height: 100%;
   z-index: 10;
-  
-  // Neutral Deep Gray Base
   background-color: #1a1a1a; 
-
-  // Creating "Clean Folds" using repeating gradients
-  // We use shades of gray and black to create depth without "dirt" or "yellow"
   background-image: 
     repeating-linear-gradient(
       90deg,
       rgba(0, 0, 0, 0.4) 0px,
-      rgba(255, 255, 255, 0.02) 2px, // Subtle highlight on the fold edge
+      rgba(255, 255, 255, 0.02) 2px, 
       transparent 20px,
       rgba(0, 0, 0, 0.4) 40px
     ),
-    // Soft top-down lighting (Neutral White, not Yellow)
     linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
-
-  // Clean inner shadow for 3D depth
   box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.8);
 
   &.left {
