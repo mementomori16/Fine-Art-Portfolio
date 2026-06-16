@@ -1,7 +1,7 @@
 "use client";
 
 import React, { use } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation, Trans } from "react-i18next";
 import "./page.scss";
 
 interface PageProps {
@@ -71,7 +71,15 @@ export default function AboutPage({ params }: PageProps) {
             <p>{t("about.section4Text1")}</p>
             <p>{t("about.section4Text2")}</p>
             <p>{t("about.section4Text3")}</p>
-            <p>{t("about.section4Text4")}</p>
+            <p>
+              <Trans
+                i18nKey="about.section4Text4"
+                defaults='Alongside a prolific studio archive of over one thousand professional works, Medvedev channels this technical and academic heritage into an intensive private educational project, <a href="https://profineart.ch" target="_blank" rel="noopener noreferrer">Profineart Studio Basel</a>, providing specialized fine art mentorship across the Basel region.'
+                components={{
+                  a: <a className="inline-text-link" />
+                }}
+              />
+            </p>
           </section>
         </div>
 

@@ -1,7 +1,6 @@
 @use "sass:color";
 @import '../../../app/global.scss';
 
-// Height calculation for the sticky header
 $header-mobile-height: calc(2rem + 2 * #{$space-sm});
 
 .header-mobile {
@@ -25,7 +24,7 @@ $header-mobile-height: calc(2rem + 2 * #{$space-sm});
   .mobile-logo {
     display: flex;
     align-items: center;
-    text-decoration: none !important;
+    text-decoration: none;
 
     .mobile-logo-img {
       height: 2.5rem; 
@@ -44,12 +43,11 @@ $header-mobile-height: calc(2rem + 2 * #{$space-sm});
     cursor: pointer;
     z-index: 1010;
     
-    /* Enforces color constraints natively onto the icon path canvas */
     .hamburger-react {
-      color: #ffffff !important; 
+      color: #ffffff; 
     }
     svg path {
-      stroke-width: 2px !important;
+      stroke-width: 2px;
     }
   }
 }
@@ -61,7 +59,6 @@ $header-mobile-height: calc(2rem + 2 * #{$space-sm});
   top: 100%; 
   height: calc(100vh - #{$header-mobile-height});
   background-color: $color-navbar;
-  list-style: none;
   padding: $space-lg;
   display: flex;
   flex-direction: column;
@@ -92,6 +89,9 @@ $header-mobile-height: calc(2rem + 2 * #{$space-sm});
     margin: 0;
     padding: 0;
     list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: $space-md; // Cleaner handling of vertical list distribution
   }
 
   .mobile-item {
@@ -99,19 +99,21 @@ $header-mobile-height: calc(2rem + 2 * #{$space-sm});
     list-style: none;
 
     .mobile-link {
-      /* Forced clean white presentation layers matching parent framework */
-      color: #ffffff !important; 
+      color: #ffffff; 
       font-family: $font-family-base;
       font-size: 1.25rem; 
       font-weight: $font-weight-semibold;
       text-decoration: none;
       position: relative;
-      padding: 0.75rem 0;
+      padding: 0.5rem 0;
       transition: color 0.3s ease-in-out;
       text-align: left;
       letter-spacing: 0.02rem;
       white-space: nowrap;
-      display: block;
+      
+      // CRITICAL FIX: Inline-block wraps text content size instead of full line container width
+      display: inline-block; 
+      width: auto;
 
       &::after {
         content: '';
@@ -125,7 +127,8 @@ $header-mobile-height: calc(2rem + 2 * #{$space-sm});
       }
 
       &:hover, &.active {
-        color: $color-navbar-title-hover !important;
+        color: $color-navbar-title-hover;
+        
         &::after { 
           width: 100%; 
         }

@@ -378,20 +378,7 @@ export const PAINTINGS: Painting[] = [
         category: "watercolors",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1779702837/2020ph.2026-500kb_wcsr6l.jpg")
     },
-    {
-        id: "wat_06",
-        titleKey: "paintings.watercolors.item6.title",
-        slug: "misty-reflections",
-        category: "watercolors",
-        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1779979092/IMG_4719ph26500kb_ndjjy4.jpg")
-    },
-    {
-        id: "wat_07",
-        titleKey: "paintings.watercolors.item7.title",
-        slug: "misty-reflections",
-        category: "watercolors",
-        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1779979251/IMG_7565photoshoped_2025-500kb_cep1iv.jpg") 
-    },
+    
      {
         id: "wat_08",
         titleKey: "paintings.watercolors.item8.title",
