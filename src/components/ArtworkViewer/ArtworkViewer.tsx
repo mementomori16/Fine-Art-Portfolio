@@ -1,80 +1,95 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import ViewGallery from "../ViewGallery/ViewGallery";
 import "./artworkViewer.scss";
 
-interface ImageData {
-  url: string;
-  title: string;
-  date: string;
-  thumbnail?: string;
+interface PaintingData {
+  id: string;
+  category: string;
+  images?: {
+    small?: string;
+    medium?: string;
+    large?: string;
+  };
+  allImages?: string[];
 }
 
-interface Props {
-  images: ImageData[];
+interface ArtworkViewerProps {
+  painting?: PaintingData;
+  currentImageIndex: number;
+  onBackAction?: () => void;
 }
 
-export default function ArtworkViewer({ images }: Props) {
-  const [current, setCurrent] = useState(0);
-  const [open, setOpen] = useState(false);
-
-  const router = useRouter();
+export default function ArtworkViewer({ painting, currentImageIndex, onBackAction }: ArtworkViewerProps) {
   const { t } = useTranslation();
+  const [open, setOpen] = useState<boolean>(false);
+
+  if (!painting) {
+    return (
+      <div className="viewer">
+        <div className="main-image-exhibit-container">
+          <div className="viewer-fallback-placeholder" />
+        </div>
+      </div>
+    );
+  }
+
+  const activeImageSrc = painting.allImages?.[currentImageIndex] || painting.images?.large || "";
+
+  // FIXED: Removed old titleKey.replace framework logic to use the new ID path system
+// Update the layout conversion maps inside ArtworkViewer:
+const galleryImagesFormatted = (painting.allImages || [activeImageSrc]).map((url) => ({
+  url,
+  title: t(`artwork.${painting.id}.title`),
+  date: t(`artwork.${painting.id}.size`),
+}));
+
+  const handleBackClick = () => {
+    if (onBackAction) {
+      onBackAction();
+    } else if (typeof window !== "undefined") {
+      window.history.back();
+    }
+  };
 
   return (
     <div className="viewer">
-      
-      {/* MASTER LUXURY DISPLAY BOUNDS */}
       <div className="main-image-exhibit-container">
-        
-        {/* BACK GLOW EFFECT */}
         <div className="viewer-ambient-glow" />
-
-        {/* SPOTLIGHT BEAM */}
         <div className="viewer-spotlight-beam" />
-
-        {/* CLICKABLE REGION / LUXURY THIN MOULDING FRAME */}
+        
         <div className="viewer-luxury-edge" onClick={() => setOpen(true)}>
           <div className="viewer-canvas-container">
-            <img 
-              src={images[current].url} 
-              alt="masterpiece artwork" 
-              loading="eager" 
-              className="viewer-masterpiece-image"
-            />
+            {activeImageSrc ? (
+              <img
+                src={activeImageSrc}
+                alt={t(`artwork.items.${painting.id}.title`)}
+                className="viewer-masterpiece-image"
+                loading="eager"
+              />
+            ) : (
+              <div className="viewer-fallback-placeholder" />
+            )}
           </div>
         </div>
 
-        {/* FLOATING DEEP ANCHOR SHADOW */}
         <div className="viewer-floor-shadow" />
       </div>
 
-      {/* THUMBNAILS COMPACT TRACK */}
-      <div className="thumbnails">
-        {images.map((img, i) => (
-          <img
-            key={i}
-            src={img.thumbnail || img.url}
-            className={i === current ? "active" : ""}
-            onClick={() => setCurrent(i)}
-            alt={`thumbnail-${i}`}
-          />
-        ))}
-      </div>
-
-      {/* BACK BUTTON */}
-      <button className="back-button" onClick={() => router.back()}>
-        ← {t("artwork.back")}
+      <button 
+        className="back-button" 
+        onClick={handleBackClick}
+        type="button"
+      >
+        ← {t("artwork.back") || "Back to Gallery"}
       </button>
 
-      {/* VIEWER FULLSCREEN MODAL */}
       {open && (
         <ViewGallery
-          images={images}
-          currentImageId={current}
+          images={galleryImagesFormatted}
+          currentImageId={currentImageIndex}
           onClose={() => setOpen(false)}
         />
       )}

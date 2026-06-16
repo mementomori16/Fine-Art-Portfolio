@@ -1,63 +1,72 @@
 "use client";
 
+import React from "react";
 import { useTranslation } from "react-i18next";
 import "./artworkInfo.scss";
 
 interface PaintingData {
   id: string;
   category: string;
-  titleKey: string;
   descriptionKey?: string;
   images?: {
-    large?: string;
+    small?: string;
     medium?: string;
-    thumbnail?: string;
+    large?: string;
   };
+  allImages?: string[]; 
+  hasValidThumbnails?: boolean;
 }
 
 interface Props {
-  painting: PaintingData;
+  painting?: PaintingData;
+  currentImageIndex?: number;
+  setCurrentImageIndex?: (index: number) => void;
 }
 
-export default function ArtworkInfo({ painting }: Props) {
+export default function ArtworkInfo({ painting, currentImageIndex = 0, setCurrentImageIndex }: Props) {
   const { t, i18n } = useTranslation();
 
-  const baseKey = painting.titleKey.replace(".title", "");
-  
-  const descriptionKey = painting.descriptionKey || `${baseKey}.description`;
-  const hasDescription = i18n.exists(descriptionKey) && t(descriptionKey) !== descriptionKey;
+  if (!painting) {
+    return <div className="artwork-info-loading-skeleton" />;
+  }
 
-  // FIXED: Checked type safety constraints explicitly across runtime environments
+const titleKey = `artwork.${painting.id}.title`;
+const mediumKey = `artwork.${painting.id}.medium`;
+const sizeKey = `artwork.${painting.id}.size`;
+const descriptionKey = painting.descriptionKey || `artwork.${painting.id}.description`;
+  
+  const hasDescription = i18n.exists(descriptionKey) && t(descriptionKey) !== descriptionKey;
   const isShareSupported = typeof window !== "undefined" && !!navigator.share;
+  const renderingThumbnails = painting.allImages || [];
 
   const handleShare = async () => {
     if (!isShareSupported) return;
     try {
       await navigator.share({
-        title: t(painting.titleKey),
+        title: t(titleKey),
         url: window.location.href,
       });
     } catch {
-      // Silently catch manual cancellation exceptions safely
+      // Catch exceptions gracefully
     }
   };
 
   return (
     <div className="artwork-info">
       <div className="info-header">
-        <h1>{t(painting.titleKey)}</h1>
+        <h1>{t(titleKey)}</h1>
         <div className="divider-line" />
       </div>
 
       <div className="meta-specifications">
         <div className="meta-group">
           <span className="label">{t("artwork.medium") || "Medium"}</span>
-          <p className="value">{t(`${baseKey}.medium`)}</p>
+          <p className="value">{t(mediumKey)}</p>
         </div>
         
         <div className="meta-group">
           <span className="label">{t("artwork.dimensions") || "Dimensions"}</span>
-          <p className="value">{t(`${baseKey}.size`)}</p>
+          <p className="value">{t(sizeKey)}</p>
         </div>
       </div>
 
@@ -65,6 +74,20 @@ export default function ArtworkInfo({ painting }: Props) {
         <div className="description-block">
           <div className="divider-line mini" />
           <p className="description-text">{t(descriptionKey)}</p>
+        </div>
+      )}
+
+      {painting.hasValidThumbnails && renderingThumbnails.length > 1 && (
+        <div className="info-panel-thumbnails">
+          {renderingThumbnails.map((thumbUrl, idx) => (
+            <img
+              key={idx}
+              src={thumbUrl}
+              alt={`View thumbnail option ${idx + 1}`}
+              className={currentImageIndex === idx ? "active" : ""}
+              onClick={() => setCurrentImageIndex && setCurrentImageIndex(idx)}
+            />
+          ))}
         </div>
       )}
 

@@ -8,12 +8,12 @@
     width: 100%;
     min-height: 100vh;
     box-sizing: border-box;
-    overflow-x: hidden;
+    overflow: hidden; 
 
     background: radial-gradient(
-        circle at 50% 42%,
+        circle at 50% 30vh,
         #2a2a2a 0%,
-        #0c0c0c 60%,
+        #0c0c0c 70%,
         #050505 100%
     ) fixed !important;
 }
@@ -28,38 +28,7 @@
 }
 
 /* =========================================================================
-    2. HIGH-LUMINANCE BACKLIGHT RIG (MATCHED TO ARTWORKVIEWER SPEC)
-========================================================================= */
-.category-ambient-glow {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    pointer-events: none;
-    
-    background: 
-        radial-gradient(
-            ellipse at 50% -5%,
-            rgba(255, 235, 180, 0.22) 0%,
-            rgba(255, 210, 120, 0.08) 45%,
-            transparent 80%
-        ),
-        radial-gradient(
-            circle at 50% 38%,
-            rgba(255, 225, 150, 0.55) 0%,   
-            rgba(255, 185, 95, 0.22) 20%,   
-            rgba(255, 160, 70, 0.06) 45%,
-            transparent 75%
-        );
-
-    transform: translateZ(0);
-    will-change: transform;
-    opacity: 1;
-}
-
-/* =========================================================================
-    3. FLUID & RESPONSIVE TYPOGRAPHY HEADER
+    2. FLUID & RESPONSIVE TYPOGRAPHY HEADER
 ========================================================================= */
 .section-header {
     margin-bottom: 4.5rem;
@@ -74,11 +43,8 @@
     color: $color-text-white;
     font-family: $font-family-base;
     font-weight: $font-weight-light;
-    
-    // ✨ FLUID FONT SYSTEM
     font-size: clamp(1.75rem, 4vw, 3.25rem);
     letter-spacing: clamp(0.25rem, 0.8vw, 0.6rem);
-    
     text-transform: uppercase;
     margin: 0;
     position: relative;
@@ -97,41 +63,65 @@
 }
 
 /* =========================================================================
-    4. ARTWORK 3-COLUMN ARCHITECTURE GRID
+    3. ARTWORK ARCHITECTURE GRID & LOCALIZED LIGHTING WRAPPER
 ========================================================================= */
 .artwork-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 5rem 3.5rem;
-    align-items: flex-end;
+    // Increased row gap slightly to safely provide overflow headroom for wrapping texts
+    gap: 9rem 3.5rem; 
+    // FIXED: Elements stretch uniformly in height so variations in title length 
+    // never pull or push neighboring images out of line.
+    align-items: stretch; 
     justify-content: center;
     width: 100%;
     max-width: 1100px; 
     margin: 0 auto;
+}
 
-    & > * {
-        width: 100%;
-        max-width: 280px; 
-        margin: 0 auto;   
-    }
+.artwork-card-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 280px; 
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    transform: translateZ(0); 
+}
+
+/* DEDICATED SPOTLIGHT RIG PER IMAGE */
+.individual-artwork-glow {
+    position: absolute;
+    inset: -20%; 
+    z-index: -1; 
+    pointer-events: none;
+    
+    background: radial-gradient(
+        circle at center,
+        rgba(255, 225, 150, 0.25) 0%,   
+        rgba(255, 185, 95, 0.10) 40%,   
+        rgba(255, 160, 70, 0.01) 70%,
+        transparent 100%
+    );
+    
+    filter: blur(5rem);
+    transform: translateZ(0);
+    will-change: transform;
 }
 
 /* =========================================================================
-    5. PLATFORM RESPONSIVENESS (IPADS & MOBILE SCREEN OPTIMIZATION)
+    4. PLATFORM RESPONSIVENESS
 ========================================================================= */
-
-/* Medium Laptops down to Landscape iPads */
 @media (max-width: 72rem) {
     .category-container {
         padding: 3.5rem 3rem 5rem 3rem; 
     }
     .artwork-grid {
-        gap: 4rem 2.5rem;
+        gap: 7.5rem 2.5rem;
         max-width: 960px;
     }
 }
 
-/* 💻 IPAD AIR / PRO RESPONSIVE RECOVERY (768px - 1024px) */
 @media (max-width: 64rem) { 
     .category-container {
         padding: 3rem 3.5rem 5rem 3.5rem; 
@@ -140,56 +130,52 @@
     .artwork-grid {
         grid-template-columns: repeat(2, 1fr);
         max-width: 680px;
-        gap: 4.5rem 3.5rem;
-
-        & > * {
-            max-width: 260px; 
-        }
+        gap: 7.5rem 3.5rem;
     }
 
-    .category-ambient-glow {
-        background: 
-            radial-gradient(
-                ellipse at 50% -5%,
-                rgba(255, 235, 180, 0.18) 0%,
-                transparent 70%
-            ),
-            radial-gradient(
-                circle at 50% 35%,
-                rgba(255, 225, 150, 0.45) 0%,
-                rgba(255, 185, 95, 0.16) 25%,
-                transparent 70%
-            );
+    .artwork-card-wrapper {
+        max-width: 260px; 
+    }
+    
+    .individual-artwork-glow {
+        filter: blur(4rem);
+        inset: -15%;
+        background: radial-gradient(
+            circle at center,
+            rgba(255, 225, 150, 0.20) 0%,
+            rgba(255, 185, 95, 0.06) 45%,
+            transparent 100%
+        );
     }
 }
 
-/* Portrait Mini Tablets / Large Phablets */
 @media (max-width: 42rem) {
     .category-container {
         padding: 2.5rem 2rem 4rem 2rem; 
     }
     .artwork-grid {
         max-width: 520px;
-        gap: 3.5rem 2rem;
+        gap: 6.5rem 2rem;
     }
 }
 
-/* Mobile Devices */
 @media (max-width: $breakpoint-sm) {
     .category-container {
-        // Reduced side padding to award more horizontal room to images
         padding: 2rem 1rem 4rem 1rem; 
     }
 
     .artwork-grid {
         grid-template-columns: 1fr;
-        // MODIFIED: Lifted constraints to scale smoothly on handheld layout widths
         max-width: 420px;
-        gap: 3rem;
+        gap: 6.5rem;
+    }
 
-        & > * {
-            // Amplified maximum width boundaries for larger mobile display impact
-            max-width: 100%;
-        }
+    .artwork-card-wrapper {
+        max-width: 100%;
+    }
+
+    .individual-artwork-glow {
+        filter: blur(3rem);
+        inset: -10%;
     }
 }

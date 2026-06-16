@@ -39,6 +39,84 @@ $header-mobile-height: calc(2rem + 2 * #{$space-sm});
     gap: $space-md;
   }
 
+  .mobile-lang-dropdown {
+    position: relative;
+    display: inline-block;
+
+    .lang-trigger {
+      background: none;
+      border: none;
+      color: #ffffff; // Clean high-contrast white text for immediate readability
+      font-family: $font-family-base;
+      font-size: 0.85rem;
+      font-weight: $font-weight-medium;
+      letter-spacing: 0.02rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.4rem 0.6rem;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+      transition: color 0.2s ease;
+
+      &:hover, &.open {
+        color: $color-navbar-title-hover;
+      }
+
+      .lang-chevron {
+        width: 0;
+        height: 0;
+        border-left: 3px solid transparent;
+        border-right: 3px solid transparent;
+        border-top: 4px solid currentColor;
+        display: inline-block;
+        transition: transform 0.2s ease;
+      }
+
+      &.open .lang-chevron {
+        transform: rotate(180deg);
+      }
+    }
+
+    .lang-menu {
+      position: absolute;
+      top: 110%;
+      right: 0;
+      background-color: #1a1a1a;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      padding: 0.25rem 0;
+      margin: 0;
+      list-style: none;
+      min-width: 4.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      z-index: 1020;
+
+      .lang-option {
+        width: 100%;
+        background: none;
+        border: none;
+        text-align: center;
+        padding: 0.4rem 0.8rem;
+        color: rgba(255, 255, 255, 0.85); // High-readability dropdown choices
+        font-family: $font-family-base;
+        font-size: 0.8rem;
+        cursor: pointer;
+        transition: color 0.2s ease, background 0.2s ease;
+
+        &:hover {
+          color: #ffffff;
+          background-color: rgba(255, 255, 255, 0.08);
+        }
+
+        &.selected {
+          color: $color-navbar-title-hover;
+          font-weight: $font-weight-semibold;
+        }
+      }
+    }
+  }
+
   .mobile-hamburger {
     cursor: pointer;
     z-index: 1010;
@@ -59,7 +137,7 @@ $header-mobile-height: calc(2rem + 2 * #{$space-sm});
   top: 100%; 
   height: calc(100vh - #{$header-mobile-height});
   background-color: $color-navbar;
-  padding: $space-lg;
+  padding: $space-xl $space-lg;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
@@ -91,7 +169,7 @@ $header-mobile-height: calc(2rem + 2 * #{$space-sm});
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: $space-md; // Cleaner handling of vertical list distribution
+    gap: $space-sm; 
   }
 
   .mobile-item {
@@ -99,38 +177,70 @@ $header-mobile-height: calc(2rem + 2 * #{$space-sm});
     list-style: none;
 
     .mobile-link {
-      color: #ffffff; 
       font-family: $font-family-base;
-      font-size: 1.25rem; 
-      font-weight: $font-weight-semibold;
+      font-size: 1.15rem; 
+      font-weight: $font-weight-medium;
       text-decoration: none;
       position: relative;
-      padding: 0.5rem 0;
-      transition: color 0.3s ease-in-out;
-      text-align: left;
-      letter-spacing: 0.02rem;
+      padding: 0.6rem 1rem; 
       white-space: nowrap;
-      
-      // CRITICAL FIX: Inline-block wraps text content size instead of full line container width
       display: inline-block; 
       width: auto;
+      letter-spacing: 0.04rem;
+      z-index: 1;
 
-      &::after {
+      // ✨ UI DESIGNER VISIBILITY PASS
+      // Crisp, pristine off-white resting state baseline with an intentional text shadow
+      color: rgba(255, 255, 255, 0.95);
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+      transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+      // ✨ RADIAL BACKLIGHT ENGINE (Matches Category Card Glow Matrix)
+      &::before {
         content: '';
         position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background-color: $color-navbar-title-hover;
-        transition: width 0.3s ease-in-out;
+        top: -10%;
+        left: -10%;
+        width: 120%;
+        height: 120%;
+        
+        background: radial-gradient(
+          circle at center,
+          rgba(255, 238, 180, 0.7) 0%,   // Saturated golden lumen core
+          rgba(255, 185, 95, 0.3) 45%,    // Atmospheric halo dissipation
+          transparent 75%
+        );
+        
+        filter: blur(1.8rem);
+        z-index: -1;
+        pointer-events: none;
+        
+        opacity: 0;
+        transform: scale(0.7);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
       }
 
-      &:hover, &.active {
-        color: $color-navbar-title-hover;
+      // ✨ HOVER INTERACTION STYLES
+      &:hover {
+        color: #ffffff;
+        text-shadow: 0 0 14px rgba(255, 255, 255, 0.4); // Deep museum radiance glow profile
+        transform: translateX(4px); 
+
+        &::before {
+          opacity: 0.95;
+          transform: scale(1.1);
+        }
+      }
+
+      // ✨ PERSISTENT ACTIVE INDICATOR
+      &.active {
+        color: $color-navbar-title-hover; // Clean custom luxury gold branding color
+        text-shadow: 0 0 10px rgba(255, 215, 130, 0.25);
         
-        &::after { 
-          width: 100%; 
+        &::before {
+          opacity: 0.65; 
+          transform: scale(0.95);
+          filter: blur(2.2rem);
         }
       }
     }

@@ -4,7 +4,7 @@
     "oil_paintings": "Oil",
     "drawings": "Drawings",
     "watercolors": "Watercolors",
-    "other_works": "Other Works"
+    "other_works": "Heritage & Antiquities"
   },
   "subcategories": {
     "all": "All",
@@ -15,20 +15,71 @@
   "common": {
     "viewGallery": "View Gallery"
   },
-  "paintings": {
-    "oil": {
-      "item1": {
-        "title": "Vanitas",
-        "medium": "Oil on Canvas",
-        "size": "120 x 60 cm"
-      }
+  "artwork": {
+    "medium": "Medium",
+    "dimensions": "Dimensions",
+    "share": "Share Piece",
+    "back": "Back to Gallery",
+   "oil_02": { "title": "Vanitas", "medium": "Oil on Canvas", "size": "120 x 60 cm" },
+      "oil_03": { "title": "Autopsy of Commited Suicide young Woman", "medium": "Oil on Canvas", "size": "65 x 45 cm" },
+      "oil_04": { "title": "Ethereal Dusk", "medium": "Oil on Canvas", "size": "50 x 50 cm" },
+      "oil_06": { "title": "The Dance", "medium": "Oil on Canvas", "size": "111 x 200 cm" },
+      "oil_07": { "title": "Study Option A", "medium": "Oil on Canvas", "size": "90 x 90 cm" },
+      "oil_08": { "title": "Composition Frame", "medium": "Oil on Canvas", "size": "80 x 120 cm" },
+      "oil_09": { "title": "Edge Reflection", "medium": "Oil on Canvas", "size": "75 x 100 cm" },
+      "oil_11": { "title": "Portrait of Drowned Woman", "medium": "Oil on Canvas", "size": "150 x 110 cm" },
+      "oil_12": { "title": "Classic Figure Study", "medium": "Oil on Canvas", "size": "60 x 80 cm" },
+      
+      "drw_01": { "title": "Urban Echo", "medium": "Graphite on Paper", "size": "30 x 40 cm" },
+      "drw_02": { "title": "Shadowed Profile", "medium": "Charcoal on Tinted Paper", "size": "50 x 65 cm" },
+      "drw_03": { "title": "Silent Gaze", "medium": "Conté Crayon on Paper", "size": "40 x 50 cm" },
+      "drw_04": { "title": "Lines of Time", "medium": "Graphite on Paper", "size": "35 x 45 cm" },
+      "drw_05": { "title": "Architectural Study", "medium": "Ink and Wash on Paper", "size": "42 x 59.4 cm" },
+      "drw_06": { "title": "Gestural Anatomy", "medium": "Sanguine on Paper", "size": "50 x 70 cm" },
+      "drw_07": { "title": "Contour Landscapes", "medium": "Ink on Paper", "size": "29.7 x 42 cm" },
+      "drw_08": { "title": "Nocturnal Sketch", "medium": "Charcoal on Paper", "size": "40 x 40 cm" },
+      "drw_09": { "title": "Charcoal Depths", "medium": "Compressed Charcoal", "size": "60 x 80 cm" },
+      "drw_10": { "title": "Monochromatic Flow", "medium": "Graphite on Paper", "size": "50 x 50 cm" },
+      "drw_11": { "title": "Depth Perspective Study", "medium": "Charcoal on Paper", "size": "45 x 60 cm" },
+      "drw_12": { "title": "Classic Profile Line", "medium": "Pencil on Paper", "size": "30 x 40 cm" },
+      "drw_13": { "title": "Anna Palestine", "medium": "Charcoal and Chalk", "size": "55 x 75 cm" },
+      "drw_14": { "title": "Vincent Study", "medium": "Graphite on Paper", "size": "40 x 50 cm" },
+      "drw_15": { "title": "Nude Dynamic Pose", "medium": "Charcoal on Paper", "size": "65 x 50 cm" },
+      "drw_16": { "title": "Dorna Profile", "medium": "Ink and Brush on Paper", "size": "35 x 50 cm" },
+      "drw_17": { "title": "Anatomy Figure Study", "medium": "Sanguine on Paper", "size": "70 x 50 cm" },
+      "drw_18": { "title": "Seated Model Profile", "medium": "Pencil on Paper", "size": "40 x 55 cm" },
+      "drw_19": { "title": "Lena Scanned Track", "medium": "Charcoal on Paper", "size": "60 x 45 cm" },
+      "drw_20": { "title": "Detail Texture Map", "medium": "Graphite on Paper", "size": "30 x 30 cm" },
+      "drw_21": { "title": "Standing Nude Study", "medium": "Charcoal on Paper", "size": "70 x 40 cm" },
+      "drw_22": { "title": "Annushka Sketch", "medium": "Pencil on Paper", "size": "35 x 45 cm" },
+      "drw_23": { "title": "Roger Line Study", "medium": "Graphite on Paper", "size": "40 x 60 cm" },
+      "drw_24": { "title": "Expression Portrait Frame", "medium": "Charcoal on Paper", "size": "50 x 50 cm" },
+      "drw_25": { "title": "Model Study Perspective", "medium": "Pencil on Paper", "size": "45 x 55 cm" },
+      "drw_26": { "title": "Seated Figure Balance", "medium": "Charcoal on Paper", "size": "60 x 50 cm" },
+      "drw_27": { "title": "Resting Pose Outline", "medium": "Graphite on Paper", "size": "40 x 50 cm" },
+      "drw_28": { "title": "Reclining Nude Figure", "medium": "Sanguine on Paper", "size": "50 x 70 cm" },
+      "drw_29": { "title": "Lily Study Track", "medium": "Pencil on Paper", "size": "30 x 42 cm" },
+      "drw_30": { "title": "Anatomical Portrait Frame", "medium": "Charcoal on Paper", "size": "40 x 50 cm" },
+
+      "wat_01": { "title": "Fluid Boundaries", "medium": "Watercolor on Cotton Paper", "size": "56 x 76 cm" },
+      "wat_02": { "title": "Translucent Shores", "medium": "Watercolor on Hot Press Paper", "size": "38 x 56 cm" },
+      "wat_03": { "title": "Misty Reflections", "medium": "Watercolor on Cold Press Paper", "size": "40 x 50 cm" },
+      "wat_04": { "title": "Water Border Composition", "medium": "Watercolor on Paper", "size": "30 x 45 cm" },
+      "wat_05": { "title": "Seascape Light Study", "medium": "Watercolor on Paper", "size": "50 x 65 cm" },
+      "wat_08": { "title": "Basel Lions View", "medium": "Watercolor on Heavy Paper", "size": "45 x 60 cm" },
+
+      "oth_01": { "title": "Mixed Dimensions", "medium": "Mixed Media on Panel", "size": "80 x 80 cm" },
+      "oth_02": { "title": "Sculptural Study Piece", "medium": "Acrylic on Cast Element", "size": "40 x 40 x 20 cm" },
+      "oth_03": { "title": "Sleeping Hermaphroditus Study", "medium": "Mixed Tech on Panel", "size": "60 x 90 cm" },
+      "oth_04": { "title": "Texture Recovered Canvas", "medium": "Gouache and Acrylic", "size": "50 x 50 cm" },
+      "oth_05": { "title": "Lely Venus Acrylic on Antique Roman Marble", "medium": "Acrylic on Found Antique Roman Marble", "size": "25 x 35 cm" },
+      "oth_06": { "title": "Historical Cast Silhouette", "medium": "Mixed Medium Composition", "size": "70 x 50 cm" },
+      "oth_07": { "title": "Marble Fragment Relief Study", "medium": "Acrylic on Stone Specimen", "size": "30 x 20 cm" },
+      "oth_08": { "title": "Experimental Specimen Frame", "medium": "Mixed Material Track", "size": "60 x 60 cm" },
+      "oth_09": { "title": "Moses Tonal Darkness Study", "medium": "Oil and Acrylic on Board", "size": "80 x 100 cm" }
     },
-    "urban_echo": {
-      "title": "Urban Echo",
-      "medium": "Graphite on Paper",
-      "size": "30 x 40 cm"
-    }
-  },
+  
+  
   "about": {
     "title": "About",
     "bioParagraph": "Ilya Medvedev (born 1981) is a Swiss-based contemporary artist and educator whose multidisciplinary practice spans large-scale oil painting, drawing, photography, and site-specific installations. Currently living and working in Basel, Switzerland, Medvedev constructs a raw visual universe that navigates human anatomy, classical traditions, and the psychological realities of the human condition.",

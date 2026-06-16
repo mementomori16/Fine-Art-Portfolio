@@ -21,7 +21,7 @@
       margin-bottom: 1.25rem;
       color: #f5f2f2;
       letter-spacing: 0.02rem;
-      word-wrap: break-word; // Guards the text content safely against breaking bounds
+      word-wrap: break-word;
     }
 
     .divider-line {
@@ -67,7 +67,7 @@
   }
 
   .description-block {
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
 
     .description-text {
       font-size: 0.88rem;
@@ -76,6 +76,41 @@
       color: #a69f9f;
       font-weight: 300;
       text-align: justify;
+    }
+  }
+
+  /* ==========================================================================
+      NEW MOVED THUMBNAILS CONTAINER STYLING WITHIN INFO BLOCK
+  ========================================================================== */
+  .info-panel-thumbnails {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap; 
+    gap: 0.85rem;
+    margin-bottom: 2.5rem; 
+    width: 100%;
+    background: transparent !important;
+
+    img {
+      width: 4.2rem;
+      height: 4.2rem;
+      object-fit: cover;
+      cursor: pointer;
+      opacity: 0.35;
+      border-radius: 1px;
+      border: 1px solid transparent;
+      transition: opacity 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 0.3rem 0.8rem rgba(0, 0, 0, 0.4);
+
+      &.active {
+        opacity: 1;
+        border-color: rgba(255, 235, 180, 0.6); 
+        transform: translateY(-2px);
+      }
+
+      &:hover {
+        opacity: 0.8;
+      }
     }
   }
 
@@ -131,7 +166,7 @@
       text-align: center;
       
       h1 {
-        font-size: 1.5rem; // Gently lowered header scale on midsize displays
+        font-size: 1.5rem; 
         padding: 0 1rem;
       }
 
@@ -161,6 +196,11 @@
       }
     }
 
+    .info-panel-thumbnails {
+      justify-content: center; /* Center array items nicely below description content */
+      margin-bottom: 2rem;
+    }
+
     .share-action-button {
       margin: 0 auto;
     }
@@ -170,7 +210,7 @@
 @media (max-width: 40rem) {
   .artwork-info {
     .info-header h1 {
-      font-size: 1.35rem; // Safe boundary configuration for mobile viewports
+      font-size: 1.35rem; 
       padding: 0 0.5rem;
     }
   }

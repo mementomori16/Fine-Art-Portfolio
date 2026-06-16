@@ -51,11 +51,12 @@
 
 /* ==========================================================================
     3. THE LUXURY THIN ARTWORK FRAME STRUCT
-========================================================================== */
+========================================================================= */
 .viewer-luxury-edge {
     position: relative;
     max-width: 100%;
-    max-height: 65vh; 
+    /* MODIFIED: Increased desktop frame height to 92vh for maximum height impact */
+    max-height: 92vh; 
     padding: 0.22rem; 
     background: #3a3a3a;
     border-radius: 0.1rem;
@@ -114,7 +115,8 @@
 
 .viewer-masterpiece-image {
     max-width: 100%;
-    max-height: 63vh; 
+    /* MODIFIED: Increased inner image vertical capacity to 90vh */
+    max-height: 90vh; 
     object-fit: contain; 
     display: block;
     background: transparent !important;
@@ -126,13 +128,12 @@
 
 /* ==========================================================================
     5. MATCHING LUXURY SPOTLIGHT & HERO AMBIENT GOLD GLOWS
-========================================================================== */
+========================================================================= */
 .viewer-ambient-glow {
     position: absolute;
-    inset: -25%; /* Expanded bounds to match WelcomeHero configuration precisely */
-    opacity: 0.8; /* Elevated initial transparency weight */
+    inset: -25%; 
+    opacity: 0.8; 
     
-    /* Premium gold radial blend matching the main landing page hero asset precisely */
     background: radial-gradient(
         circle,
         rgba(255, 220, 140, 0.8) 0%,
@@ -153,7 +154,6 @@
     width: 140%;
     height: 60%;
     
-    /* Top beam gradient matching the .mobileTopLight parameters */
     background: radial-gradient(
         ellipse at center,
         rgba(255, 235, 180, 0.18),
@@ -182,7 +182,7 @@
 
 /* ==========================================================================
     6. THUMBNAIL META CAROUSEL TRACK
-========================================================================== */
+========================================================================= */
 .thumbnails {
     display: flex;
     justify-content: center;
@@ -217,7 +217,7 @@
 
 /* ==========================================================================
     7. HISTORICAL CONTEXT BACK BUTTON
-========================================================================== */
+========================================================================= */
 .back-button {
     align-self: flex-start;
     margin-top: 2.5rem;
@@ -240,20 +240,22 @@
 
 /* ==========================================================================
     8. RESPONSIVITY DOCK CONTROL HOOKS
-========================================================================== */
+========================================================================= */
 @media (max-width: 75rem) { 
     .viewer {
         flex: none;
         width: 100%;
-        max-width: 600px; 
+        max-width: 650px; /* Expanded slightly to ensure vertical forms stretch beautifully */
     }
     
+    /* MODIFIED: Raised to 82vh */
     .viewer-luxury-edge {
-        max-height: 50vh; 
+        max-height: 82vh; 
     }
     
+    /* MODIFIED: Raised to 80vh */
     .viewer-masterpiece-image {
-        max-height: 48vh;
+        max-height: 80vh;
     }
 
     .thumbnails {
@@ -277,12 +279,14 @@
         max-width: 100%;
     }
     
+    /* MODIFIED: Expanded layout limits to 78vh for mobile screens */
     .viewer-luxury-edge {
-        max-height: 45vh;
+        max-height: 78vh;
     }
     
+    /* MODIFIED: Expanded to 76vh */
     .viewer-masterpiece-image {
-        max-height: 43vh;
+        max-height: 76vh;
     }
 }
 
@@ -291,13 +295,15 @@
         padding: 0.5rem 0;
     }
     
+    /* MODIFIED: Maximize screen availability up to 74vh on tight smartphone dimensions */
     .viewer-luxury-edge {
-        max-height: 38vh;
+        max-height: 74vh;
         padding: 0.18rem;
     }
     
+    /* MODIFIED: Raised to 72vh */
     .viewer-masterpiece-image {
-        max-height: 36vh;
+        max-height: 72vh;
     }
     
     .viewer-ambient-glow {

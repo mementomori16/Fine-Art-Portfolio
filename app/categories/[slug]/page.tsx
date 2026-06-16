@@ -24,9 +24,6 @@ export default function CategoryPage({ params }: PageProps) {
 
   return (
     <main className="category-gallery-page">
-      {/* PERFORMANCE-SAFE LIGHTING CONTAINER */}
-      <div className="category-ambient-glow" />
-
       <div className="category-container">
         <header className="section-header">
           <h1 className="category-main-title">
@@ -36,14 +33,18 @@ export default function CategoryPage({ params }: PageProps) {
 
         <div className="artwork-grid">
           {categoryPaintings.map((painting, index) => (
-            <ArtworkCard
-              key={painting.id}
-              id={painting.id}
-              category={painting.category}
-              image={painting.images.large} 
-              title={t(painting.titleKey)}
-              index={index} 
-            />
+            <div key={painting.id} className="artwork-card-wrapper">
+              <div className="individual-artwork-glow" />
+              
+              <ArtworkCard
+                id={painting.id}
+                category={painting.category}
+                image={painting.images.large} 
+                // CORRECTED PATH: Matches JSON structure directly
+                title={t(`artwork.${painting.id}.title`)}
+                index={index} 
+              />
+            </div>
           ))}
         </div>
       </div>
