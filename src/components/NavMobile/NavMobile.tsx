@@ -25,7 +25,7 @@ const NAV_ITEMS: NavItem[] = [
   { 
     href: "https://profineart.ch", 
     translationKey: "nav.fine_art_school", 
-    defaultText: "Fine Art School",
+    defaultText: "ProFineArt School",
     isExternal: true 
   },
 ];

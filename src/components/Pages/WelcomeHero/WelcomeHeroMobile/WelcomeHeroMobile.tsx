@@ -26,10 +26,14 @@ const MOBILE_SLIDES: Slide[] = [
 export default function WelcomeHeroMobile() {
   const [index, setIndex] = useState(0);
 
+  // timing control
+  const DISPLAY_TIME = 1400;     // fully visible
+  const TRANSITION_TIME = 600;   // animation time
+
   useEffect(() => {
     const timer = setInterval(() => {
       setIndex((prev) => (prev + 1) % MOBILE_SLIDES.length);
-    }, 4500);
+    }, DISPLAY_TIME + TRANSITION_TIME);
 
     return () => clearInterval(timer);
   }, []);

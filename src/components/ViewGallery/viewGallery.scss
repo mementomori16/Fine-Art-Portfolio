@@ -1,25 +1,33 @@
+@use "sass:color";
+@import '../../../app/global.scss';
+
 .viewGallery {
   position: fixed;
   inset: 0;
-  background: #000000;
+  background: #000000; // Absolute deep room dark drop
   display: flex;
   flex-direction: column;
   justify-content: center;
   z-index: 2000;
 
+  // ✨ SENIOR REFINEMENT: CRISP HIGH-BRIGHTNESS CLOSE INTERFACE
   .close-button {
     position: absolute;
     top: 1.5rem;
-    right: 1.5rem;
+    right: 2rem;
     background: transparent;
     border: none;
-    color: #888;
-    font-size: 1.6rem;
+    color: rgba(255, 255, 255, 0.95); // High-luminance crisp indicator
+    font-size: 1.5rem;
+    font-weight: 300;
     cursor: pointer;
     z-index: 10;
+    transition: transform 0.2s ease, color 0.2s ease;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
 
     &:hover {
-      color: #fff;
+      color: #ffffff;
+      transform: scale(1.1);
     }
   }
 
@@ -38,97 +46,111 @@
 
   .largeImage {
     max-width: 100%;
-    max-height: 80vh;
+    max-height: 76vh; // Constrained slightly to secure clear vertical safety gap
     object-fit: contain;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  /* ✅ FIXED INFO (smaller title + correct spacing) */
+  // ✨ METADATA ALIGNMENT & VISIBILITY PASS
   .imageInfo {
     position: absolute;
-    left: 1.5rem;
-    bottom: 6rem;
-    color: #bbb;
+    left: 2rem;
+    bottom: 2.2rem; // Pushed down into the lower gallery margin layer
+    z-index: 5;
+    pointer-events: none;
 
     .imageTitle {
-      font-size: 0.95rem;
-      margin: 0;
+      font-family: $font-family-base;
+      font-size: 1.05rem; // Scaled up for elegant legibility
+      font-weight: $font-weight-medium;
+      color: rgba(255, 255, 255, 0.95); // Pristine high contrast off-white
+      margin: 0 0 0.25rem 0;
+      letter-spacing: 0.04rem;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85); // Protects readability over canvas elements
     }
 
     .imageDate {
-      font-size: 0.7rem;
+      font-family: $font-family-base;
+      font-size: 0.78rem;
+      font-weight: $font-weight-normal;
+      color: rgba(255, 235, 180, 0.65); // Warm luxury secondary tone
       margin: 0;
+      letter-spacing: 0.02rem;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
     }
   }
 
-  /* THUMBNAILS */
+  // ✨ COMPACT BACKGROUND-INTEGRATED FILMSTRIP CONTAINER
   .thumbnailsContainer {
     width: 100%;
-    background: #1a1a1a;
-    padding: 1rem 0;
+    background: transparent; // Completely unified with background layer
+    padding: 0.5rem 0 1.5rem 0; // Compact down padding matrix protects image baseline boundaries
     display: flex;
     justify-content: center;
+    z-index: 5;
   }
 
   .thumbnails {
     display: flex;
-    gap: 0.6rem;
+    gap: 0.75rem;
 
     .thumbnail {
-      width: 3.5rem;
-      height: 3.5rem;
+      width: 3.2rem; // Slightly balanced sizing down profile
+      height: 3.2rem;
       object-fit: cover;
       cursor: pointer;
-      opacity: 0.6;
-      border-radius: 0.25rem;
+      opacity: 0.45;
+      border-radius: 0.15rem;
+      transition: opacity 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+      border: 1px solid transparent;
 
       &.active {
         opacity: 1;
-        border: 0.1rem solid #ddd;
+        border-color: rgba(255, 255, 255, 0.85);
+        transform: translateY(-2px); // Subtle dynamic lifting active signifier
       }
 
       &:hover {
-        opacity: 1;
+        opacity: 0.85;
       }
     }
   }
 
-  /* ✅ FIXED ZOOM BUTTONS (original look restored) */
+  // ✨ HIGH-BRIGHTNESS UTILITY CONTROLS
   .zoomControls {
     position: absolute;
     top: 1.5rem;
-    left: 1.5rem;
+    left: 2rem;
+    z-index: 10;
 
     .zoomButton {
-      display: block;
-      margin-bottom: 0.5rem;
-
-      background: transparent;
-      border: 0.1rem solid #888;
-      color: #888;
-
-      width: 2rem;
-      height: 2rem;
-
-      border-radius: 50%;
-
-      cursor: pointer;
-
       display: flex;
+      margin-bottom: 0.6rem;
+
+      background: rgba(15, 15, 15, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.8); // High brightness white boundary ring
+      color: #ffffff; // Absolute bright symbols
+
+      width: 2.2rem;
+      height: 2.2rem;
+      border-radius: 50%;
+      cursor: pointer;
       align-items: center;
       justify-content: center;
-
-      transition: all 0.2s ease;
+      backdrop-filter: blur(4px);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 
       span {
-        font-size: 1rem;
+        font-size: 1.15rem;
+        font-weight: 400;
         line-height: 1;
       }
 
       &:hover {
-        color: #fff;
-        border-color: #fff;
-        background: transparent;
+        color: #ffffff;
+        border-color: #ffffff;
+        background: rgba(255, 255, 255, 0.15);
+        transform: scale(1.05);
       }
     }
   }
@@ -137,22 +159,27 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 2rem;
-    color: #888;
+    font-size: 2.5rem;
+    font-weight: 200;
+    color: rgba(255, 255, 255, 0.6); // Muted baseline to avoid distracting from artwork
     background: none;
     border: none;
     cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+    z-index: 10;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
 
     &:hover {
-      color: #fff;
+      color: #ffffff;
+      transform: translateY(-50%) scale(1.1);
     }
 
     &.top-left {
-      left: 1.5rem;
+      left: 2rem;
     }
 
     &.top-right {
-      right: 1.5rem;
+      right: 2rem;
     }
   }
 }

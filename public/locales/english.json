@@ -15,68 +15,81 @@
   "common": {
     "viewGallery": "View Gallery"
   },
+  "welcomehero": {
+    "royalGore": { "title": "Nude on Chair", "medium": "Oil on canvas, 80 x 120 cm" },
+    "portraitStudy": { "title": "Chikatillo", "medium": "Oil on canvas" },
+    "vanitas": { "title": "Male and Female Skulls", "medium": "Oil on canvas 120 x 60 cm" },
+    "compositionIV": { "title": "Portrait of Tereza", "medium": "Oil on canvas, 55 x 65 cm" },
+    "varnishedStudy": { "title": "Disfigured ", "medium": "Oil on canvas, 40 x 50 cm" },
+    "lenaScanned": { "title": "Tattoed Nude on Sofa", "medium": "Oil Pastels on Paper, 21 x 29 cm" },
+    "autopsia": { "title": "Autopsy of Commited Suicide young Woman", "medium": "Oil on canvas 65 x 45 cm" },
+    "imgp0914": { "title": "Virgin and the Child", "medium": "Egg Tempera and 24K Gold Leafs on primed Wood Panel, 20 x 30 x 3 cm" }
+  },
   "artwork": {
     "medium": "Medium",
     "dimensions": "Dimensions",
     "share": "Share Piece",
     "back": "Back to Gallery",
-   "oil_02": { "title": "Vanitas", "medium": "Oil on Canvas", "size": "120 x 60 cm" },
+   "oil_02": { "title": "Male and Female Skulls", "medium": "Oil on Canvas", "size": "120 x 60 cm" },
       "oil_03": { "title": "Autopsy of Commited Suicide young Woman", "medium": "Oil on Canvas", "size": "65 x 45 cm" },
-      "oil_04": { "title": "Ethereal Dusk", "medium": "Oil on Canvas", "size": "50 x 50 cm" },
+      "oil_04": { "title": "Nude Study", "medium": "Oil on Canvas", "size": "80 x 120 cm" },
       "oil_06": { "title": "The Dance", "medium": "Oil on Canvas", "size": "111 x 200 cm" },
-      "oil_07": { "title": "Study Option A", "medium": "Oil on Canvas", "size": "90 x 90 cm" },
-      "oil_08": { "title": "Composition Frame", "medium": "Oil on Canvas", "size": "80 x 120 cm" },
-      "oil_09": { "title": "Edge Reflection", "medium": "Oil on Canvas", "size": "75 x 100 cm" },
-      "oil_11": { "title": "Portrait of Drowned Woman", "medium": "Oil on Canvas", "size": "150 x 110 cm" },
-      "oil_12": { "title": "Classic Figure Study", "medium": "Oil on Canvas", "size": "60 x 80 cm" },
+      "oil_07": { "title": "Disfigured ", "medium": "Oil on Canvas", "size": "40 x 50 cm" },
+      "oil_08": { "title": "Portrait of Tereza", "medium": "Oil on Canvas", "size": "60 x 70 cm" },
+      "oil_09": { "title": "Ed Gein", "medium": "Oil on Canvas", "size": "75 x 100 cm" },
+      "oil_11": { "title": "Portrait of Drowned Woman", "medium": "Oil on Canvas", "size": "40 x 50 cm" },
+      "oil_12": { "title": "Nude on Chair", "medium": "Oil on Canvas", "size": "80 x 100 cm" },
       
-      "drw_01": { "title": "Urban Echo", "medium": "Graphite on Paper", "size": "30 x 40 cm" },
-      "drw_02": { "title": "Shadowed Profile", "medium": "Charcoal on Tinted Paper", "size": "50 x 65 cm" },
-      "drw_03": { "title": "Silent Gaze", "medium": "Conté Crayon on Paper", "size": "40 x 50 cm" },
-      "drw_04": { "title": "Lines of Time", "medium": "Graphite on Paper", "size": "35 x 45 cm" },
-      "drw_05": { "title": "Architectural Study", "medium": "Ink and Wash on Paper", "size": "42 x 59.4 cm" },
-      "drw_06": { "title": "Gestural Anatomy", "medium": "Sanguine on Paper", "size": "50 x 70 cm" },
-      "drw_07": { "title": "Contour Landscapes", "medium": "Ink on Paper", "size": "29.7 x 42 cm" },
-      "drw_08": { "title": "Nocturnal Sketch", "medium": "Charcoal on Paper", "size": "40 x 40 cm" },
-      "drw_09": { "title": "Charcoal Depths", "medium": "Compressed Charcoal", "size": "60 x 80 cm" },
-      "drw_10": { "title": "Monochromatic Flow", "medium": "Graphite on Paper", "size": "50 x 50 cm" },
-      "drw_11": { "title": "Depth Perspective Study", "medium": "Charcoal on Paper", "size": "45 x 60 cm" },
-      "drw_12": { "title": "Classic Profile Line", "medium": "Pencil on Paper", "size": "30 x 40 cm" },
-      "drw_13": { "title": "Anna Palestine", "medium": "Charcoal and Chalk", "size": "55 x 75 cm" },
-      "drw_14": { "title": "Vincent Study", "medium": "Graphite on Paper", "size": "40 x 50 cm" },
-      "drw_15": { "title": "Nude Dynamic Pose", "medium": "Charcoal on Paper", "size": "65 x 50 cm" },
-      "drw_16": { "title": "Dorna Profile", "medium": "Ink and Brush on Paper", "size": "35 x 50 cm" },
-      "drw_17": { "title": "Anatomy Figure Study", "medium": "Sanguine on Paper", "size": "70 x 50 cm" },
-      "drw_18": { "title": "Seated Model Profile", "medium": "Pencil on Paper", "size": "40 x 55 cm" },
-      "drw_19": { "title": "Lena Scanned Track", "medium": "Charcoal on Paper", "size": "60 x 45 cm" },
-      "drw_20": { "title": "Detail Texture Map", "medium": "Graphite on Paper", "size": "30 x 30 cm" },
-      "drw_21": { "title": "Standing Nude Study", "medium": "Charcoal on Paper", "size": "70 x 40 cm" },
-      "drw_22": { "title": "Annushka Sketch", "medium": "Pencil on Paper", "size": "35 x 45 cm" },
-      "drw_23": { "title": "Roger Line Study", "medium": "Graphite on Paper", "size": "40 x 60 cm" },
-      "drw_24": { "title": "Expression Portrait Frame", "medium": "Charcoal on Paper", "size": "50 x 50 cm" },
-      "drw_25": { "title": "Model Study Perspective", "medium": "Pencil on Paper", "size": "45 x 55 cm" },
-      "drw_26": { "title": "Seated Figure Balance", "medium": "Charcoal on Paper", "size": "60 x 50 cm" },
-      "drw_27": { "title": "Resting Pose Outline", "medium": "Graphite on Paper", "size": "40 x 50 cm" },
-      "drw_28": { "title": "Reclining Nude Figure", "medium": "Sanguine on Paper", "size": "50 x 70 cm" },
-      "drw_29": { "title": "Lily Study Track", "medium": "Pencil on Paper", "size": "30 x 42 cm" },
-      "drw_30": { "title": "Anatomical Portrait Frame", "medium": "Charcoal on Paper", "size": "40 x 50 cm" },
+      "drw_01": { "title": "Feet of Jenya", "medium": "Oil Pastels on Paper", "size": "21 x 29.7 cm" },
+      "drw_02": { "title": "Portrait of Celine", "medium": "Oil Pastels on Paper", "size": "29.7 x 42 cm" },
+      "drw_03": { "title": "Parrot", "medium": "Mixed media on Cardboard", "size": "21 x 29.7 cm" },
+      "drw_04": { "title": "Nude next to the River", "medium": "Oil Pastels on Paper", "size": "21 x 29.7 cm" },
+      "drw_05": { "title": "Portrait of Alina", "medium": "Oil Pastels on Paper", "size": "21 x 29.7 cm" },
+      "drw_06": { "title": "Portrait of Dorkas", "medium": "Soft Pastels on Cardboard", "size": "21 x 29.7 cm" },
+      "drw_07": { "title": "Portrait of Joe Pesci", "medium": "Soft Pastels on colored Paper", "size": "29.7 x 42 cm" },
+      "drw_08": { "title": "Portrait of Alla", "medium": "Graphite on Paper", "size": "29.7 x 42 cm" },
+      "drw_09": { "title": "E.T", "medium": "Mixed media on Cardboard", "size": "21 x 29.7 cm" },
+      "drw_10": { "title": "Nude on the Bed", "medium": "Graphite on Paper", "size": "21 x 29.7 cm" },
+      "drw_11": { "title": "Sea View in Spain", "medium": "Oil Pastels on Paper", "size": "21 x 29.7 cm" },
+      "drw_12": { "title": "Portrait of girl from Brasil", "medium": "Graphite on Paper", "size": "21 x 29.7 cm" },
+      "drw_13": { "title": "Anna the Pro-Palestine Activist", "medium": "Oil Pastels on Paper", "size": "21 x 29.7 cm" },
+      "drw_14": { "title": "Portrait ofVincent", "medium": "Oil Pastels on Paper", "size": "21 x 29.7 cm" },
+      "drw_15": { "title": "Vagina", "medium": "Graphite on Paper", "size": "21 x 29.7 cm" },
+      "drw_16": { "title": "Portrait of Dorna", "medium": "Oil Pastels on Paper", "size": "21 x 29.7 cm" },
+      "drw_17": { "title": "Nude posing on the Beach", "medium": "Oil Pastels on Paper", "size": "21 x 29.7 cm" },
+      "drw_18": { "title": "Portrait of Anna", "medium": "Pencil on Paper", "size": "40 x 55 cm" },
+      "drw_19": { "title": "Tattoed Nude on Sofa", "medium": "Oil Pastels on Paper", "size": "21 x 29.7 cm" },
+      "drw_20": { "title": "Portrait of old Schimpanzee", "medium": "Oil Pastels on Paper", "size": "21 x 29.7 cm" },
+      "drw_21": { "title": "Vagina posing on the Beach", "medium": "Oil Pastels and Markers on Paper", "size": "21 x 29.7 cm" },
+      "drw_22": { "title": "Nude by the River in Zurich", "medium": "Oil Pastels and Markers on Paper", "size": "29.7 x 42 cm" },
+      "drw_23": { "title": "Roger's Penis", "medium": "Oil Pastels and Markers on Paper", "size": "29.7 x 42 cm" },
+      "drw_24": { "title": "Portrait of Olga", "medium": "Oil Pastels on Paper", "size": "21 x 29.7 cm" },
+      "drw_25": { "title": "Portrait of Hen", "medium": "Oil Pastels on Paper", "size": "21 x 29.7 cm" },
+      "drw_26": { "title": "Transgender Nude Posing", "medium": "Graphite on Paper", "size": "29.7 x 42 cm" },
+      "drw_27": { "title": "Penis Posing", "medium": "Oil Pastels and Markers on Paper", "size": "21 x 29.7 cm" },
+      "drw_28": { "title": "Topless by the river in Basel", "medium": "Oil Pastels and Markers on Paper", "size": "21 x 29.7 cm" },
+      "drw_29": { "title": "Portrait of Sleeping Lily", "medium": "Oil Pastels on Paper", "size": "21 x 29.7 cm" },
+      "drw_30": { "title": "Spontanus portrait in Brussels", "medium": "Oil Pastels on Paper", "size": "21 x 29.7 cm" },
 
-      "wat_01": { "title": "Fluid Boundaries", "medium": "Watercolor on Cotton Paper", "size": "56 x 76 cm" },
-      "wat_02": { "title": "Translucent Shores", "medium": "Watercolor on Hot Press Paper", "size": "38 x 56 cm" },
-      "wat_03": { "title": "Misty Reflections", "medium": "Watercolor on Cold Press Paper", "size": "40 x 50 cm" },
-      "wat_04": { "title": "Water Border Composition", "medium": "Watercolor on Paper", "size": "30 x 45 cm" },
-      "wat_05": { "title": "Seascape Light Study", "medium": "Watercolor on Paper", "size": "50 x 65 cm" },
-      "wat_08": { "title": "Basel Lions View", "medium": "Watercolor on Heavy Paper", "size": "45 x 60 cm" },
+      "wat_01": { "title": "Nude on Sofa with a Skull", "medium": "Aquarelle on Cotton Paper", "size": "56 x 76 cm" },
+      "wat_02": { "title": "Pregnant Nude by the Sea Rocks", "medium": "Aquarelle on Cotton Paper", "size": "38 x 56 cm" },
+      "wat_03": { "title": "Nude with Male and Female Skulls", "medium": "Aquarelle on Cotton Paper", "size": "48 x 75 cm" },
+      "wat_04": { "title": "St. Goespel Peters House in Jaffa Port", "medium": "Aquarelle on Cotton Paper", "size": "30 x 45 cm" },
+      "wat_05": { "title": "Nude in Darkness", "medium": "Akrylic on Paper", "size": "29 x 42 cm" },
+      "wat_09": { "title": "View over Occupied Palestine Ruins", "medium": "Aquarelle on Cotton Paper", "size": "32 x 43 cm" },
+      "wat_10": { "title": "Caesarea Ruined Roman Aqueduk", "medium": "Aquarelle on Cotton Paper", "size": "26 x 45 cm" },
 
-      "oth_01": { "title": "Mixed Dimensions", "medium": "Mixed Media on Panel", "size": "80 x 80 cm" },
-      "oth_02": { "title": "Sculptural Study Piece", "medium": "Acrylic on Cast Element", "size": "40 x 40 x 20 cm" },
-      "oth_03": { "title": "Sleeping Hermaphroditus Study", "medium": "Mixed Tech on Panel", "size": "60 x 90 cm" },
-      "oth_04": { "title": "Texture Recovered Canvas", "medium": "Gouache and Acrylic", "size": "50 x 50 cm" },
-      "oth_05": { "title": "Lely Venus Acrylic on Antique Roman Marble", "medium": "Acrylic on Found Antique Roman Marble", "size": "25 x 35 cm" },
-      "oth_06": { "title": "Historical Cast Silhouette", "medium": "Mixed Medium Composition", "size": "70 x 50 cm" },
-      "oth_07": { "title": "Marble Fragment Relief Study", "medium": "Acrylic on Stone Specimen", "size": "30 x 20 cm" },
-      "oth_08": { "title": "Experimental Specimen Frame", "medium": "Mixed Material Track", "size": "60 x 60 cm" },
-      "oth_09": { "title": "Moses Tonal Darkness Study", "medium": "Oil and Acrylic on Board", "size": "80 x 100 cm" }
+
+
+      "oth_01": { "title": "Christ Pontokrator", "medium": "Egg Tempera and 24K Gold Leafs on primed Wood Panel", "size": "30 x 40 x 3 cm" },
+      "oth_02": { "title": "Virgin and the Child", "medium": "Egg Tempera and 24K Gold Leafs on primed Wood Panel", "size": "20 x 30 x 3 cm" },
+      "oth_03": { "title": "Sleeping Hermaphroditus", "medium": "Egg Tempera on primed antigue Roman Marble", "size": "9 x 7 x 1.5 cm" },
+      "oth_04": { "title": "Presentation of Jesus at the Temple", "medium": "Egg Tempera on primed Wood Panel", "size": "47 x 57 x 3.5 cm" },
+      "oth_05": { "title": "Lely Venus", "medium": "Egg Tempera on primed antigue Roman Marble", "size": "8 x 15 x 3.5 cm" },
+      "oth_06": { "title": "Virgin Mary at Annunciation", "medium": "Egg Tempera on primed Wood Panel", "size": "36 x 47 x 2 cm" },
+      "oth_07": { "title": "Gorgon Medusa", "medium": "Egg Tempera on primed antigue Roman Marble", "size": "4.5 x 5.5 x 2.3 cm" },
+      "oth_08": { "title": "Angel of God", "medium": "Egg Tempera on primed Stone", "size": "11 x 14 x 5 cm" },
+      "oth_09": { "title": "Prophet Mouses", "medium": "Egg Tempera on primed Wood Panel", "size": "36 x 46 x 2 cm" }
     },
   
   
@@ -98,11 +111,92 @@
     "exhibitionsTitle": "Selected Exhibitions",
     "viewOnArtfacts": "Track on Artfacts",
     "exhibitionsList": [
-      { "year": "2025", "title": "Solo Exhibition: Cosmic Canvas", "location": "Metropolitan Gallery, New York" },
-      { "year": "2024", "title": "Group Show: Horizons of Perception", "location": "Modern Art Institute, London" },
-      { "year": "2023", "title": "Echoes of Silence", "location": "Ethereal Spaces, Paris" },
-      { "year": "2022", "title": "Form & Void", "location": "National Contemporary Pavilion, Berlin" },
-      { "year": "2021", "title": "Retrospective Dynamics", "location": "Avant-Garde Hall, Tokyo" }
+      { "year": "2025", "title": "Group: Dreams and Memories", "location": "Meta Space Gallery, London" },
+      { "year": "2013", "title": "Cargo Cult", "location": "Moby Contemporery Art Museum, Bat Yam" },
+      { "year": "2012", "title": "Bezalel MFA Open Studio", "location": "Bezalel MFA Studios, Tel Aviv" },
+      { "year": "2016", "title": "Group: A way of Thinking", "location": "Serge Tirosh Contemporery, Jaffa" },
+      { "year": "2011", "title": "Solo: Distorted Idyll", "location": "Serge Tirosh Contemporery, Jaffa" },
+      { "year": "2010", "title": "Solo: Graduation Exhibishion", "location": "HaMidrasha - Faculty of the Arts, Kfar Saba" },
+      { "year": "2011", "title": "Group: Rodina", "location": "Hapiramyda Contemporery Center, Haifa" },
+      { "year": "2012", "title": "Group: Without Money", "location": "Gross Gallery, Tel Aviv" },
+      { "year": "2010", "title": "Group: Story Slam", "location": "Kishon Gallery, Tel Aviv" },
+      { "year": "2010", "title": "Wall Art", "location": "Gymnasium Herzeliya, Tel Aviv" }
+
+
+
+
     ]
+  },
+
+"footer": {
+    "company": {
+      "name": "Ilya Medvedev",
+      "description": "Fine Art Gallery"
+    },
+    "explore": {
+  "title": "Explore",
+  "home": "Home",
+  "oil": "Oil",
+  "drawings": "Drawings",
+  "watercolors": "Watercolors",
+  "other": "Other Works",
+  "studio": "ProFineArt Studio Basel"
+},
+    "connect": {
+      "title": "Contact",
+      "email": "info@profineart.ch",
+      "about": "About"
+    },
+    "payments": {
+      "title": "Payments",
+      "processedBy": "Securely processed by",
+      "methods": ["Visa", "Mastercard", "Google Pay", "Apple Pay", "Twint", "Klarna"]
+    },
+    "bottom": {
+      "copyright": "© 2012-2026",
+      "rights": "All rights reserved.",
+      "legal": "Legal Info",
+      "terms": "Terms of Use"
+    },
+    "actions": {
+      "install": "Install Web App"
+    }
+  },
+
+
+  "legal_info": {
+    "title": "Legal Information",
+    "data_protection": {
+      "title": "Data Protection",
+      "content": "In accordance with the Swiss Federal Act on Data Protection (FADP) and the GDPR, we process data exclusively for necessary services. We collect technical data (IP, device type) for security. No marketing tracking is employed."
+    },
+    "hosting": {
+      "title": "Hosting and Data Location",
+      "content": "This application is hosted on Google Cloud (Firebase) with servers located in Zurich, Switzerland, ensuring your data remains under Swiss jurisdiction."
+    },
+    "user_rights": {
+      "title": "Your Rights",
+      "content": "You have the right to access, rectify, or erase your personal data at any time. Please use the contact form on this site to exercise these rights."
+    }
+  },
+  "terms_of_use": {
+    "title": "Terms of Use",
+    "intellectual_property": {
+      "title": "Intellectual Property",
+      "content": "All artworks, images, and content are the exclusive property of Ilya Medvedev. All rights are reserved."
+    },
+    "no_unauthorized_use": {
+      "title": "Prohibited Use",
+      "content": "Copying, downloading, or reproducing artwork in any form is strictly prohibited. For licensing or purchase, contact the operator directly."
+    },
+    "liability": {
+      "title": "Liability",
+      "content": "The gallery provides content 'as-is' and is not liable for technical interruptions or inaccuracies."
+    },
+    "governing_law": {
+      "title": "Governing Law",
+      "content": "This agreement is subject to the laws of Switzerland. The place of jurisdiction is Basel."
+    }
   }
 }
+

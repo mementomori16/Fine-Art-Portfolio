@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { PAINTINGS } from "../../../data/paintings";
 import ArtworkViewer from "../../../../src/components/ArtworkViewer/ArtworkViewer";
 import ArtworkInfo from "../../../../src/components/ArtworkInfo/ArtworkInfo";
+import SimilarProducts from "../../../../src/components/SimilarProducts/SimilarProducts";
 import "./page.scss";
 
 interface ImageData {
@@ -52,21 +53,23 @@ export default function ArtworkPage() {
   };
 
   return (
-    <main className="artwork-page">
-      <div className="artwork-container">
-        <div className="artwork-layout">
-          <ArtworkViewer 
-            painting={optimizedPaintingData} 
-            currentImageIndex={currentImageIndex} 
-          />
-          
-          <ArtworkInfo 
-            painting={optimizedPaintingData} 
-            currentImageIndex={currentImageIndex} 
-            setCurrentImageIndex={setCurrentImageIndex} 
-          />
-        </div>
+  <main className="artwork-page">
+    <div className="artwork-container">
+      <div className="artwork-layout">
+        <ArtworkViewer 
+          painting={optimizedPaintingData} 
+          currentImageIndex={currentImageIndex} 
+        />
+        <ArtworkInfo 
+          painting={optimizedPaintingData} 
+          currentImageIndex={currentImageIndex} 
+          setCurrentImageIndex={setCurrentImageIndex} 
+        />
       </div>
-    </main>
-  );
+      
+      {/* Similar Products added here, appearing below the viewer/info components */}
+      <SimilarProducts currentPaintingId={painting.id} />
+    </div>
+  </main>
+);
 }

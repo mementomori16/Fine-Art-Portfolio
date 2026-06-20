@@ -40,7 +40,7 @@ export const PAINTINGS: Painting[] = [
     },
     {
         id: "oil_03",
-        slug: "whispering-meadows",
+        slug: "nude, memento-mori",
         category: "oil-paintings",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613732/IMG_8469ph2026-500kb_fipv2h.jpg"),
         thumbnail: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613717/The_best_photo_Autopsia_of_a_commited_suicide_girl%D0%B7%D1%8026500kb_bup3cx.jpg" 
@@ -48,47 +48,47 @@ export const PAINTINGS: Painting[] = [
     },
     {
         id: "oil_04",
-        slug: "ethereal-dusk",
+        slug: "nude",
         category: "oil-paintings",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032416/IMG_4906_photoshoped_12.2025-500kb_xdkpzo.jpg")
     },
     {
         id: "oil_06",
-        slug: "ethereal-dusk",
+        slug: "nude",
         category: "oil-paintings",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1770367743/photoshoped_2025_Royal_Gore._Oil_on_canvas_111_x_200_cm._2008._500kb_e9z43l.jpg")
     },
     {
         id: "oil_07",
-        slug: "ethereal-dusk",
+        slug: "memento-mori",
         category: "oil-paintings",
         subcategory: "nude",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613731/varnished-and-photoshoped-small-2-500kb_jgndqr.jpg")
     },
     {
         id: "oil_08",
-        slug: "ethereal-dusk",
+        slug: "portrait",
         category: "oil-paintings",
         subcategory: "nude",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613701/IMG_4550ph26-500kb_lqn3zn.jpg")
     },
     {
         id: "oil_09",
-        slug: "ethereal-dusk",
+        slug: "memento-mori",
         category: "oil-paintings",
         subcategory: "nude",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1779702849/ph2026edgein-500kb_cdva8b.jpg")
     },
     {
         id: "oil_11",
-        slug: "ethereal-dusk",
+        slug: "memento-mori",
         category: "oil-paintings",
         subcategory: "nude",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1779784466/Portraite_of_drowned_woman_2018500KB_dacbwg.jpg")
     },
     {
         id: "oil_12",
-        slug: "ethereal-dusk",
+        slug: "nude",
         category: "oil-paintings",
         subcategory: "nude",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613717/IMGP3286PH26-2-500b_nidce0.jpg")
@@ -99,210 +99,210 @@ export const PAINTINGS: Painting[] = [
     // ==========================================
     {
         id: "drw_01",
-        slug: "urban-echo",
+        slug: "nude",
         category: "drawings",
         subcategory: "nude",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032413/IMG_32273closeup-500kb_he3bkp.jpg")
     },
     {
         id: "drw_02",
-        slug: "shadowed-profile",
+        slug: "portrait",
         category: "drawings",
         subcategory: "portrait",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032516/SKM_C45818070115150_0002small-500kb_kuaces.jpg")
     },
     {
         id: "drw_03",
-        slug: "silent-gaze",
+        slug: "animals",
         category: "drawings",
         subcategory: "general",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032420/Parrot._Scanned_and_photoshoped_smaller2500kb_b6vay5.jpg")
     },
     {
         id: "drw_04",
-        slug: "lines-of-time",
+        slug: "nude",
         category: "drawings",
         subcategory: "nude",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032418/katya_photoshop_2025-ph500kb_aokpyv.jpg")
     },
     {
         id: "drw_05",
-        slug: "architectural-study",
+        slug: "portrait",
         category: "drawings",
         subcategory: "general",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032414/IMG_3232-500kb_lifcup.jpg")
     },
     {
         id: "drw_06",
-        slug: "gestural-anatomy",
+        slug: "portrait",
         category: "drawings",
         subcategory: "portrait",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032411/Dorkas_new_ph_12-25-500kb_nua9wb.jpg")
     },
     {
         id: "drw_07",
-        slug: "contour-landscapes",
+        slug: "portrait",
         category: "drawings",
         subcategory: "portrait",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032418/Joe_Pesci_small-500kb_d6ngvt.jpg")
     },
     {
         id: "drw_08",
-        slug: "nocturnal-sketch",
+        slug: "portrait",
         category: "drawings",
         subcategory: "portrait",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1777925635/IMG_4691-ph2026-500kb_iq9ive.jpg")
     },
     {
         id: "drw_09",
-        slug: "charcoal-depths",
+        slug: "animals",
         category: "drawings",
         subcategory: "general",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032471/photoshoped2025final500kb_n1aj9r.jpg")
     },
     {
         id: "drw_10",
-        slug: "monochromatic-flow",
+        slug: "nude",
         category: "drawings",
         subcategory: "nude",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032413/IMG_3012closeup500kb_xo89iy.jpg")
     },
     {
         id: "drw_11",
-        slug: "charcoal-depths",
+        slug: "landsacape",
         category: "drawings",
         subcategory: "general",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032411/IMG_2825ph1225-500kb_szirsi.jpg")
     },
     {
         id: "drw_12",
-        slug: "monochromatic-flow",
+        slug: "portrait",
         category: "drawings",
         subcategory: "portrait",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032411/IMG_20161119_202342-500kb_wsdt7u.jpg")
     },
     {
         id: "drw_13",
-        slug: "monochromatic-flow",
+        slug: "portrait",
         category: "drawings",
         subcategory: "portrait",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1780058220/Anna_Palestine_22.08.2026-500kb_qyfbpj.jpg")        
     },
     {
         id: "drw_14",
-        slug: "charcoal-depths",
+        slug: "portrait",
         category: "drawings",
         subcategory: "portrait",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1780058094/Vincent.2026photoshoped-500kb_ueocvk.jpg")
     },
     {
         id: "drw_15",
-        slug: "monochromatic-flow",
+        slug: "nude",
         category: "drawings",
         subcategory: "nude",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613765/IMG_3256ph2026-500kb_hfrcvq.jpg")
     },
     {
         id: "drw_16",
-        slug: "monochromatic-flow",
+        slug: "portrait",
         category: "drawings",
         subcategory: "portrait",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1780059850/dorna_scanned-ph2026-500kb_kmobkt.jpg")
     },
     {
         id: "drw_17",
-        slug: "charcoal-depths",
+        slug: "nude",
         category: "drawings",
         subcategory: "nude",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1780060152/IMG_2724-500kb_dwm95t.jpg")
     },
     {
         id: "drw_18",
-        slug: "monochromatic-flow",
+        slug: "portrait",
         category: "drawings",
         subcategory: "portrait",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1780063098/IMG_3009ph2026_inxb8h.jpg")
     },
     {
         id: "drw_19",
-        slug: "monochromatic-flow",
+        slug: "nude",
         category: "drawings",
         subcategory: "nude",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1780066162/Lena_scannedph26-500kb_lg9xnu.jpg")
     },
     {
         id: "drw_20",
-        slug: "monochromatic-flow",
+        slug: "animals",
         category: "drawings",
         subcategory: "general",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1780066797/scanned_small._detail-ph2026-500kb_mjxh6o.jpg")
     },
     {
         id: "drw_21",
-        slug: "monochromatic-flow",
+        slug: "nude",
         category: "drawings",
         subcategory: "nude",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1780067263/IMG_3445500kb_yti8g7.jpg") 
     },
     {
         id: "drw_22",
-        slug: "monochromatic-flow",
+        slug: "nude",
         category: "drawings",
         subcategory: "nude",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1780312012/Annushka-500kb_exb2gc.jpg") 
     },
     {
         id: "drw_23",
-        slug: "monochromatic-flow",
+        slug: "nude-penis",
         category: "drawings",
         subcategory: "nude",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1780313320/Penis_of_Roger-500kb_dhjkvd.jpg") 
     },
     {
         id: "drw_24",
-        slug: "monochromatic-flow",
+        slug: "portrait",
         category: "drawings",
         subcategory: "portrait",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1780346883/PHOTOSHOPED_2025-500kb_v6fxul.jpg") 
     },
     {
         id: "drw_25",
-        slug: "monochromatic-flow",
+        slug: "portrait",
         category: "drawings",
         subcategory: "portrait",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1780353350/IMG_2982ph2026-500kb_pvxpu0.jpg") 
     },
     {
         id: "drw_26",
-        slug: "monochromatic-flow",
+        slug: "nude-penis",
         category: "drawings",
         subcategory: "nude",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1780669428/IMG_8450-500kb_gnmzdx.jpg") 
     },
     {
         id: "drw_27",
-        slug: "monochromatic-flow",
+        slug: "nude-penis",
         category: "drawings",
         subcategory: "nude",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1780682625/IMG_3441-500kb_rwqgsh.jpg") 
     },
     {
         id: "drw_28",
-        slug: "monochromatic-flow",
+        slug: "nude",
         category: "drawings",
         subcategory: "nude",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1780682625/IMG_3435-500kb_vm4wtr.jpg") 
     },
     {
         id: "drw_29",
-        slug: "monochromatic-flow",
+        slug: "portrait",
         category: "drawings",
         subcategory: "portrait",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1780682883/Lily_18.06.2024-500kb_gisley.jpg") 
     },
     {
         id: "drw_30",
-        slug: "monochromatic-flow",
+        slug: "portrait",
         category: "drawings",
         subcategory: "portrait",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1780682876/IMG_3246-500kb_m9lhwp.jpg") 
@@ -313,39 +313,45 @@ export const PAINTINGS: Painting[] = [
     // ==========================================
     {
         id: "wat_01",
-        slug: "fluid-boundaries",
+        slug: "nude, memento-mori",
         category: "watercolors",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1779620844/ph2026kineret-2-500kb_qzscpo.jpg")
     },
     {
         id: "wat_02",
-        slug: "translucent-shores",
+        slug: "nude",
         category: "watercolors",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032419/NO_BORDERS_Pregnant_Celine_in_Caesaria._Watercolors_on_cotton_paper_2025-500kb_l7clzr.jpg")
     },
     {
         id: "wat_03",
-        slug: "misty-reflections",
+        slug: "nude, memento-mori",
         category: "watercolors",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032416/IMG_7751photoshoped_2-2025-500kb_gsfrqk.jpg")
     },
     {
         id: "wat_04",
-        slug: "fluid-boundaries",
+        slug: "landscape",
         category: "watercolors",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032415/IMG_4459_no_borders-ph12.25_pswoee.jpg")
     },
     {
         id: "wat_05",
-        slug: "translucent-shores",
+        slug: "nude",
         category: "watercolors",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1779702837/2020ph.2026-500kb_wcsr6l.jpg")
     },
     {
-        id: "wat_08",
-        slug: "misty-reflections",
+        id: "wat_09",
+        slug: "landscape",
         category: "watercolors",
-        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1780499087/Basel_lionsph26-500kb_hhp3y1.jpg") 
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1781945130/Beit_Tsedek_Fortress._Aquarelle_on_Cotton_paper_300_gr.ph2026-500kb_xgphml.jpg") 
+    },
+     {
+        id: "wat_10",
+        slug: "landscape",
+        category: "watercolors",
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1781946347/Caesarea_Aqueduk._Aquarelle_on_cotton_paper_300_gr._2019.ph2026-500kb_ruv4vz.jpg") 
     },
 
     // ==========================================
@@ -353,7 +359,7 @@ export const PAINTINGS: Painting[] = [
     // ==========================================
     {
         id: "oth_01",
-        slug: "mixed-dimensions",
+        slug: "portrait, icon",
         category: "other-works",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613730/photoshoped-more_bright-500kb_pcyurk.jpg"),
         thumbnail: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032415/IMG_4570500kb_nooq50.jpg" 
@@ -361,49 +367,49 @@ export const PAINTINGS: Painting[] = [
     },
     {
         id: "oth_02",
-        slug: "sculptural-study",
+        slug: "portrait, icon",
         category: "other-works",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1779703943/IMGP0914ph2026-500kb_eaxsbn.jpg")
     },
     {
         id: "oth_03",
-        slug: "experimental-textures",
+        slug: "nude, stone, icon",
         category: "other-works",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032410/Copy_of_marble_sculpture_of_sleeping_Hermaphroditus_ph12-25_500_kb_mmpzxz.jpg")
     },
     {
         id: "oth_04",
-        slug: "sculptural-study",
+        slug: "portrait, icon",
         category: "other-works",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032516/smaller2025-Recovered500kb_emgojk.jpg")
     },
     {
         id: "oth_05",
-        slug: "experimental-textures",
+        slug: "nude, stone, icon",
         category: "other-works",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032410/Copy_of_marble_sculpture_of_Lely_Venus_2_c._BCE_on_a_piece_of_anchient_Roman_marble_found_in_Caesarea_Israel._Acrylic_on_Marble._2018_ph_1225-500kb_sipdo4.jpg")
     },
     {
         id: "oth_06",
-        slug: "sculptural-study",
+        slug: "portrait, icon",
         category: "other-works",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032415/IMG_4588ph500kb_neokqj.jpg")
     },
     {
         id: "oth_07",
-        slug: "experimental-textures",
+        slug: "stone, icon",
         category: "other-works",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032412/IMG_2652SMALL500kb_dr9xz5.jpg")
     },
     {
         id: "oth_08",
-        slug: "experimental-textures",
+        slug: "stone, icon",
         category: "other-works",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1780429023/IMG_2783testph2026-500kb_t8roul.jpg")
     },
     {
         id: "oth_09",
-        slug: "experimental-textures",
+        slug: "portrait, icon",
         category: "other-works",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1780353361/mosesphotoshopeddark2025-500kb_nx0pnu.jpg")
     }

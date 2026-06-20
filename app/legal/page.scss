@@ -1,0 +1,55 @@
+@use "../../app/global.scss" as *;
+
+.legal-terms-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #080808 65%, #020202 100%) fixed !important;
+
+  .about-ambient-glow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse at 50% -5%, rgba(255, 235, 180, 0.12) 0%, transparent 80%);
+  }
+
+  .content-container {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .section-header {
+    margin-bottom: 4rem;
+    text-align: center;
+    
+    h1 {
+      color: #fff;
+      font-weight: 300;
+      font-size: clamp(2rem, 5vw, 3rem);
+      letter-spacing: 0.2rem;
+      text-transform: uppercase;
+      margin: 0;
+    }
+  }
+
+  .bio-section {
+    margin-bottom: 3rem;
+
+    h2 {
+      color: #fff;
+      font-size: 1.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.8;
+      font-size: 1rem;
+    }
+  }
+}
