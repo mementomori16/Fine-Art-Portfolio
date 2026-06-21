@@ -56,7 +56,8 @@ export const PAINTINGS: Painting[] = [
         id: "oil_06",
         slug: "nude",
         category: "oil-paintings",
-        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1770367743/photoshoped_2025_Royal_Gore._Oil_on_canvas_111_x_200_cm._2008._500kb_e9z43l.jpg")
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1770367743/photoshoped_2025_Royal_Gore._Oil_on_canvas_111_x_200_cm._2008._500kb_e9z43l.jpg"),
+
     },
     {
         id: "oil_07",
@@ -70,7 +71,9 @@ export const PAINTINGS: Painting[] = [
         slug: "portrait",
         category: "oil-paintings",
         subcategory: "nude",
-        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613701/IMG_4550ph26-500kb_lqn3zn.jpg")
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613701/IMG_4550ph26-500kb_lqn3zn.jpg"),
+        thumbnail: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1781963283/IMG_4840-darker_2025_iwfsdy.jpg" 
+
     },
     {
         id: "oil_09",
@@ -315,7 +318,7 @@ export const PAINTINGS: Painting[] = [
         id: "wat_01",
         slug: "nude, memento-mori",
         category: "watercolors",
-        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1779620844/ph2026kineret-2-500kb_qzscpo.jpg")
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1782023532/No_bordersph2026-500kb_dhhteh.jpg")
     },
     {
         id: "wat_02",
@@ -375,7 +378,9 @@ export const PAINTINGS: Painting[] = [
         id: "oth_03",
         slug: "nude, stone, icon",
         category: "other-works",
-        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032410/Copy_of_marble_sculpture_of_sleeping_Hermaphroditus_ph12-25_500_kb_mmpzxz.jpg")
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032410/Copy_of_marble_sculpture_of_sleeping_Hermaphroditus_ph12-25_500_kb_mmpzxz.jpg"),
+        thumbnail: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1781962567/IMG_2655ph2026500kb_htujzm.jpg" 
+
     },
     {
         id: "oth_04",
@@ -393,19 +398,24 @@ export const PAINTINGS: Painting[] = [
         id: "oth_06",
         slug: "portrait, icon",
         category: "other-works",
-        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032415/IMG_4588ph500kb_neokqj.jpg")
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032415/IMG_4588ph500kb_neokqj.jpg"),
+        thumbnail: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1782024864/IMG_4592-ph2026-500kb_nhho0g.jpg" 
     },
     {
         id: "oth_07",
         slug: "stone, icon",
         category: "other-works",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032412/IMG_2652SMALL500kb_dr9xz5.jpg")
+        
+
     },
     {
         id: "oth_08",
         slug: "stone, icon",
         category: "other-works",
-        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1780429023/IMG_2783testph2026-500kb_t8roul.jpg")
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1780429023/IMG_2783testph2026-500kb_t8roul.jpg"),
+        thumbnail: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1782024237/IMG_2800-ph2026-500kb_ve1zk4.jpg" 
+
     },
     {
         id: "oth_09",
