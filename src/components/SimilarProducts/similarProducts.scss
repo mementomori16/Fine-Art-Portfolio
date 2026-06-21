@@ -1,20 +1,27 @@
 @use "../../../app/global.scss" as *;
 
 .similar-products-section {
-  margin-top: 6rem;
-  padding: $space-xl 0;
+  // Reduced margin/padding to bring it closer to the button above
+  margin-top: 1rem; 
+  padding-top: 1rem;
+  padding-bottom: $space-xl;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   width: 100%;
 
   .similar-section-title {
-    font-size: 1.1rem;
-    font-weight: 300;
+    // Increased font size and spacing for more presence
+    font-size: 1.4rem; 
+    font-weight: 400;
     text-transform: uppercase;
-    letter-spacing: 0.3rem;
+    letter-spacing: 0.4rem;
     color: #ffffff;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
     text-align: center;
-    opacity: 0.85;
+    opacity: 0.9;
+  }
+
+  .similar-scroll-wrapper {
+    width: 100%;
   }
 
   .similar-row {
@@ -24,30 +31,45 @@
     justify-content: center;
     gap: 3rem;
     width: 100%;
-    padding-bottom: 1rem;
+    background: transparent;
   }
 
   .similar-item-wrapper {
     flex: 0 0 auto;
-    width: 240px; // Larger size
-    
-    // Maintain the luxury card look but keep titles visible as requested
-    .category-curatorial-details {
-      opacity: 0.8;
-    }
-
+    width: 240px;
     transform: scale(1);
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 
     &:hover {
       transform: scale(1.05);
-      .category-curatorial-details { opacity: 1; }
     }
   }
 }
 
-@media (max-width: 48rem) {
-  .similar-item-wrapper {
-    width: 180px; // Scaled down for mobile
+@media (max-width: 64rem) {
+  .similar-products-section {
+    .similar-section-title {
+      font-size: 1.2rem; // Slightly larger for mobile than before
+      margin-bottom: 2.5rem;
+    }
+
+    .similar-scroll-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      &::-webkit-scrollbar { display: none; }
+    }
+
+    .similar-row {
+      justify-content: flex-start;
+      padding: 0 1.5rem;
+      scroll-snap-type: x mandatory;
+    }
+
+    .similar-item-wrapper {
+      width: 200px;
+      scroll-snap-align: start;
+      &:hover { transform: none; }
+    }
   }
 }

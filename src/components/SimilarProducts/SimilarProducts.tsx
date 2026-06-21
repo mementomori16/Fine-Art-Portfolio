@@ -27,17 +27,20 @@ export default function SimilarProducts({ currentPaintingId }: { currentPainting
   return (
     <section className="similar-products-section">
       <h2 className="similar-section-title">Similar Works</h2>
-      <div className="similar-row">
-        {similar.map((painting) => (
-          <div key={painting.id} className="similar-item-wrapper">
-            <ArtworkCard
-              id={painting.id}
-              category={painting.category}
-              image={painting.images?.medium || ""}
-              title={""} 
-            />
-          </div>
-        ))}
+      {/* Scroll wrapper handles the movement, the row stays transparent */}
+      <div className="similar-scroll-wrapper">
+        <div className="similar-row">
+          {similar.map((painting) => (
+            <div key={painting.id} className="similar-item-wrapper">
+              <ArtworkCard
+                id={painting.id}
+                category={painting.category}
+                image={painting.images?.medium || ""}
+                title={""} 
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
