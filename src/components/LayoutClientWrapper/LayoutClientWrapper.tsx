@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import MysteriousCurtain from "../MysteriousCurtain/MysteriousCurtain";
 
@@ -17,22 +17,29 @@ export default function LayoutClientManager({ children }: LayoutClientManagerPro
 
   useEffect(() => {
     setMounted(true);
-    window.scrollTo({ top: 0, behavior: "instant" });
   }, [pathname]);
 
-  // FIX: Prevents server/client HTML divergence by matching layout outputs until mounting is complete
-  if (!mounted) {
-    return <>{children}</>;
-  }
+  if (!mounted) return <>{children}</>;
 
   if (isHome) {
+    // Safely convert children to an array
+    const childrenArray = React.Children.toArray(children);
+    
+    // Assuming WelcomeHero is the first child. 
+    // If you have many children, this separates the first from the rest.
+    const hero = childrenArray[0];
+    const rest = childrenArray.slice(1);
+
     return (
-      <MysteriousCurtain 
-        forceOpen={curtainHasOpened} 
-        onOpen={() => setCurtainHasOpened(true)}
-      >
-        {children}
-      </MysteriousCurtain>
+      <>
+        <MysteriousCurtain 
+          forceOpen={curtainHasOpened} 
+          onOpen={() => setCurtainHasOpened(true)}
+        >
+          {hero}
+        </MysteriousCurtain>
+        {rest}
+      </>
     );
   }
 

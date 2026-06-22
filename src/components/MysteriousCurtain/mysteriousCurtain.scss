@@ -1,72 +1,99 @@
-@import "../../../app/global.scss";
+@use "../../../app/global.scss" as *;
 
 .curtain-wrapper {
   position: relative;
   width: 100%;
-  height: 100vh;
+  min-height: 100dvh;
   overflow: hidden;
   background-color: #000;
-  cursor: pointer;
-
-  z-index: 999;
-  isolation: isolate; // 🔥 CRITICAL for iframe layering
+  
+  // Force GPU layer to stop tint bleeding
+  transform: translateZ(0);
 
   &.is-open {
     height: auto !important;
-    min-height: 100vh;
+    min-height: 100dvh;
     overflow: visible !important;
   }
 }
 
 .video-content-layer {
   position: relative;
-  z-index: 1; // always BELOW curtain
+  z-index: 1;
+  // Creates a new Stacking Context so curtain effects don't leak in
+  isolation: isolate;
+  backface-visibility: hidden;
+}
+
+.curtain-active-area {
+  position: absolute;
+  inset: 0;
+  z-index: 999;
+  cursor: pointer;
+}
+
+.curtain-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, transparent 40%, rgba(0, 0, 0, 0.85) 100%);
+  pointer-events: none;
+  z-index: 1050;
+}
+
+.curtain-hint-container {
+  position: absolute;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  height: 100dvh;
+}
+
+.curtain-backlight {
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle at center, rgba(255, 235, 180, 0.2) 0%, rgba(255, 180, 50, 0.08) 40%, transparent 70%);
+  filter: blur(7rem);
+}
+
+.curtain-hint {
+  color: #ffffff;
+  font-family: $font-family-base;
+  letter-spacing: 0.5em;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  opacity: 0.6;
+  animation: enter-breathe 4s infinite ease-in-out;
+}
+
+@keyframes enter-breathe {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.05); }
 }
 
 .curtain-half {
   position: absolute;
   top: 0;
   height: 100%;
-  z-index: 1000; // 🔥 ABOVE everything
-
+  z-index: 1000;
   background-color: #1a1a1a;
-
   background-image:
-    repeating-linear-gradient(
-      90deg,
-      rgba(0, 0, 0, 0.4) 0px,
-      rgba(255, 255, 255, 0.02) 2px,
-      transparent 20px,
-      rgba(0, 0, 0, 0.4) 40px
-    ),
+    repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.4) 0px, rgba(255, 255, 255, 0.02) 2px, transparent 20px, rgba(0, 0, 0, 0.4) 40px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
-
   box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.8);
 
-  &.left {
-    left: 0;
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  &.right {
-    right: 0;
-    border-left: 1px solid rgba(255, 255, 255, 0.1);
-  }
+  &.left { left: 0; border-right: 1px solid rgba(255, 255, 255, 0.1); }
+  &.right { right: 0; border-left: 1px solid rgba(255, 255, 255, 0.1); }
 }
 
-.curtain-hint {
-  position: absolute;
-  inset: 0;
-  z-index: 1100; // 🔥 highest layer
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
+@media (max-width: 64rem) {
+  .curtain-hint { transform: translateY(-15%); animation: enter-breathe-mobile 4s infinite ease-in-out; }
+}
 
-  font-family: $font-family-base;
-  color: #ffffff;
-  text-transform: uppercase;
-  letter-spacing: 0.6em;
-  font-size: $font-size-sm;
-  opacity: 0.5;
+@keyframes enter-breathe-mobile {
+  0%, 100% { opacity: 0.4; transform: translateY(-15%) scale(1); }
+  50% { opacity: 0.9; transform: translateY(-15%) scale(1.05); }
 }

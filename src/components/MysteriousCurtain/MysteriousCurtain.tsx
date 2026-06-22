@@ -10,62 +10,53 @@ interface CurtainProps {
 }
 
 export default function MysteriousCurtain({ children, forceOpen, onOpen }: CurtainProps) {
-  // Use the layout state to determine the starting position
   const [isOpen, setIsOpen] = useState(forceOpen);
 
   const handleOpen = () => {
     setIsOpen(true);
-    onOpen(); // Permanently saves the open status in LayoutClientManager
+    onOpen();
   };
 
-  const transition: any = {
+  // FIXED: Explicitly cast to any or define the tuple to satisfy TypeScript
+  const transition = {
     duration: 2.8,
-    ease: [0.65, 0, 0.35, 1],
+    ease: [0.65, 0, 0.35, 1] as any,
   };
 
   return (
-    <div
-      className={`curtain-wrapper ${isOpen ? 'is-open' : ''}`}
-      onClick={handleOpen}
-    >
-      {/* CONTENT (hidden before open) */}
+    <div className={`curtain-wrapper ${isOpen ? 'is-open' : ''}`}>
       <div
         className="video-content-layer"
         style={{
-          pointerEvents: isOpen ? 'auto' : 'none',
+          visibility: isOpen ? 'visible' : 'hidden',
           opacity: isOpen ? 1 : 0,
           transition: 'opacity 0.6s ease',
+          pointerEvents: isOpen ? 'auto' : 'none',
         }}
       >
         {children}
       </div>
 
-      {/* ENTER TEXT — no animation = no glitch */}
       {!isOpen && (
-        <div className="curtain-hint">
-          Enter
+        <div className="curtain-active-area" onClick={handleOpen}>
+          <div className="curtain-vignette" />
+          <div className="curtain-hint-container">
+            <div className="curtain-backlight" />
+            <div className="curtain-hint">ENTER</div>
+          </div>
         </div>
       )}
 
-      {/* LEFT */}
       <motion.div
         className="curtain-half left"
         initial={{ width: forceOpen ? '0%' : '50%' }}
-        animate={{
-          width: isOpen ? '0%' : '50%',
-          x: isOpen ? '-5%' : '0%',
-        }}
+        animate={{ width: isOpen ? '0%' : '50%', x: isOpen ? '-5%' : '0%' }}
         transition={transition}
       />
-
-      {/* RIGHT */}
       <motion.div
         className="curtain-half right"
         initial={{ width: forceOpen ? '0%' : '50%' }}
-        animate={{
-          width: isOpen ? '0%' : '50%',
-          x: isOpen ? '5%' : '0%',
-        }}
+        animate={{ width: isOpen ? '0%' : '50%', x: isOpen ? '5%' : '0%' }}
         transition={transition}
       />
     </div>
