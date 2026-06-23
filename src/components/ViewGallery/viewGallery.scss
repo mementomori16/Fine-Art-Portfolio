@@ -4,20 +4,18 @@
 .viewGallery {
   position: fixed;
   inset: 0;
-  background: #000000; // Absolute deep room dark drop
+  background: #000000;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   z-index: 2000;
 
-  // ✨ SENIOR REFINEMENT: CRISP HIGH-BRIGHTNESS CLOSE INTERFACE
   .close-button {
     position: absolute;
     top: 1.5rem;
     right: 2rem;
     background: transparent;
     border: none;
-    color: rgba(255, 255, 255, 0.95); // High-luminance crisp indicator
+    color: rgba(255, 255, 255, 0.95);
     font-size: 1.5rem;
     font-weight: 300;
     cursor: pointer;
@@ -31,12 +29,18 @@
     }
   }
 
-  .react-transform-wrapper {
-    width: 100%;
-    height: 100%;
+  .gallerySwipeContainer {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+    touch-action: pan-y;
   }
 
-  .react-transform-component {
+  .react-transform-wrapper, .react-transform-component {
     width: 100%;
     height: 100%;
     display: flex;
@@ -46,45 +50,44 @@
 
   .largeImage {
     max-width: 100%;
-    max-height: 76vh; // Constrained slightly to secure clear vertical safety gap
+    max-height: 76vh;
     object-fit: contain;
     transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none; // Prevents drag-to-download cursor
   }
 
-  // ✨ METADATA ALIGNMENT & VISIBILITY PASS
   .imageInfo {
     position: absolute;
     left: 2rem;
-    bottom: 2.2rem; // Pushed down into the lower gallery margin layer
+    bottom: 2.2rem;
     z-index: 5;
     pointer-events: none;
 
     .imageTitle {
       font-family: $font-family-base;
-      font-size: 1.05rem; // Scaled up for elegant legibility
+      font-size: 1.05rem;
       font-weight: $font-weight-medium;
-      color: rgba(255, 255, 255, 0.95); // Pristine high contrast off-white
+      color: rgba(255, 255, 255, 0.95);
       margin: 0 0 0.25rem 0;
       letter-spacing: 0.04rem;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85); // Protects readability over canvas elements
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85);
     }
 
     .imageDate {
       font-family: $font-family-base;
       font-size: 0.78rem;
       font-weight: $font-weight-normal;
-      color: rgba(255, 235, 180, 0.65); // Warm luxury secondary tone
+      color: rgba(255, 235, 180, 0.65);
       margin: 0;
       letter-spacing: 0.02rem;
       text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
     }
   }
 
-  // ✨ COMPACT BACKGROUND-INTEGRATED FILMSTRIP CONTAINER
   .thumbnailsContainer {
     width: 100%;
-    background: transparent; // Completely unified with background layer
-    padding: 0.5rem 0 1.5rem 0; // Compact down padding matrix protects image baseline boundaries
+    background: transparent;
+    padding: 0.5rem 0 1.5rem 0;
     display: flex;
     justify-content: center;
     z-index: 5;
@@ -95,7 +98,7 @@
     gap: 0.75rem;
 
     .thumbnail {
-      width: 3.2rem; // Slightly balanced sizing down profile
+      width: 3.2rem;
       height: 3.2rem;
       object-fit: cover;
       cursor: pointer;
@@ -107,16 +110,11 @@
       &.active {
         opacity: 1;
         border-color: rgba(255, 255, 255, 0.85);
-        transform: translateY(-2px); // Subtle dynamic lifting active signifier
-      }
-
-      &:hover {
-        opacity: 0.85;
+        transform: translateY(-2px);
       }
     }
   }
 
-  // ✨ HIGH-BRIGHTNESS UTILITY CONTROLS
   .zoomControls {
     position: absolute;
     top: 1.5rem;
@@ -126,11 +124,9 @@
     .zoomButton {
       display: flex;
       margin-bottom: 0.6rem;
-
       background: rgba(15, 15, 15, 0.4);
-      border: 1px solid rgba(255, 255, 255, 0.8); // High brightness white boundary ring
-      color: #ffffff; // Absolute bright symbols
-
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      color: #ffffff;
       width: 2.2rem;
       height: 2.2rem;
       border-radius: 50%;
@@ -138,20 +134,6 @@
       align-items: center;
       justify-content: center;
       backdrop-filter: blur(4px);
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-
-      span {
-        font-size: 1.15rem;
-        font-weight: 400;
-        line-height: 1;
-      }
-
-      &:hover {
-        color: #ffffff;
-        border-color: #ffffff;
-        background: rgba(255, 255, 255, 0.15);
-        transform: scale(1.05);
-      }
     }
   }
 
@@ -161,25 +143,26 @@
     transform: translateY(-50%);
     font-size: 2.5rem;
     font-weight: 200;
-    color: rgba(255, 255, 255, 0.6); // Muted baseline to avoid distracting from artwork
+    color: rgba(255, 255, 255, 0.6);
     background: none;
     border: none;
     cursor: pointer;
-    transition: color 0.2s ease, transform 0.2s ease;
     z-index: 10;
     text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
 
-    &:hover {
-      color: #ffffff;
-      transform: translateY(-50%) scale(1.1);
-    }
+    &.top-left { left: 2rem; }
+    &.top-right { right: 2rem; }
+  }
 
-    &.top-left {
-      left: 2rem;
-    }
+  @media (max-width: 768px) {
+    .arrowContainer { display: none; }
 
-    &.top-right {
-      right: 2rem;
+    .imageInfo {
+      position: relative;
+      left: 0;
+      bottom: 0;
+      padding: 1rem;
+      text-align: center;
     }
   }
 }

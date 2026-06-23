@@ -28,6 +28,9 @@ const ViewGallery: React.FC<ViewGalleryProps> = ({
   const [maxScale, setMaxScale] = useState(5);
   const [resetFn, setResetFn] = useState<() => void>(() => () => {});
 
+  let touchStartX = 0;
+  const SWIPE_THRESHOLD = 50;
+
   const transitionToImage = (index: number) => {
     if (index === currentIndex) return;
     setOpacity(0);
@@ -36,6 +39,20 @@ const ViewGallery: React.FC<ViewGalleryProps> = ({
       setCurrentIndex(index);
       resetFn();
     }, 400);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX - touchEndX;
+
+    if (Math.abs(diff) > SWIPE_THRESHOLD) {
+      if (diff > 0) transitionToImage((currentIndex + 1) % images.length);
+      else transitionToImage((currentIndex - 1 + images.length) % images.length);
+    }
   };
 
   useEffect(() => {
@@ -56,54 +73,60 @@ const ViewGallery: React.FC<ViewGalleryProps> = ({
         ✕
       </button>
 
-      <TransformWrapper
-        centerOnInit
-        centerZoomedOut
-        minScale={1}
-        initialScale={1}
-        maxScale={maxScale}
-        wheel={{ step: 0.012 }}
-        doubleClick={{ disabled: true }}
-        limitToBounds
+      <div 
+        className="gallerySwipeContainer" 
+        onTouchStart={handleTouchStart} 
+        onTouchEnd={handleTouchEnd}
       >
-        {({ zoomIn, zoomOut, resetTransform }) => {
-          if (!resetFn) setResetFn(() => resetTransform);
-          return (
-            <>
-              <TransformComponent>
-                {images.length > 0 && (
-                  <img
-                    src={images[currentIndex].url}
-                    alt="artwork"
-                    className={`largeImage ${isLoaded ? "loaded" : ""}`}
-                    style={{ opacity: isLoaded ? opacity : 0 }}
-                  />
+        <TransformWrapper
+          centerOnInit
+          centerZoomedOut
+          minScale={1}
+          initialScale={1}
+          maxScale={maxScale}
+          wheel={{ step: 0.012 }}
+          doubleClick={{ disabled: true }}
+          limitToBounds
+        >
+          {({ zoomIn, zoomOut, resetTransform }) => {
+            if (resetFn.name === "") setResetFn(() => resetTransform);
+            return (
+              <>
+                <TransformComponent>
+                  {images.length > 0 && (
+                    <img
+                      src={images[currentIndex].url}
+                      alt="artwork"
+                      className={`largeImage ${isLoaded ? "loaded" : ""}`}
+                      style={{ opacity: isLoaded ? opacity : 0 }}
+                    />
+                  )}
+                </TransformComponent>
+
+                <div className="zoomControls">
+                  <button onClick={() => zoomIn(0.3)} className="zoomButton" aria-label="Zoom In">
+                    <span>+</span>
+                  </button>
+                  <button onClick={() => zoomOut(0.3)} className="zoomButton" aria-label="Zoom Out">
+                    <span>−</span>
+                  </button>
+                </div>
+
+                {images.length > 1 && (
+                  <div className="arrowContainer">
+                    <button className="arrow top-left" onClick={() => transitionToImage((currentIndex - 1 + images.length) % images.length)}>
+                      {"‹"}
+                    </button>
+                    <button className="arrow top-right" onClick={() => transitionToImage((currentIndex + 1) % images.length)}>
+                      {"›"}
+                    </button>
+                  </div>
                 )}
-              </TransformComponent>
-
-              <div className="zoomControls">
-                <button onClick={() => zoomIn(0.3)} className="zoomButton" aria-label="Zoom In">
-                  <span>+</span>
-                </button>
-                <button onClick={() => zoomOut(0.3)} className="zoomButton" aria-label="Zoom Out">
-                  <span>−</span>
-                </button>
-              </div>
-
-              {images.length > 1 && (
-                <>
-                  <button className="arrow top-left" onClick={() => transitionToImage((currentIndex - 1 + images.length) % images.length)}>
-                    {"‹"}
-                  </button>
-                  <button className="arrow top-right" onClick={() => transitionToImage((currentIndex + 1) % images.length)}>
-                    {"›"}
-                  </button>
-                </>
-              )}
-            </>
-          );
-        }}
-      </TransformWrapper>
+              </>
+            );
+          }}
+        </TransformWrapper>
+      </div>
 
       {images.length > 0 && (
         <div className="imageInfo" style={{ opacity }}>
