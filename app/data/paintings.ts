@@ -105,7 +105,7 @@ export const PAINTINGS: Painting[] = [
         slug: "nude",
         category: "drawings",
         subcategory: "nude",
-        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032413/IMG_32273closeup-500kb_he3bkp.jpg")
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1782219354/IMG_2668_photoshoped_2026-2-500kb_q7vlr1.jpg")
     },
     {
         id: "drw_02",
@@ -316,6 +316,13 @@ export const PAINTINGS: Painting[] = [
         category: "drawings",
         subcategory: "general",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032414/IMG_3271ph12.2025500kb_gjyybh.jpg") 
+    },
+    {
+        id: "drw_32",
+        slug: "portrait",
+        category: "drawings",
+        subcategory: "portrait",
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1782219702/Groben._Oil_Pastels_on_Paper-500kb_xpitig.jpg") 
     },
 
     // ==========================================
