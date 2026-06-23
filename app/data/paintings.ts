@@ -310,6 +310,13 @@ export const PAINTINGS: Painting[] = [
         subcategory: "portrait",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1780682876/IMG_3246-500kb_m9lhwp.jpg") 
     },
+    {
+        id: "drw_31",
+        slug: "animals",
+        category: "drawings",
+        subcategory: "general",
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032414/IMG_3271ph12.2025500kb_gjyybh.jpg") 
+    },
 
     // ==========================================
     // 3. WATERCOLORS CATEGORY

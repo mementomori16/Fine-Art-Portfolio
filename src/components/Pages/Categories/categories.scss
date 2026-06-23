@@ -21,7 +21,7 @@
    2. HEADER BLOCK (FLUID MAIN TITLE SYSTEM)
    ========================================================================== */
 .categories-header {
-    padding-top: 6.5rem; 
+    padding-top: 3rem; 
     margin-bottom: 5.5rem;
     text-align: center;
     display: flex;
@@ -35,7 +35,7 @@
         font-weight: $font-weight-light;
         
         // ✨ FLUID SIZE: Scales up safely from mobile h4 sizing up to larger presence
-        font-size: clamp(1.75rem, 4.2vw, 3.25rem);
+        font-size: clamp(1.75rem, 4.2vw, 2.25rem);
         letter-spacing: clamp(0.3rem, 0.8vw, 0.6rem);
         
         text-transform: uppercase;

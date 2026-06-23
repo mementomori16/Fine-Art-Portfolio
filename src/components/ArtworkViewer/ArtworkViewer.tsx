@@ -38,13 +38,11 @@ export default function ArtworkViewer({ painting, currentImageIndex, onBackActio
 
   const activeImageSrc = painting.allImages?.[currentImageIndex] || painting.images?.large || "";
 
-  // FIXED: Removed old titleKey.replace framework logic to use the new ID path system
-// Update the layout conversion maps inside ArtworkViewer:
-const galleryImagesFormatted = (painting.allImages || [activeImageSrc]).map((url) => ({
-  url,
-  title: t(`artwork.${painting.id}.title`),
-  date: t(`artwork.${painting.id}.size`),
-}));
+  const galleryImagesFormatted = (painting.allImages || [activeImageSrc]).map((url) => ({
+    url,
+    title: t(`artwork.${painting.id}.title`),
+    date: t(`artwork.${painting.id}.size`),
+  }));
 
   const handleBackClick = () => {
     if (onBackAction) {
@@ -52,6 +50,10 @@ const galleryImagesFormatted = (painting.allImages || [activeImageSrc]).map((url
     } else if (typeof window !== "undefined") {
       window.history.back();
     }
+  };
+
+  const handleScrollToSimilar = () => {
+    document.getElementById("similar-works-section")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -78,13 +80,14 @@ const galleryImagesFormatted = (painting.allImages || [activeImageSrc]).map((url
         <div className="viewer-floor-shadow" />
       </div>
 
-      <button 
-        className="back-button" 
-        onClick={handleBackClick}
-        type="button"
-      >
-        ← {t("artwork.back") || "Back to Gallery"}
-      </button>
+      <div className="navigation-actions">
+        <button className="back-button" onClick={handleBackClick} type="button">
+          ← {t("artwork.back") || "Back to Gallery"}
+        </button>
+        <button className="explore-button" onClick={handleScrollToSimilar} type="button">
+          {t("artwork.more_works") || "Explore Similar"} ↓
+        </button>
+      </div>
 
       {open && (
         <ViewGallery
