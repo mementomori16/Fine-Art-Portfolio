@@ -35,7 +35,7 @@ export const PAINTINGS: Painting[] = [
         id: "oil_02",
         slug: "memento-mori",
         category: "oil-paintings",
-        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1779782494/Vanitas_ph2026500KB2_gyxk8l.jpg"),
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1782237007/ilya1ph2026-500kb_jwwzsj.jpg"),
         thumbnail: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1779781725/detal-2021-ph2026_eu8ac6.jpg" 
     },
     {
@@ -323,6 +323,20 @@ export const PAINTINGS: Painting[] = [
         category: "drawings",
         subcategory: "portrait",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1782219702/Groben._Oil_Pastels_on_Paper-500kb_xpitig.jpg") 
+    },
+    {
+        id: "drw_33",
+        slug: "nude",
+        category: "drawings",
+        subcategory: "nude",
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1782220926/Katya-500kb_nuiuux.jpg") 
+    },
+    {
+        id: "drw_34",
+        slug: "nude",
+        category: "drawings",
+        subcategory: "nude",
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1782236992/IMG_2695ph2026-500kb_b6jdul.jpg") 
     },
 
     // ==========================================
