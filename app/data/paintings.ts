@@ -99,7 +99,9 @@ export const PAINTINGS: Painting[] = [
         slug: "nude",
         category: "oil-paintings",
         subcategory: "nude",
-        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613717/IMGP3286PH26-2-500b_nidce0.jpg")
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613717/IMGP3286PH26-2-500b_nidce0.jpg"),
+        thumbnail: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1782300692/IMGP3308-Recovered_r5am4h.jpg",
+
     },
 
     // ==========================================
