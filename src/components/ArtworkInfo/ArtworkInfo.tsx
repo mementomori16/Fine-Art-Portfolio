@@ -13,8 +13,9 @@ interface PaintingData {
     medium?: string;
     large?: string;
   };
-  allImages?: string[]; 
-  hasValidThumbnails?: boolean;
+  thumbnail?: string;
+  thumbnail2?: string;
+  thumbnail3?: string;
 }
 
 interface Props {
@@ -30,6 +31,14 @@ export default function ArtworkInfo({ painting, currentImageIndex = 0, setCurren
     return <div className="artwork-info-loading-skeleton" />;
   }
 
+  // Consistent array construction identical to ArtworkViewer
+  const galleryImages = [
+    painting.images?.large,
+    painting.thumbnail,
+    painting.thumbnail2,
+    painting.thumbnail3
+  ].filter((url): url is string => !!url);
+
 const titleKey = `artwork.${painting.id}.title`;
 const mediumKey = `artwork.${painting.id}.medium`;
 const sizeKey = `artwork.${painting.id}.size`;
@@ -37,7 +46,6 @@ const descriptionKey = painting.descriptionKey || `artwork.${painting.id}.descri
   
   const hasDescription = i18n.exists(descriptionKey) && t(descriptionKey) !== descriptionKey;
   const isShareSupported = typeof window !== "undefined" && !!navigator.share;
-  const renderingThumbnails = painting.allImages || [];
 
   const handleShare = async () => {
     if (!isShareSupported) return;
@@ -77,9 +85,9 @@ const descriptionKey = painting.descriptionKey || `artwork.${painting.id}.descri
         </div>
       )}
 
-      {painting.hasValidThumbnails && renderingThumbnails.length > 1 && (
+      {galleryImages.length > 1 && (
         <div className="info-panel-thumbnails">
-          {renderingThumbnails.map((thumbUrl, idx) => (
+          {galleryImages.map((thumbUrl, idx) => (
             <img
               key={idx}
               src={thumbUrl}

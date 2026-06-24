@@ -13,7 +13,9 @@ interface PaintingData {
     medium?: string;
     large?: string;
   };
-  allImages?: string[];
+  thumbnail?: string;
+  thumbnail2?: string;
+  thumbnail3?: string;
 }
 
 interface ArtworkViewerProps {
@@ -36,12 +38,21 @@ export default function ArtworkViewer({ painting, currentImageIndex, onBackActio
     );
   }
 
-  const activeImageSrc = painting.allImages?.[currentImageIndex] || painting.images?.large || "";
+  // Standardized list of all available images
+  const galleryArray = [
+    painting.images?.large,
+    painting.thumbnail,
+    painting.thumbnail2,
+    painting.thumbnail3
+  ].filter((url): url is string => !!url);
 
-  const galleryImagesFormatted = (painting.allImages || [activeImageSrc]).map((url) => ({
+  const activeImageSrc = galleryArray[currentImageIndex] || galleryArray[0] || "";
+
+  const galleryImagesFormatted = galleryArray.map((url) => ({
     url,
     title: t(`artwork.${painting.id}.title`),
     date: t(`artwork.${painting.id}.size`),
+    thumbnail: url
   }));
 
   const handleBackClick = () => {
@@ -92,7 +103,7 @@ export default function ArtworkViewer({ painting, currentImageIndex, onBackActio
       {open && (
         <ViewGallery
           images={galleryImagesFormatted}
-          currentImageId={currentImageIndex}
+          currentImageId={currentImageIndex >= galleryArray.length ? 0 : currentImageIndex}
           onClose={() => setOpen(false)}
         />
       )}

@@ -13,6 +13,8 @@ export interface Painting {
     subcategory?: 'nude' | 'portrait' | 'general';
     images: PaintingImageSet;
     thumbnail?: string;
+    thumbnail2?: string;
+    thumbnail3?: string;
     isFeatured?: boolean;
 }
 
@@ -80,7 +82,10 @@ export const PAINTINGS: Painting[] = [
         slug: "memento-mori",
         category: "oil-paintings",
         subcategory: "nude",
-        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1779702849/ph2026edgein-500kb_cdva8b.jpg")
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1779792941/IMG_0354-2026-3500kb_yixqtl.jpg"),
+        thumbnail: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1780072416/ed500kb_eb2ppw.jpg",
+        thumbnail2: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1782294108/closeup2018-500kb_ihzwdb.jpg",
+
     },
     {
         id: "oil_11",
@@ -333,10 +338,31 @@ export const PAINTINGS: Painting[] = [
     },
     {
         id: "drw_34",
-        slug: "nude",
+        slug: "nude-penis",
         category: "drawings",
         subcategory: "nude",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1782236992/IMG_2695ph2026-500kb_b6jdul.jpg") 
+    },
+    {
+        id: "drw_35",
+        slug: "nude",
+        category: "drawings",
+        subcategory: "nude",
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1782287753/birsfelden_small_rroyxv.jpg") 
+    },
+    {
+        id: "drw_36",
+        slug: "portrait",
+        category: "drawings",
+        subcategory: "portrait",
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1782287975/scanned_alexandra_or_anna_photoshoped_2026-500kb_dluh1j.jpg") 
+    },
+    {
+        id: "drw_37",
+        slug: "landscape",
+        category: "drawings",
+        subcategory: "general",
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1782289675/IMG_3243_hs1ak8.jpg") 
     },
 
     // ==========================================
@@ -414,7 +440,9 @@ export const PAINTINGS: Painting[] = [
         id: "oth_04",
         slug: "portrait, icon",
         category: "other-works",
-        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032516/smaller2025-Recovered500kb_emgojk.jpg")
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032516/smaller2025-Recovered500kb_emgojk.jpg"),
+        thumbnail: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1782286880/IMG_4623_f7dz6v.jpg" 
+
     },
     {
         id: "oth_05",
