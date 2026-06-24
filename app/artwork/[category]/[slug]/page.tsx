@@ -1,75 +1,37 @@
-"use client";
-
-import React, { useState } from "react";
-import { useParams } from "next/navigation";
-import { useTranslation } from "react-i18next";
+import { notFound } from "next/navigation";
 import { PAINTINGS } from "../../../data/paintings";
-import ArtworkViewer from "../../../../src/components/ArtworkViewer/ArtworkViewer";
-import ArtworkInfo from "../../../../src/components/ArtworkInfo/ArtworkInfo";
-import SimilarProducts from "../../../../src/components/SimilarProducts/SimilarProducts";
-import "./page.scss";
+import ArtworkPageClient from "./ArtworkPageClient"; 
+import englishData from "../../../../public/locales/english.json";
 
-interface ImageData {
-  url: string;
-  title: string;
-  date: string;
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const painting = PAINTINGS.find((p) => p.id === slug);
+  if (!painting) return { title: "Artwork | Ilya Medvedev" };
+
+  const title = (englishData as any)?.artwork?.items?.[painting.id]?.title || "Artwork";
+  return {
+    title: `${title} | Ilya Medvedev`,
+    description: `View "${title}" by Ilya Medvedev. Original fine art painting.`,
+  };
 }
 
-export default function ArtworkPage() {
-  const { t } = useTranslation();
-  const params = useParams();
+export default async function ArtworkPage({ params }: { params: Promise<{ category: string; slug: string }> }) {
+  const { category, slug } = await params;
   
-  const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
+  const painting = PAINTINGS.find((p) => p.id === slug && p.category === category);
+  if (!painting) notFound();
 
-  const slug = Array.isArray(params.slug) ? params.slug[0] : params.slug;
-  const category = Array.isArray(params.category) ? params.category[0] : params.category;
-
-  const painting = PAINTINGS.find(
-    (p) => p.id === slug && p.category === category
-  );
-
-  if (!painting) return <div>Artwork not found</div>;
-
-  const titleTranslation = t(`artwork.items.${painting.id}.title`);
-  const sizeTranslation = t(`artwork.items.${painting.id}.size`);
-
-  const mainImage = painting.images?.large || painting.images?.medium || painting.images?.small || "";
-  
-  const collectedUrls: string[] = [mainImage];
-  if (painting.thumbnail) {
-    collectedUrls.push(painting.thumbnail);
-  }
-
-  const images: ImageData[] = collectedUrls.map((url) => ({
-    url,
-    title: titleTranslation,
-    date: sizeTranslation,
-  }));
+  const getTranslation = (key: string) => {
+    const keys = key.split('.');
+    return keys.reduce((o, i) => (o ? o[i] : null), englishData as any) || key;
+  };
 
   const optimizedPaintingData = {
     ...painting,
-    allImages: images.map((img) => img.url),
-    hasValidThumbnails: !!painting.thumbnail,
+    title: getTranslation(`artwork.items.${painting.id}.title`),
+    size: getTranslation(`artwork.items.${painting.id}.size`),
+    allImages: [painting.images?.large, painting.thumbnail].filter(Boolean)
   };
 
-  return (
-  <main className="artwork-page">
-    <div className="artwork-container">
-      <div className="artwork-layout">
-        <ArtworkViewer 
-          painting={optimizedPaintingData} 
-          currentImageIndex={currentImageIndex} 
-        />
-        <ArtworkInfo 
-          painting={optimizedPaintingData} 
-          currentImageIndex={currentImageIndex} 
-          setCurrentImageIndex={setCurrentImageIndex} 
-        />
-      </div>
-      
-      {/* Similar Products added here, appearing below the viewer/info components */}
-      <SimilarProducts currentPaintingId={painting.id} />
-    </div>
-  </main>
-);
+  return <ArtworkPageClient painting={optimizedPaintingData} />;
 }

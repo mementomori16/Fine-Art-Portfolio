@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://ilyamedvedev.com
+
+# Sitemaps
+Sitemap: https://ilyamedvedev.com/sitemap.xml
