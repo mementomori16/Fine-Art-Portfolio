@@ -84,7 +84,7 @@ export const PAINTINGS: Painting[] = [
         slug: "memento-mori",
         category: "oil-paintings",
         subcategory: "nude",
-        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1779792941/IMG_0354-2026-3500kb_yixqtl.jpg"),
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1783015237/Untitled_Panorama-24-500b_b4z8vu.jpg"),
         thumbnail: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1780072416/ed500kb_eb2ppw.jpg",
         thumbnail2: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1782294108/closeup2018-500kb_ihzwdb.jpg",
 
