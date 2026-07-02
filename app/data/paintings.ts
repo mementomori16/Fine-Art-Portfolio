@@ -52,7 +52,9 @@ export const PAINTINGS: Painting[] = [
         id: "oil_04",
         slug: "nude",
         category: "oil-paintings",
-        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032416/IMG_4906_photoshoped_12.2025-500kb_xdkpzo.jpg")
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032416/IMG_4906_photoshoped_12.2025-500kb_xdkpzo.jpg"),
+        thumbnail: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1782937567/good_Alla_2026_photoshop-500kb_q5prhs.jpg" 
+
     },
     {
         id: "oil_06",
@@ -101,6 +103,18 @@ export const PAINTINGS: Painting[] = [
         subcategory: "nude",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613717/IMGP3286PH26-2-500b_nidce0.jpg"),
         thumbnail: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1782300692/IMGP3308-Recovered_r5am4h.jpg",
+        
+
+    },
+     {
+        id: "oil_13",
+        slug: "memento-mori",
+        category: "oil-paintings",
+        subcategory: "nude",
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1782914928/Photoshoped-panorama2026-5-500kb_x3gypx.jpg"),
+        thumbnail: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1782930873/DSC_0973ph3-2026-500kb_lqj6pp.jpg",
+        thumbnail2: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1782932053/IMG_4880photoshoped_2026-2500kb_mxytkz.jpg",
+
 
     },
 
@@ -365,6 +379,13 @@ export const PAINTINGS: Painting[] = [
         category: "drawings",
         subcategory: "general",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1782289675/IMG_3243_hs1ak8.jpg") 
+    },
+    {
+        id: "drw_38",
+        slug: "landscape",
+        category: "drawings",
+        subcategory: "general",
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1782933295/IMG_3453%D0%B7%D1%802026-500kb_hbni35.jpg") 
     },
 
     // ==========================================
