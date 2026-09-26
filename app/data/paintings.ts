@@ -422,16 +422,70 @@ export const PAINTINGS: Painting[] = [
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1779702837/2020ph.2026-500kb_wcsr6l.jpg")
     },
     {
-        id: "wat_09",
+        id: "wat_06",
         slug: "landscape",
         category: "watercolors",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1781945130/Beit_Tsedek_Fortress._Aquarelle_on_Cotton_paper_300_gr.ph2026-500kb_xgphml.jpg") 
     },
      {
-        id: "wat_10",
+        id: "wat_07",
         slug: "landscape",
         category: "watercolors",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1781946347/Caesarea_Aqueduk._Aquarelle_on_cotton_paper_300_gr._2019.ph2026-500kb_ruv4vz.jpg") 
+    },
+    {
+        id: "wat_08",
+        slug: "landscape",
+        category: "watercolors",
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1780499087/Basel_lionsph26-500kb_hhp3y1.jpg") 
+    },
+        {
+        id: "wat_09",
+        slug: "landscape",
+        category: "watercolors",
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1789985281/Middle_bridge_in_Basel-500kb_zwjdrz.jpg") 
+    },
+        {
+        id: "wat_10",
+        slug: "landscape",
+        category: "watercolors",
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1789987959/Basel_Spalentor_2019-PH26-500KB_pqrxq6.jpg") 
+    },
+       {
+        id: "wat_11",
+        slug: "landscape",
+        category: "watercolors",
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1789988252/Basel_Cathedral-PH2026-500KB_w0ce7b.jpg") 
+    },
+    {
+        id: "wat_12",
+        slug: "landscape",
+        category: "watercolors",
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1789989213/jaffa-ph2026-500kb_iz6g87.jpg") 
+    },
+    {
+        id: "wat_13",
+        slug: "landscape",
+        category: "watercolors",
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1789990193/jammy-ph2026-500kb_pflfu8.jpg") 
+    },
+    {
+        id: "wat_14",
+        slug: "landscape",
+        category: "watercolors",
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1790000167/IMG_3662-no_borders-ph2026_iedr2w.jpg") 
+    },
+    {
+        id: "wat_15",
+        slug: "landscape",
+        category: "watercolors",
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1790002492/basel-500kb_xmznyi.jpg") 
+    },
+    {
+        id: "wat_16",
+        slug: "landscape",
+        category: "watercolors",
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1790004313/neve_tsedek_2019-paint-ph-2026-500kb_xshdyv.jpg") 
     },
 
     // ==========================================
