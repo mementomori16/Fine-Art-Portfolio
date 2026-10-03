@@ -38,7 +38,8 @@ export const PAINTINGS: Painting[] = [
         slug: "memento-mori",
         category: "oil-paintings",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1782237007/ilya1ph2026-500kb_jwwzsj.jpg"),
-        thumbnail: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1779781725/detal-2021-ph2026_eu8ac6.jpg" 
+        thumbnail: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1779781725/detal-2021-ph2026_eu8ac6.jpg",
+        thumbnail2: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1791055741/IMG_3357-500kb_rcpa9f.jpg" 
     },
     {
         id: "oil_03",
@@ -46,7 +47,6 @@ export const PAINTINGS: Painting[] = [
         category: "oil-paintings",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613732/IMG_8469ph2026-500kb_fipv2h.jpg"),
         thumbnail: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613717/The_best_photo_Autopsia_of_a_commited_suicide_girl%D0%B7%D1%8026500kb_bup3cx.jpg" 
-
     },
     {
         id: "oil_04",
@@ -54,14 +54,12 @@ export const PAINTINGS: Painting[] = [
         category: "oil-paintings",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032416/IMG_4906_photoshoped_12.2025-500kb_xdkpzo.jpg"),
         thumbnail: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1782937567/good_Alla_2026_photoshop-500kb_q5prhs.jpg" 
-
     },
     {
         id: "oil_06",
         slug: "nude",
         category: "oil-paintings",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1770367743/photoshoped_2025_Royal_Gore._Oil_on_canvas_111_x_200_cm._2008._500kb_e9z43l.jpg"),
-
     },
     {
         id: "oil_07",
@@ -77,7 +75,6 @@ export const PAINTINGS: Painting[] = [
         subcategory: "nude",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613701/IMG_4550ph26-500kb_lqn3zn.jpg"),
         thumbnail: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1781963283/IMG_4840-darker_2025_iwfsdy.jpg" 
-
     },
     {
         id: "oil_09",
@@ -87,7 +84,6 @@ export const PAINTINGS: Painting[] = [
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1783015237/Untitled_Panorama-24-500b_b4z8vu.jpg"),
         thumbnail: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1780072416/ed500kb_eb2ppw.jpg",
         thumbnail2: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1782294108/closeup2018-500kb_ihzwdb.jpg",
-
     },
     {
         id: "oil_11",
@@ -103,8 +99,6 @@ export const PAINTINGS: Painting[] = [
         subcategory: "nude",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613717/IMGP3286PH26-2-500b_nidce0.jpg"),
         thumbnail: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1782300692/IMGP3308-Recovered_r5am4h.jpg",
-        
-
     },
      {
         id: "oil_13",
@@ -114,8 +108,22 @@ export const PAINTINGS: Painting[] = [
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1782914928/Photoshoped-panorama2026-5-500kb_x3gypx.jpg"),
         thumbnail: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1782930873/DSC_0973ph3-2026-500kb_lqj6pp.jpg",
         thumbnail2: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1782932053/IMG_4880photoshoped_2026-2500kb_mxytkz.jpg",
-
-
+    },
+    {
+        id: "oil_14",
+        slug: "portrait",
+        category: "oil-paintings",
+        subcategory: "nude",
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1791048507/IMG_4285-2ph2026-500kb_gxegvt.jpg"),
+        thumbnail: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1791053467/IMG_4293-2-ph2026-500kb_qygshe.jpg",
+    },
+    {
+        id: "oil_15",
+        slug: "landscape",
+        category: "oil-paintings",
+        subcategory: "nude",
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1791054706/IMG_8563paint-ph2026-500kb_lja2dj.jpg"),
+        
     },
 
     // ==========================================
@@ -486,6 +494,18 @@ export const PAINTINGS: Painting[] = [
         slug: "landscape",
         category: "watercolors",
         images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1790004313/neve_tsedek_2019-paint-ph-2026-500kb_xshdyv.jpg") 
+    },
+    {
+        id: "wat_17",
+        slug: "nude",
+        category: "watercolors",
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1791059265/IMG_7565photoshoped_2025-500kb1_r8yr9d.jpg") 
+    },
+    {
+        id: "wat_18",
+        slug: "landscape, stone",
+        category: "watercolors",
+        images: makeImageSet("https://res.cloudinary.com/dpayqcrg5/image/upload/v1791066249/CesariaPH2026-500KB_dm00sq.jpg") 
     },
 
     // ==========================================

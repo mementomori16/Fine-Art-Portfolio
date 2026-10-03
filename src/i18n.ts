@@ -3,6 +3,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import englishData from '../public/locales/english.json';
+import germanData from '../public/locales/german.json';
 
 if (!i18n.isInitialized) {
   i18n
@@ -10,8 +11,11 @@ if (!i18n.isInitialized) {
     .init({
       resources: {
         en: {
-          translation: englishData // Stores data inside the default 'translation' bucket
-        }
+          translation: englishData,
+        },
+        de: {
+          translation: germanData,
+        },
       },
       lng: 'en',
       fallbackLng: 'en',

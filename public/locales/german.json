@@ -1,0 +1,216 @@
+{
+  "categories": {
+    "pageTitle": "Kunstgalerie",
+    "oil_paintings": "Ölgemälde",
+    "drawings": "Zeichnungen",
+    "watercolors": "Aquarelle",
+    "other_works": "Kulturerbe & Antiquitäten"
+  },
+  "subcategories": {
+    "all": "Alle",
+    "portraits": "Porträts",
+    "nude": "Akt",
+    "general": "Alle Werke"
+  },
+  "common": {
+    "viewGallery": "Galerie ansehen"
+  },
+  "welcomehero": {
+    "royalGore": { "title": "Akt auf dem Stuhl", "medium": "Öl auf Leinwand, 80 x 120 cm" },
+    "portraitStudy": { "title": "Tschikatilo", "medium": "Öl auf Leinwand, 144 x 160 cm" },
+    "vanitas": { "title": "Männliche und weibliche Schädel", "medium": "Öl auf Leinwand, 120 x 60 cm" },
+    "compositionIV": { "title": "Porträt von Tereza", "medium": "Öl auf Leinwand, 55 x 65 cm" },
+    "varnishedStudy": { "title": "Entstellt", "medium": "Öl auf Leinwand, 40 x 50 cm" },
+    "lenaScanned": { "title": "Tätowierter Akt auf Sofa", "medium": "Ölpastell auf Papier, 21 x 29 cm" },
+    "autopsia": { "title": "Autopsie einer jungen Selbstmörderin", "medium": "Öl auf Leinwand, 65 x 45 cm" },
+    "imgp0914": { "title": "Muttergottes mit Kind", "medium": "Eitempera und 24K Blattgold auf grundierter Holzplatte, 20 x 30 x 3 cm" }
+  },
+  "artwork": {
+    "medium": "Technik",
+    "dimensions": "Maße",
+    "share": "Werk teilen",
+    "back": "Zurück zur Galerie",
+    "more_works": "Ähnliche Werke entdecken",
+    "oil_02": { "title": "Männliche und weibliche Schädel", "medium": "Öl auf Leinwand", "size": "120 x 60 cm" },
+    "oil_03": { "title": "Autopsie einer jungen Selbstmörderin", "medium": "Öl auf Leinwand", "size": "65 x 45 cm" },
+    "oil_04": { "title": "Aktstudie", "medium": "Öl auf Leinwand", "size": "80 x 120 cm" },
+    "oil_06": { "title": "Der Tanz", "medium": "Öl auf Leinwand", "size": "111 x 200 cm" },
+    "oil_07": { "title": "Entstellt", "medium": "Öl auf Leinwand", "size": "40 x 50 cm" },
+    "oil_08": { "title": "Porträt von Tereza", "medium": "Öl auf Leinwand", "size": "60 x 70 cm" },
+    "oil_09": { "title": "Ed Gein als Frau", "medium": "Öl auf Leinwand", "size": "75 x 100 cm" },
+    "oil_11": { "title": "Porträt einer ertrunkenen Frau", "medium": "Öl auf Leinwand", "size": "40 x 50 cm" },
+    "oil_12": { "title": "Akt auf dem Stuhl", "medium": "Öl auf Leinwand", "size": "80 x 100 cm" },
+    "oil_13": { "title": "Serienmörder Tschikatilo ermordet Ljubow Suewa", "medium": "Öl auf Leinwand", "size": "160 x 144 cm" },
+    "oil_14": { "title": "Wladimir Lenin", "medium": "Öl auf Leinwand", "size": "39 x 45 cm" },
+    "oil_15": { "title": "Februarnachmittag in Kleinbasel", "medium": "Öl auf Leinwand", "size": "47 x 65 cm" },
+
+    "drw_01": { "title": "Fußstudie", "medium": "Ölpastell auf Papier", "size": "21 x 29.7 cm" },
+    "drw_02": { "title": "Porträt von Celine", "medium": "Ölpastell auf Papier", "size": "29.7 x 42 cm" },
+    "drw_03": { "title": "Papagei", "medium": "Mischtechnik auf Karton", "size": "21 x 29.7 cm" },
+    "drw_04": { "title": "Akt am Fluss", "medium": "Ölpastell auf Papier", "size": "21 x 29.7 cm" },
+    "drw_05": { "title": "Porträt von Alina", "medium": "Ölpastell auf Papier", "size": "21 x 29.7 cm" },
+    "drw_06": { "title": "Porträt von Dorkas", "medium": "Softpastell auf Karton", "size": "21 x 29.7 cm" },
+    "drw_07": { "title": "Porträt von Joe Pesci", "medium": "Softpastell auf getöntem Papier", "size": "29.7 x 42 cm" },
+    "drw_08": { "title": "Porträt von Alla", "medium": "Graphit auf Papier", "size": "29.7 x 42 cm" },
+    "drw_09": { "title": "E.T.", "medium": "Mischtechnik auf Karton", "size": "21 x 29.7 cm" },
+    "drw_10": { "title": "Akt auf dem Bett", "medium": "Graphit auf Papier", "size": "21 x 29.7 cm" },
+    "drw_11": { "title": "Meeresblick in Spanien", "medium": "Ölpastell auf Papier", "size": "21 x 29.7 cm" },
+    "drw_12": { "title": "Porträt eines Mädchens aus Brasilien", "medium": "Graphit auf Papier", "size": "21 x 29.7 cm" },
+    "drw_13": { "title": "Anna, die Pro-Palästina-Aktivistin", "medium": "Ölpastell auf Papier", "size": "21 x 29.7 cm" },
+    "drw_14": { "title": "Porträt von Vincent", "medium": "Ölpastell auf Papier", "size": "21 x 29.7 cm" },
+    "drw_15": { "title": "Vagina", "medium": "Graphit auf Papier", "size": "21 x 29.7 cm" },
+    "drw_16": { "title": "Porträt von Dorna", "medium": "Ölpastell auf Papier", "size": "21 x 29.7 cm" },
+    "drw_17": { "title": "Akt posierend am Strand", "medium": "Ölpastell auf Papier", "size": "21 x 29.7 cm" },
+    "drw_18": { "title": "Porträt von Anna", "medium": "Bleistift auf Papier", "size": "40 x 55 cm" },
+    "drw_19": { "title": "Tätowierter Akt auf Sofa", "medium": "Ölpastell auf Papier", "size": "21 x 29.7 cm" },
+    "drw_20": { "title": "Porträt eines alten Schimpansen", "medium": "Ölpastell auf Papier", "size": "21 x 29.7 cm" },
+    "drw_21": { "title": "Vagina posierend am Strand", "medium": "Ölpastell und Marker auf Papier", "size": "21 x 29.7 cm" },
+    "drw_22": { "title": "Akt am Fluss in Zürich", "medium": "Ölpastell und Marker auf Papier", "size": "29.7 x 42 cm" },
+    "drw_23": { "title": "Rogers Penis", "medium": "Ölpastell und Marker auf Papier", "size": "29.7 x 42 cm" },
+    "drw_24": { "title": "Porträt von Olga", "medium": "Ölpastell auf Papier", "size": "21 x 29.7 cm" },
+    "drw_25": { "title": "Porträt einer Henne", "medium": "Ölpastell auf Papier", "size": "21 x 29.7 cm" },
+    "drw_26": { "title": "Transgender-Akt", "medium": "Graphit auf Papier", "size": "29.7 x 42 cm" },
+    "drw_27": { "title": "Penis posierend", "medium": "Ölpastell und Marker auf Papier", "size": "21 x 29.7 cm" },
+    "drw_28": { "title": "Oben ohne am Fluss in Basel", "medium": "Ölpastell und Marker auf Papier", "size": "21 x 29.7 cm" },
+    "drw_29": { "title": "Porträt der schlafenden Lily", "medium": "Ölpastell auf Papier", "size": "21 x 29.7 cm" },
+    "drw_30": { "title": "Spontanes Porträt in Brüssel", "medium": "Ölpastell auf Papier", "size": "21 x 29.7 cm" },
+    "drw_31": { "title": "Löwenjunges", "medium": "Mischtechnik auf Papier", "size": "21 x 29.7 cm" },
+    "drw_32": { "title": "Porträt von Groben", "medium": "Ölpastell und Marker auf Papier", "size": "21 x 29.7 cm" },
+    "drw_33": { "title": "Akt in der Natur", "medium": "Ölpastell und Marker auf Papier", "size": "29.7 x 42 cm" },
+    "drw_34": { "title": "Hinterteil, Anus und langer Penis", "medium": "Ölpastell und Marker auf Papier", "size": "21 x 29.7 cm" },
+    "drw_35": { "title": "Spontane Skizze in Birsfelden", "medium": "Graphit auf Papier", "size": "29.7 x 42 cm" },
+    "drw_36": { "title": "Porträt eines Mädchens mit zwei verschiedenen Augenfarben", "medium": "Ölpastell auf Papier", "size": "21 x 29.7 cm" },
+    "drw_37": { "title": "Atomium", "medium": "Ölpastell auf Papier", "size": "21 x 29.7 cm" },
+    "drw_38": { "title": "Solaris-Strand in Istrien, Kroatien", "medium": "Ölpastell auf Papier", "size": "21 x 29.7 cm" },
+
+    "wat_01": { "title": "Akt auf Sofa mit Schädel", "medium": "Aquarell auf Baumwollpapier", "size": "36 x 26 cm" },
+    "wat_02": { "title": "Schwangere am Felsenstrand", "medium": "Aquarell auf Baumwollpapier", "size": "38 x 56 cm" },
+    "wat_03": { "title": "Akt mit männlichem und weiblichem Schädel", "medium": "Aquarell auf Baumwollpapier", "size": "48 x 75 cm" },
+    "wat_04": { "title": "St. Petrus Haus im Hafen von Jaffa", "medium": "Aquarell auf Baumwollpapier", "size": "30 x 45 cm" },
+    "wat_05": { "title": "Akt in Dunkelheit", "medium": "Acryl auf Papier", "size": "29 x 42 cm" },
+    "wat_06": { "title": "Blick über die Ruinen des besetzten Palästina", "medium": "Aquarell auf Baumwollpapier", "size": "32 x 43 cm" },
+    "wat_07": { "title": "Zerstörtes römisches Aquädukt in Caesarea", "medium": "Aquarell auf Baumwollpapier", "size": "26 x 45 cm" },
+    "wat_08": { "title": "Die Basler Schildhalter-Löwen", "medium": "Acryl auf Papier", "size": "21 x 29.7 cm" },
+    "wat_09": { "title": "Mittlere Brücke in Basel", "medium": "Acryl auf Papier", "size": "21 x 29.7 cm" },
+    "wat_10": { "title": "Basler Spalentor", "medium": "Acryl auf Papier", "size": "21 x 29.7 cm" },
+    "wat_11": { "title": "Blick auf das Münster von der Kleinbasler Promenade", "medium": "Acryl auf Papier", "size": "21 x 29.7 cm" },
+    "wat_12": { "title": "Blick auf Alt-Jaffa vom Fischerhafen", "medium": "Acryl auf Papier", "size": "21 x 29.7 cm" },
+    "wat_13": { "title": "Blick auf die St.-Peters-Kirche und die Al-Bahr-Moschee von der Promenade in Alt-Jaffa", "medium": "Acryl auf Papier", "size": "21 x 29.7 cm" },
+    "wat_14": { "title": "Der Teich der Petite Camargue Alsacienne in Frankreich", "medium": "Acryl auf Papier", "size": "21 x 29.7 cm" },
+    "wat_15": { "title": "Mittag am Barfüsserplatz, Basel", "medium": "Acryl auf Papier", "size": "21 x 29.7 cm" },
+    "wat_16": { "title": "Alte Tür", "medium": "Acryl auf Papier", "size": "21 x 29.7 cm" },
+    "wat_17": { "title": "Outdoor-Sex in Tel Aviv", "medium": "Aquarell auf Papier", "size": "21 x 29,7 cm" },
+    "wat_18": { "title": "Caesarea", "medium": "Aquarell auf Baumwollpapier", "size": "29 x 42 cm" },
+
+    "oth_01": { "title": "Christus Pantokrator", "medium": "Eitempera und 24K Blattgold auf grundierter Holzplatte", "size": "30 x 40 x 3 cm" },
+    "oth_02": { "title": "Muttergottes mit Kind", "medium": "Eitempera und 24K Blattgold auf grundierter Holzplatte", "size": "20 x 30 x 3 cm" },
+    "oth_03": { "title": "Schlafender Hermaphroditos", "medium": "Eitempera auf grundiertem antiken römischen Marmor", "size": "9 x 7 x 1.5 cm" },
+    "oth_04": { "title": "Darbringung Jesu im Tempel", "medium": "Eitempera auf grundierter Holzplatte", "size": "47 x 57 x 3.5 cm" },
+    "oth_05": { "title": "Lelys Venus", "medium": "Eitempera auf grundiertem antiken römischen Marmor", "size": "8 x 15 x 3.5 cm" },
+    "oth_06": { "title": "Maria bei der Verkündigung", "medium": "Eitempera auf grundierter Holzplatte", "size": "36 x 47 x 2 cm" },
+    "oth_07": { "title": "Gorgone Medusa", "medium": "Eitempera auf grundiertem antiken römischen Marmor", "size": "4.5 x 5.5 x 2.3 cm" },
+    "oth_08": { "title": "Engel Gottes", "medium": "Eitempera auf grundiertem Stein", "size": "11 x 14 x 5 cm" },
+    "oth_09": { "title": "Prophet Moses", "medium": "Eitempera auf grundierter Holzplatte", "size": "36 x 46 x 2 cm" }
+  },
+
+  "about": {
+    "title": "Über den Künstler",
+    "bioParagraph": "Ilya Medvedev (geb. 1981) ist ein in der Schweiz lebender zeitgenössischer Künstler und Kunstpädagoge, dessen multidisziplinäre Praxis großformatige Ölmalerei, Zeichnung, Fotografie und ortsspezifische Installationen umfasst. Medvedev lebt und arbeitet derzeit in Basel, Schweiz, und erschafft ein rohes visuelles Universum, das sich mit menschlicher Anatomie, klassischen Traditionen und den psychologischen Realitäten des menschlichen Daseins auseinandersetzt.",
+    "section1Title": "Frühe Ursprünge & Theatralische Wurzeln",
+    "section1Text1": "Die Grundlagen seines künstlerischen Antrags gehen auf intensive kindliche Begegnungen mit visueller Inszenierung und klassischer Form im Alter von etwa sechs Jahren zurück. Aufgewachsen als Kind eines prominenten Puppentheater-Regisseurs am Puppentheater in Taschkent, verbrachte Medvedev seine prägenden Jahre im Umfeld dramatischen Erzählens, nicht-öffentlicher Proben und der physischen Herstellung von Figuren.",
+    "section1Text2": "Gleichzeitig wurden erste private kreative Impulse durch einflussreiche Bücher im Elternhaus geweckt. Medvedev begann obsessiv klassische Kompositionen aus einem Buch mit Rembrandt-Drucken zu kopieren und fand ein bevorzugtes, wiederkehrendes Motiv in den intensiven Darstellungen der Kreuzigung. Dies verband sich mit einer Faszination für die rohe physische Form, angetrieben durch das Skizzieren von Akt-Anatomietafeln aus einem medizinischen Lehrbuch sowie das Kopieren der dramatischen, texturierten prähistorischen Ölgemälde des tschechischen Illustrators Zdeněk Burian. Diese frühen ästhetischen Pfeiler verschmolzen zu einem lebenslangen Interesse an klassischer Schwere, roher Anatomie und bewusster visueller Inszenierung.",
+    "section2Title": "Ateliermethodik & Der Inszenierte Prototyp",
+    "section2Text": "Medvedevs reife Atelierpraxis bewegt sich an der Schnittstelle von Performance und Komposition und stützt sich auf ein in der zeitgenössischen Kunst als Arbeiten nach konstruierten fotografischen Referenzen bekanntes Verfahren. Im Atelier inszeniert der Künstler komplexe physische Aufbauten mit Live-Modellen, anatomischen menschlichen Schädeln, kuratierten Stillleben-Elementen und spezifischen Requisiten – ein Prozess, der die kindliche Vertrautheit mit theatralischer Montage direkt widerspiegelt. Diese akribisch inszenierten Szenen werden durch präzise Fotografie dokumentiert und dienen als endgültiger visueller Prototyp. Medvedev überträgt diese fotografischen Referenzen anschließend auf die finale Leinwand und verbindet stark stilisierte, theatralische Layouts mit einer kühlen, präzisen Ausführung.",
+    "section3Title": "Spontane Öffentliche Beobachtung",
+    "section3Text": "Im direkten Gegensatz zum kontrollierten Raum des Ateliers dient das Zeichnen vor Ort als vitaler, spontaner Pfeiler der künstlerischen Praxis. Medvedev verlässt den traditionellen Arbeitsraum, um in Echtzeit in dynamischen öffentlichen Umgebungen wie Stadtstraßen, Parks, Stränden und belebten Orten zu zeichnen. Bei diesen öffentlichen Sitzungen steht die rohe Unmittelbarkeit des Moments im Vordergrund. Das Zeichnen direkt nach dem Leben stellt einen ungefilterten, unmittelbaren Kontakt mit der einzigartigen Persönlichkeit des Gegenübers her. Die energetische Verbindung, die in genau diesem Zeitfenster zwischen dem Künstler und dem Individuum entsteht, wird zum Kerngehalt des Kunstwerks und fängt flüchtige psychologische Realitäten ein, die durch sekundäres oder künstliches Referenzmaterial nicht simuliert werden können.",
+    "section4Title": "Akademischer Hintergrund & Stilistische Entwicklung",
+    "section4Text1": "Die technische Beherrschung und theoretische Tiefe hinter dieser Praxis wurden durch einen anspruchsvollen, mehrstufigen akademischen Weg verfeinert. Medvedevs formelle Ausbildung begann mit einer umfassenden Spezialisierung auf Byzantinische Ikonenmalerei am Griechisch-Orthodoxen Patriarchat in Jerusalem, was ihm eine grundlegende Beherrschung traditioneller technischer Medien, Präzision und historischer Lasurtechniken einbrachte. Diese klassische Disziplin wurde anschließend in zeitgenössische akademische Kontexte erweitert und führte zu einem Bachelor of Education in Fine Arts (B.Ed. FA) an der Beit Berl Kunstakademie in Kfar Saba, gefolgt von einem Master of Fine Arts (MFA) an der renommierten Bezalel Academy of Arts and Design in Jerusalem.",
+    "section4Text2": "Während dieser akademischen Reise und einer anschließenden fünfjährigen Tätigkeit als professioneller Tätowierer entwickelte sich Medvedevs Bildsprache kontinuierlich weiter. Der Künstler beschäftigte sich intensiv mit der bewusst roh belassenen, regelnbrechenden Ästhetik der 'Bad Painting'-Bewegung und nutzte eine ungeschönte, expressive Pinselführung, um konventionelle akademische Standards infrage zu stellen, während er gleichzeitig ein präzises, grafisches Gespür für die menschliche Anatomie weiter schärfte.",
+    "section4Text3": "Die zeitgenössische Praxis synthetiert diese parallelen Wege zu einem tiefgründigen Psychologischen Realismus. Die Bildsprache konfrontiert den Betrachter in wiederkehrenden Serien mit existenziellen Themen rund um das Groteske, die Anatomie von Autopsien, Aktporträts und moderne Interpretationen des Memento Mori. Dieses visuelle Schaffen steht an der eindeutigen Schnittstelle zwischen klassischer Ehrfurcht und zeitgenössischer Schärfe; es zieht strukturelle Anleihen bei den Alten Meistern sowie beim Horrorkino und wird von vielfältigen musikalischen Einflüssen angetrieben, die von klassischen Kompositionen bis hin zu Underground Electronic und Heavy Music reichen.",
+    "section4Text4": "Neben einem umfangreichen Atelierarchiv von über eintausend professionellen Werken bringt Medvedev dieses technische und akademische Erbe in ein intensives privates Bildungsprojekt ein, das <a href=\"https://profineart.ch\" target=\"_blank\" rel=\"noopener noreferrer\">Profineart Studio Basel</a>, das spezialisierte Mentorate für Bildende Kunst in der Region Basel anbietet.",
+    "exhibitionsTitle": "Ausgewählte Ausstellungen",
+    "viewOnArtfacts": "Auf Artfacts verfolgen",
+    "exhibitionsList": [
+      { "year": "2025", "title": "Gruppe: Träume und Erinnerungen", "location": "Meta Space Gallery, London" },
+      { "year": "2013", "title": "Cargo Cult", "location": "Moby Museum für zeitgenössische Kunst, Bat Yam" },
+      { "year": "2012", "title": "Bezalel MFA Offenes Atelier", "location": "Bezalel MFA Ateliers, Tel Aviv" },
+      { "year": "2016", "title": "Gruppe: A way of Thinking", "location": "Serge Tirosh Contemporery, Jaffa" },
+      { "year": "2011", "title": "Einzelausstellung: Distorted Idyll", "location": "Serge Tirosh Contemporery, Jaffa" },
+      { "year": "2010", "title": "Einzelausstellung: Abschlussausstellung", "location": "HaMidrasha - Fakultät der Künste, Kfar Saba" },
+      { "year": "2011", "title": "Gruppe: Rodina", "location": "Hapiramyda Zentrum für zeitgenössische Kunst, Haifa" },
+      { "year": "2012", "title": "Gruppe: Without Money", "location": "Gross Gallery, Tel Aviv" },
+      { "year": "2010", "title": "Gruppe: Story Slam", "location": "Kishon Gallery, Tel Aviv" },
+      { "year": "2010", "title": "Wandkunst", "location": "Gymnasium Herzeliya, Tel Aviv" }
+    ]
+  },
+
+  "footer": {
+    "company": {
+      "name": "Ilya Medvedev",
+      "description": "Kunstgalerie"
+    },
+    "explore": {
+      "title": "Entdecken",
+      "home": "Startseite",
+      "oil": "Ölgemälde",
+      "drawings": "Zeichnungen",
+      "watercolors": "Aquarelle",
+      "other": "Weitere Werke",
+      "studio": "ProFineArt Studio Basel"
+    },
+    "connect": {
+      "title": "Kontakt",
+      "email": "info@profineart.ch",
+      "about": "Über mich"
+    },
+    "payments": {
+      "title": "Zahlungsarten",
+      "processedBy": "Sicher verarbeitet durch",
+      "methods": ["Visa", "Mastercard", "Google Pay", "Apple Pay", "Twint", "Klarna"]
+    },
+    "bottom": {
+      "copyright": "© 2012-2026",
+      "rights": "Alle Rechte vorbehalten.",
+      "legal": "Impressum & Datenschutz",
+      "terms": "Nutzungsbedingungen"
+    },
+    "actions": {
+      "install": "Web-App installieren"
+    }
+  },
+
+  "legal_info": {
+    "title": "Rechtliche Hinweise",
+    "data_protection": {
+      "title": "Datenschutz",
+      "content": "In Übereinstimmung mit dem Schweizer Bundesgesetz über den Datenschutz (DSG) und der DSGVO verarbeiten wir Daten ausschließlich für notwendige Dienste. Wir erheben technische Daten (IP-Adresse, Gerätetyp) aus Sicherheitsgründen. Es wird kein Marketing-Tracking eingesetzt."
+    },
+    "hosting": {
+      "title": "Hosting und Datenstandort",
+      "content": "Diese Anwendung wird auf Google Cloud (Firebase) mit Serverstandort in Zürich, Schweiz, gehostet, sodass Ihre Daten unter Schweizer Gerichtsbarkeit verbleiben."
+    },
+    "user_rights": {
+      "title": "Ihre Rechte",
+      "content": "Sie haben jederzeit das Recht auf Auskunft, Berichtigung oder Löschung Ihrer personenbezogenen Daten. Bitte nutzen Sie das Kontaktformular auf dieser Website, um diese Rechte auszuüben."
+    }
+  },
+  "terms_of_use": {
+    "title": "Nutzungsbedingungen",
+    "intellectual_property": {
+      "title": "Geistiges Eigentum",
+      "content": "Alle Kunstwerke, Bilder und Inhalte sind das ausschließliche Eigentum von Ilya Medvedev. Alle Rechte vorbehalten."
+    },
+    "no_unauthorized_use": {
+      "title": "Unzulässige Nutzung",
+      "content": "Das Kopieren, Herunterladen oder Vervielfältigen von Kunstwerken in jeglicher Form ist strengstens untersagt. Für Lizenzen oder Käufe wenden Sie sich bitte direkt an den Betreiber."
+    },
+    "liability": {
+      "title": "Haftung",
+      "content": "Die Galerie stellt Inhalte 'wie besehen' bereit und haftet nicht für technische Unterbrechungen oder Ungenauigkeiten."
+    },
+    "governing_law": {
+      "title": "Anwendbares Recht",
+      "content": "Diese Vereinbarung unterliegt dem Recht der Schweiz. Gerichtsstand ist Basel."
+    }
+  }
+}
