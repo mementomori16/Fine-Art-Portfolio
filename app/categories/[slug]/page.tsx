@@ -9,7 +9,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const category = CATEGORY_COVERS.find((c) => c.slug === slug);
   if (!category) return { title: "Gallery | Ilya Medvedev" };
   
-  const title = (englishData as any)?.artwork?.[category.titleKey] || "Category";
+  const title = (englishData as any)?.categories?.[category.titleKey.replace("categories.", "")] || "Category";
   return { title: `${title} | Ilya Medvedev` };
 }
 
@@ -25,18 +25,9 @@ export default async function CategoryPage({ params }: PageProps) {
 
   const categoryPaintings = PAINTINGS.filter((p) => p.category === slug && p.images);
 
-  const getTranslation = (key: string) => {
-    const keys = key.split('.');
-    return keys.reduce((o, i) => (o ? o[i] : null), englishData as any) || key;
-  };
-
   return (
     <main className="category-gallery-page">
       <div className="category-container">
-        <header className="section-header">
-          <h1 className="category-main-title">{getTranslation(currentCategory.titleKey)}</h1>
-        </header>
-
         <div className="artwork-grid">
           {categoryPaintings.map((painting, index) => (
             <div key={painting.id} className="artwork-card-wrapper">
@@ -45,7 +36,7 @@ export default async function CategoryPage({ params }: PageProps) {
                 id={painting.id}
                 category={painting.category}
                 image={painting.images.large}
-                title={getTranslation(`artwork.${painting.id}.title`)}
+                title={`artwork.${painting.id}.title`}
                 index={index}
               />
             </div>

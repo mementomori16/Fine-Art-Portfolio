@@ -30,7 +30,7 @@
     "dimensions": "Dimensions",
     "share": "Share Piece",
     "back": "Back to Gallery",
-    "more_works": "Explore Similar Works",
+    "similar_works": "Similar Works",
    "oil_02": { "title": "Male and Female Skulls", "medium": "Oil on Canvas", "size": "120 x 60 cm" },
       "oil_03": { "title": "Autopsy of Commited Suicide young Woman", "medium": "Oil on Canvas", "size": "65 x 45 cm" },
       "oil_04": { "title": "Nude Study", "medium": "Oil on Canvas", "size": "80 x 120 cm" },
@@ -161,39 +161,39 @@
   },
 
 "footer": {
-    "company": {
-      "name": "Ilya Medvedev",
-      "description": "Fine Art Gallery"
-    },
-    "explore": {
-  "title": "Explore",
-  "home": "Home",
-  "oil": "Oil",
-  "drawings": "Drawings",
-  "watercolors": "Watercolors",
-  "other": "Other Works",
-  "studio": "ProFineArt Studio Basel"
-},
-    "connect": {
-      "title": "Contact",
-      "email": "info@profineart.ch",
-      "about": "About"
-    },
-    "payments": {
-      "title": "Payments",
-      "processedBy": "Securely processed by",
-      "methods": ["Visa", "Mastercard", "Google Pay", "Apple Pay", "Twint", "Klarna"]
-    },
-    "bottom": {
-      "copyright": "© 2012-2026",
-      "rights": "All rights reserved.",
-      "legal": "Legal Info",
-      "terms": "Terms of Use"
-    },
-    "actions": {
-      "install": "Install Web App"
-    }
+  "company": {
+    "name": "Ilya Medvedev",
+    "description": "ProFineArt School"
   },
+  "explore": {
+    "title": "Explore",
+    "home": "Home",
+    "oil": "Oil",
+    "drawings": "Drawings",
+    "watercolors": "Watercolors",
+    "other": "Other Works",
+    "studio": "ProFineArt Studio Basel"
+  },
+  "connect": {
+    "title": "Contact",
+    "email": "info@profineart.ch",
+    "about": "About"
+  },
+  "payments": {
+    "title": "Payments",
+    "processedBy": "Securely processed by",
+    "methods": ["Visa", "Mastercard", "Google Pay", "Apple Pay", "Twint", "Klarna"]
+  },
+  "bottom": {
+    "copyright": "© 2012-2026 Ilya Medvedev.",
+    "rights": "All rights reserved.",
+    "legal": "Legal Info",
+    "terms": "Terms of Use"
+  },
+  "actions": {
+    "install": "Install Web App"
+  }
+},
 
 
   "legal_info": {

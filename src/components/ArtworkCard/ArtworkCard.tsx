@@ -44,7 +44,7 @@ export default function ArtworkCard({
             {image ? (
               <Image
                 src={image}
-                alt={title}
+                alt={t(title)}
                 fill
                 sizes="(max-width: 600px) 90vw, (max-width: 1100px) 45vw, 320px"
                 className="category-masterpiece-image"
@@ -62,9 +62,9 @@ export default function ArtworkCard({
 
       {/* CURATORIAL LABELS STACK */}
       <div className="category-curatorial-details">
-        <h3 className="category-artwork-title">{title}</h3>
+        <h3 className="category-artwork-title">{t(title)}</h3>
         <span className="category-curatorial-meta">
-          {t("common.viewArtwork", "View Artwork")}
+          {t("common.viewGallery", t("common.viewArtwork", "View Gallery"))}
         </span>
       </div>
     </div>
