@@ -1,34 +1,35 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
-import WelcomeHero from '../WelcomeHero/WelcomeHero'; // Adjust this import path if needed to match where your file sits
+import React, { useRef } from 'react';
+import HelloHero from '../HelloHero/HelloHero';
 import Categories from '../Categories/Categories';
-import './home.scss'; 
-
-const TypedWelcomeHero = WelcomeHero as React.ComponentType<{ onArrowClick: () => void }>;
+import StyleCategories from '../StyleCategories/StyleCategories';
+import VideoPage from '../../VideoPage/VideoPage';
+import './home.scss';
 
 const Home: React.FC = () => {
-    // Reference point targeting the Video component wrapper right below the slider
-    const videoSectionRef = useRef<HTMLDivElement>(null);
+  const categoriesSectionRef = useRef<HTMLDivElement>(null);
 
-    // Fires when the WelcomeHero scroll arrow is clicked
-    const handleScrollToNext = () => {
-        if (videoSectionRef.current) {
-            videoSectionRef.current.scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'start' 
-            });
-        }
-    };
+  const handleScrollToNext = () => {
+    if (categoriesSectionRef.current) {
+      categoriesSectionRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  };
 
-    return (
-        <div className="homepage-wrapper">
-            <WelcomeHero />
-            <div>
-                <Categories />
-            </div>
-        </div>
-    );
+  return (
+    <div className="homepage-wrapper">
+      <HelloHero />
+
+      <div ref={categoriesSectionRef}>
+        <StyleCategories />
+        <Categories />
+        <VideoPage />
+      </div>
+    </div>
+  );
 };
 
 export default Home;

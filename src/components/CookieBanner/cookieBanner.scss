@@ -1,5 +1,5 @@
 @use "sass:color";
-@import "../../../app/global.scss"; // Adjust this path if global.scss is elsewhere
+@use "../../../app/global" as *;
 
 .cookie-banner {
   position: fixed;

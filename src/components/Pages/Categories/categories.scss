@@ -1,92 +1,60 @@
 @use "../../../../app/global.scss" as *;
 
-/* ==========================================================================
-   1. SECTION CONTAINER (THE DARK GALLERY ROOM)
-   ========================================================================== */
-.categories-section {
-    padding: 0 2rem 10rem 2rem; 
+.home-categories-section {
+    padding: 3rem 2rem 5rem 2rem; 
     width: 100%;
     box-sizing: border-box;
     overflow: hidden;
-
-    background: radial-gradient(
-        circle at 50% 42%,
-        #2a2a2a 0%,
-        #0c0c0c 60%,
-        #050505 100%
-    );
+    background: transparent;
 }
 
-/* ==========================================================================
-   2. HEADER BLOCK (FLUID MAIN TITLE SYSTEM)
-   ========================================================================== */
-.categories-header {
-    padding-top: 3rem; 
-    margin-bottom: 5.5rem;
+.home-categories-header {
+    padding-top: 1rem; 
+    margin-bottom: 3.5rem;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
 
-    .categories-title {
-        color: $color-text-white; 
+    .home-categories-subtitle {
+        color: rgba(255, 255, 255, 0.95);
         font-family: $font-family-base;
         font-weight: $font-weight-light;
-        
-        // ✨ FLUID SIZE: Scales up safely from mobile h4 sizing up to larger presence
-        font-size: clamp(1.75rem, 4.2vw, 2.25rem);
-        letter-spacing: clamp(0.3rem, 0.8vw, 0.6rem);
-        
+        font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+        letter-spacing: clamp(0.2rem, 0.5vw, 0.35rem);
         text-transform: uppercase;
-        margin: 0 0 $space-md 0;
-        width: 100%;
-        word-wrap: break-word;
+        margin: 0 0 $space-sm 0;
     }
 
-    .categories-line-divider {
+    .home-categories-divider {
         width: 40px;
         height: 1px;
-        background: rgba(255, 235, 180, 0.35); 
-        margin-bottom: $space-md;
-    }
-
-    .categories-subtitle {
-        color: $color-text-light;
-        font-weight: $font-weight-normal;
-        
-        // Made subtitle slightly clearer on adaptive viewports
-        font-size: clamp(0.7rem, 1.2vw, 0.85rem);
-        letter-spacing: clamp(0.18rem, 0.4vw, 0.3rem);
-        
-        text-transform: uppercase;
-        margin: 0;
+        background: rgba(255, 235, 180, 0.45); 
+        margin-bottom: 0;
     }
 }
 
-/* ==========================================================================
-   3. THE GRID (1 SINGLE ROW / 4 COLUMNS BASELINE)
-   ========================================================================== */
-.categories-museum-grid {
+.home-categories-grid.style-grid-three {
     display: grid;
-    // Expanded limits to support larger, more legible card sizes
-    grid-template-columns: repeat(4, minmax(200px, 260px)); 
-    max-width: 1450px;
+    grid-template-columns: repeat(3, minmax(280px, 1fr));
+    max-width: 1350px;
     margin: 0 auto;
-    // FIXED: Reduced vertical gap slightly since text footprint is now rigidly locked
-    gap: 4.5rem 3rem; 
-    
-    // FIXED: Changed from flex-end to stretch so different title lengths 
-    // do not shift images out of horizontal alignment.
+    gap: 4rem 2.5rem; 
     align-items: stretch; 
     justify-content: center;
     width: 100%;
+
+    @media (max-width: 1024px) {
+        grid-template-columns: repeat(2, minmax(260px, 1fr));
+    }
+
+    @media (max-width: 680px) {
+        grid-template-columns: 1fr;
+    }
 }
 
-/* ==========================================================================
-   4. CARD BEHAVIOR & IMMERSIVE RADIAL RIG (PERFECT MEDIUM-HIGH LUMINESCENCE)
-   ========================================================================== */
-.category-museum-card {
+.home-category-card {
     text-decoration: none;
     display: flex;
     flex-direction: column;
@@ -94,12 +62,10 @@
     width: 100%;
     outline: none;
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    
     position: relative;
     transform-style: preserve-3d;
     z-index: 1;
 
-    // ✨ STRONG ATMOSPHERIC BACKLIGHT (Rich baseline presence on load)
     &::before {
         content: '';
         position: absolute;
@@ -107,128 +73,109 @@
         left: -20%;
         width: 140%;
         height: 110%;
-        
-        // Saturated golden-amber profile: heavy presence without blinding screen blending
         background: radial-gradient(
             circle at center,
-            rgba(255, 238, 180, 0.75) 0%,   // Elevated center channel density
-            rgba(255, 185, 95, 0.35) 40%,   // Wider, warmer mid-tone dropoff
-            rgba(255, 160, 70, 0.08) 65%,
+            rgba(255, 238, 180, 0.65) 0%, 
+            rgba(255, 185, 95, 0.3) 40%, 
+            rgba(255, 160, 70, 0.06) 65%,
             transparent 100%
         );
-        
-        filter: blur(3rem); // Piercing but cleanly dispersed radial focus
+        filter: blur(3rem);
         z-index: -1; 
         pointer-events: none;
-        opacity: 0.95; 
+        opacity: 0.85; 
         transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s ease, filter 0.4s ease;
     }
 
     &:hover {
-        transform: translateY(-10px);
+        transform: translateY(-8px);
 
         &::before {
             transform: scale(1.18);
-            filter: blur(2.8rem); // Sharpens slightly to intensify the beam focus on hover
+            filter: blur(2.8rem);
             background: radial-gradient(
                 circle at center,
-                rgba(255, 245, 195, 0.85) 0%,   // Luminous gold emission peak
-                rgba(255, 190, 100, 0.4) 45%,   
+                rgba(255, 245, 195, 0.8) 0%, 
+                rgba(255, 190, 100, 0.35) 45%, 
                 transparent 100%
             );
         }
 
-        .category-luxury-edge {
+        .home-category-gold-edge {
             box-shadow:
                 0 0 0 0.06rem rgba(0, 0, 0, 0.95),
                 0 1.2rem 2.5rem rgba(0, 0, 0, 0.8),
                 0 0 25px rgba(255, 215, 130, 0.2); 
         }
 
-        .category-artwork-title {
+        .home-category-title {
             color: $color-text-white;
             text-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
         }
 
-        .category-curatorial-meta {
+        .home-category-meta {
             color: rgba(255, 235, 180, 0.95); 
         }
     }
 
-    // STEADY NAVIGATION ANCHOR
     &:active {
-        transform: translateY(-6px) scale(0.99); 
+        transform: translateY(-4px) scale(0.99); 
         transition: transform 0.1s ease;
-
-        &::before {
-            transition: none; // Locks illumination values in place perfectly during link transit
-        }
     }
 }
 
-/* ==========================================================================
-   5. FRAME WRAPPER
-   ========================================================================== */
-.category-frame-wrapper {
+.home-category-frame-wrap {
     position: relative;
     width: 100%;
-    aspect-ratio: 3 / 4; 
+    aspect-ratio: 16 / 9; 
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* ==========================================================================
-   6. CSS LUXURY THIN GOLD FRAME
-   ========================================================================== */
-.category-luxury-edge {
+.home-category-gold-edge {
     position: relative;
     width: 100%;
     height: 100%;
     padding: 0.22rem; 
-    background: #3a3a3a;
+    background: linear-gradient(135deg, #4a3d2c 0%, #261f17 100%);
     border-radius: 0.1rem;
     z-index: 2;
     box-sizing: border-box;
-
     box-shadow:
         0 0 0 0.06rem rgba(0, 0, 0, 0.88),
         0 0.7rem 1.8rem rgba(0, 0, 0, 0.65);
-    
     transition: box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0.12rem;
+        border-radius: 0.06rem;
+        box-shadow:
+            inset 0 0 0 0.06rem rgba(212, 175, 55, 0.35),
+            inset 0 0.3rem 0.5rem rgba(0, 0, 0, 0.4);
+        z-index: 4;
+        pointer-events: none;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            125deg,
+            rgba(255, 255, 255, 0.14),
+            rgba(255, 255, 255, 0.04),
+            transparent 45%
+        );
+        opacity: 0.4;
+        z-index: 5;
+        pointer-events: none;
+    }
 }
 
-.category-luxury-edge::before {
-    content: '';
-    position: absolute;
-    inset: 0.12rem;
-    border-radius: 0.06rem;
-    box-shadow:
-        inset 0 0 0 0.06rem rgba(255, 255, 255, 0.07),
-        inset 0 0.3rem 0.5rem rgba(0, 0, 0, 0.4);
-    z-index: 4;
-    pointer-events: none;
-}
-
-.category-luxury-edge::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        125deg,
-        rgba(255, 255, 255, 0.14),
-        rgba(255, 255, 255, 0.04),
-        transparent 45%
-    );
-    opacity: 0.4;
-    z-index: 5;
-    pointer-events: none;
-}
-
-/* ==========================================================================
-   7. ARTWORK CANVAS COMPARTMENT
-   ========================================================================== */
-.category-canvas-container {
+.home-category-img-box {
     position: relative;
     width: 100%;
     height: 100%;
@@ -238,27 +185,25 @@
     z-index: 3;
 }
 
-.category-masterpiece-image {
+.home-category-img {
     object-fit: cover; 
     width: 100%;
     height: 100%;
-    
-    box-shadow:
-        0 0 0 0.06rem rgba(0, 0, 0, 0.75),
-        0 0.25rem 0.6rem rgba(0, 0, 0, 0.65);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ==========================================================================
-   8. VISUAL AMBIENT LIGHTING EFFECTS
-   ========================================================================== */
-.category-ambient-glow {
+.home-category-card:hover .home-category-img {
+    transform: scale(1.03);
+}
+
+.home-category-glow {
     position: absolute;
     inset: -25%;
-    opacity: 0.55;
+    opacity: 0.45;
     background: radial-gradient(
         circle,
-        rgba(255, 220, 140, 0.75),
-        rgba(255, 180, 90, 0.4),
+        rgba(255, 220, 140, 0.65),
+        rgba(255, 180, 90, 0.3),
         transparent 70%
     );
     filter: blur(3.8rem);
@@ -266,7 +211,7 @@
     transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.category-spotlight-beam {
+.home-category-spotlight {
     position: absolute;
     top: -12%;
     left: 50%;
@@ -275,8 +220,8 @@
     height: 60%;
     background: radial-gradient(
         ellipse at center,
-        rgba(255, 235, 180, 0.16),
-        rgba(255, 210, 120, 0.07),
+        rgba(255, 235, 180, 0.12),
+        rgba(255, 210, 120, 0.04),
         transparent 70%
     );
     filter: blur(1.8rem);
@@ -284,17 +229,14 @@
     pointer-events: none;
 }
 
-/* ==========================================================================
-   9. DROP LAYER FLOATING SHADOW
-   ========================================================================== */
-.category-floor-shadow {
+.home-category-shadow {
     position: absolute;
     bottom: -1.4rem;
     width: 65%;
     height: 1.8rem;
     background: radial-gradient(
         ellipse,
-        rgba(0, 0, 0, 0.75),
+        rgba(2, 12, 15, 0.85),
         transparent 72%
     );
     filter: blur(0.6rem);
@@ -302,82 +244,45 @@
     pointer-events: none;
 }
 
-/* ==========================================================================
-   10. CURATORIAL LABEL TYPOGRAPHY (STABILIZED HEIGHT & SIZE)
-   ========================================================================== */
-.category-curatorial-details {
-    margin-top: $space-lg; 
+.home-category-info {
+    margin-top: 1.5rem; 
     text-align: center;
     position: relative;
     z-index: 6;
     width: 100%;
-    
-    // FIXED: Standardizes height so text footprint doesn't over-expand the grid gap
-    height: 3.5rem; 
-    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.3rem;
+    padding: 0.75rem 1rem;
+    background: rgba(20, 20, 20, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 0.15rem;
+    box-sizing: border-box;
 
-    .category-artwork-title {
-        color: rgba(255, 255, 255, 0.95);
+    .home-category-title {
+        color: rgba(255, 255, 255, 0.98);
         font-family: $font-family-base;
         font-weight: $font-weight-normal;
-        
-        // FIXED: Smaller font size to keep long titles compact
-        font-size: 0.85rem; 
+        font-size: 0.9rem; 
         letter-spacing: 0.12rem;
-        
         text-transform: uppercase;
         margin: 0;
         transition: color 0.4s ease;
         line-height: 1.3;
-
-        // FIXED: Clamps long title rows to a single line with an ellipsis tail
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         width: 100%;
     }
 
-    .category-curatorial-meta {
-        color: rgba(200, 200, 200, 0.65); 
+    .home-category-meta {
+        color: rgba(215, 235, 240, 0.75); 
         font-family: $font-family-base;
         font-weight: $font-weight-light;
-        
-        // FIXED: Compact uniform subtitle height
-        font-size: 0.7rem;
+        font-size: 0.72rem;
         letter-spacing: 0.12rem;
-        
         text-transform: uppercase;
         transition: color 0.4s ease;
         margin: 0;
-    }
-}
-
-/* ==========================================================================
-   11. RESPONSIVITY CONTROL STACK (OPTIMIZED FOR IPAD & TABLETS)
-   ========================================================================== */
-@media (max-width: 68rem) { // Tablets & Landscape iPads
-    .categories-header {
-        padding-top: 5rem;
-        margin-bottom: 4rem;
-    }
-
-    .categories-museum-grid {
-        grid-template-columns: repeat(2, minmax(200px, 250px));
-        gap: 4rem 3.5rem;
-    }
-}
-
-@media (max-width: $breakpoint-sm) { // Mobile Viewports
-    .categories-header {
-        padding-top: 4rem;
-        margin-bottom: 3.5rem;
-    }
-
-    .categories-museum-grid {
-        grid-template-columns: minmax(200px, 250px);
-        gap: 4rem;
     }
 }

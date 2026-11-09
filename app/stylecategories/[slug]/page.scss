@@ -1,0 +1,181 @@
+@use "../../../app/global.scss" as *;
+
+/* =========================================================================
+    1. PAGE FRAME & CURATORIAL BACKGROUND
+========================================================================= */
+.category-gallery-page {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+    overflow: hidden; 
+
+    background: radial-gradient(
+        circle at 50% 30vh,
+        #2a2a2a 0%,
+        #0c0c0c 70%,
+        #050505 100%
+    ) fixed !important;
+}
+
+.category-container {
+    position: relative;
+    z-index: 2; 
+    width: 100%;
+    max-width: 1450px;
+    margin: 0 auto;
+    padding: 4rem 3rem 6rem 3rem;
+}
+
+/* =========================================================================
+    2. FLUID & RESPONSIVE TYPOGRAPHY HEADER
+========================================================================= */
+.section-header {
+    margin-bottom: 4.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.category-main-title {
+    color: $color-text-white;
+    font-family: $font-family-base;
+    font-weight: $font-weight-light;
+    font-size: clamp(1.75rem, 4vw, 3.25rem);
+    letter-spacing: clamp(0.25rem, 0.8vw, 0.6rem);
+    text-transform: uppercase;
+    margin: 0;
+    position: relative;
+    width: 100%;
+    word-wrap: break-word;
+    white-space: normal;
+
+    &::after {
+        content: '';
+        display: block;
+        width: 40px;
+        height: 1px;
+        background: rgba(255, 235, 180, 0.35);
+        margin: $space-md auto 0 auto;
+    }
+}
+
+/* =========================================================================
+    3. ARTWORK ARCHITECTURE GRID & LOCALIZED LIGHTING WRAPPER
+========================================================================= */
+.artwork-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    // Increased row gap slightly to safely provide overflow headroom for wrapping texts
+    gap: 9rem 3.5rem; 
+    // FIXED: Elements stretch uniformly in height so variations in title length 
+    // never pull or push neighboring images out of line.
+    align-items: stretch; 
+    justify-content: center;
+    width: 100%;
+    max-width: 1100px; 
+    margin: 0 auto;
+}
+
+.artwork-card-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 280px; 
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    transform: translateZ(0); 
+}
+
+/* DEDICATED SPOTLIGHT RIG PER IMAGE */
+.individual-artwork-glow {
+    position: absolute;
+    inset: -20%; 
+    z-index: -1; 
+    pointer-events: none;
+    
+    background: radial-gradient(
+        circle at center,
+        rgba(255, 225, 150, 0.25) 0%,   
+        rgba(255, 185, 95, 0.10) 40%,   
+        rgba(255, 160, 70, 0.01) 70%,
+        transparent 100%
+    );
+    
+    filter: blur(5rem);
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+/* =========================================================================
+    4. PLATFORM RESPONSIVENESS
+========================================================================= */
+@media (max-width: 72rem) {
+    .category-container {
+        padding: 3.5rem 3rem 5rem 3rem; 
+    }
+    .artwork-grid {
+        gap: 7.5rem 2.5rem;
+        max-width: 960px;
+    }
+}
+
+@media (max-width: 64rem) { 
+    .category-container {
+        padding: 3rem 3.5rem 5rem 3.5rem; 
+    }
+
+    .artwork-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 680px;
+        gap: 7.5rem 3.5rem;
+    }
+
+    .artwork-card-wrapper {
+        max-width: 260px; 
+    }
+    
+    .individual-artwork-glow {
+        filter: blur(4rem);
+        inset: -15%;
+        background: radial-gradient(
+            circle at center,
+            rgba(255, 225, 150, 0.20) 0%,
+            rgba(255, 185, 95, 0.06) 45%,
+            transparent 100%
+        );
+    }
+}
+
+@media (max-width: 42rem) {
+    .category-container {
+        padding: 2.5rem 2rem 4rem 2rem; 
+    }
+    .artwork-grid {
+        max-width: 520px;
+        gap: 6.5rem 2rem;
+    }
+}
+
+@media (max-width: $breakpoint-sm) {
+    .category-container {
+        padding: 2rem 1rem 4rem 1rem; 
+    }
+
+    .artwork-grid {
+        grid-template-columns: 1fr;
+        max-width: 420px;
+        gap: 6.5rem;
+    }
+
+    .artwork-card-wrapper {
+        max-width: 100%;
+    }
+
+    .individual-artwork-glow {
+        filter: blur(3rem);
+        inset: -10%;
+    }
+}

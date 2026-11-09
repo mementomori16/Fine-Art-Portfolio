@@ -1,5 +1,5 @@
 @use "sass:color";
-@import '../../../app/global.scss';
+@use '../../../app/global' as *;
 
 $header-mobile-height: calc(2rem + 2 * #{$space-sm});
 
@@ -46,7 +46,7 @@ $header-mobile-height: calc(2rem + 2 * #{$space-sm});
     .lang-trigger {
       background: none;
       border: none;
-      color: #ffffff; // Clean high-contrast white text for immediate readability
+      color: #ffffff;
       font-family: $font-family-base;
       font-size: 0.85rem;
       font-weight: $font-weight-medium;
@@ -98,7 +98,7 @@ $header-mobile-height: calc(2rem + 2 * #{$space-sm});
         border: none;
         text-align: center;
         padding: 0.4rem 0.8rem;
-        color: rgba(255, 255, 255, 0.85); // High-readability dropdown choices
+        color: rgba(255, 255, 255, 0.85);
         font-family: $font-family-base;
         font-size: 0.8rem;
         cursor: pointer;
@@ -184,63 +184,123 @@ $header-mobile-height: calc(2rem + 2 * #{$space-sm});
       position: relative;
       padding: 0.6rem 1rem; 
       white-space: nowrap;
-      display: inline-block; 
+      display: inline-flex; 
+      align-items: center;
+      justify-content: space-between;
       width: auto;
       letter-spacing: 0.04rem;
       z-index: 1;
+      border: none;
+      background: none;
+      cursor: pointer;
 
-      // ✨ UI DESIGNER VISIBILITY PASS
-      // Crisp, pristine off-white resting state baseline with an intentional text shadow
       color: rgba(255, 255, 255, 0.95);
       text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
       transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 
-      // ✨ RADIAL BACKLIGHT ENGINE (Matches Category Card Glow Matrix)
+      /* Clean visual focus without exposing hard square element boundaries */
       &::before {
         content: '';
         position: absolute;
-        top: -10%;
-        left: -10%;
-        width: 120%;
-        height: 120%;
-        
+        inset: -2px -6px;
+        border-radius: 20px;
         background: radial-gradient(
-          circle at center,
-          rgba(255, 238, 180, 0.7) 0%,   // Saturated golden lumen core
-          rgba(255, 185, 95, 0.3) 45%,    // Atmospheric halo dissipation
-          transparent 75%
+          ellipse at center,
+          rgba(255, 238, 180, 0.35) 0%,
+          rgba(255, 185, 95, 0.15) 50%,
+          transparent 80%
         );
-        
-        filter: blur(1.8rem);
+        filter: blur(1rem);
         z-index: -1;
         pointer-events: none;
-        
         opacity: 0;
-        transform: scale(0.7);
-        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+        transition: opacity 0.3s ease;
       }
 
-      // ✨ HOVER INTERACTION STYLES
       &:hover {
         color: #ffffff;
-        text-shadow: 0 0 14px rgba(255, 255, 255, 0.4); // Deep museum radiance glow profile
+        text-shadow: 0 0 14px rgba(255, 255, 255, 0.4);
         transform: translateX(4px); 
 
         &::before {
-          opacity: 0.95;
-          transform: scale(1.1);
+          opacity: 1;
         }
       }
 
-      // ✨ PERSISTENT ACTIVE INDICATOR
       &.active {
-        color: $color-navbar-title-hover; // Clean custom luxury gold branding color
+        color: $color-navbar-title-hover;
         text-shadow: 0 0 10px rgba(255, 215, 130, 0.25);
         
         &::before {
-          opacity: 0.65; 
-          transform: scale(0.95);
-          filter: blur(2.2rem);
+          opacity: 0.5; 
+        }
+      }
+    }
+
+    /* Submenu Accordion Layout */
+    &.has-submenu {
+      .submenu-toggle {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        .chevron-arrow {
+          font-size: 0.85rem;
+          margin-left: 1rem;
+          transition: transform 0.3s ease;
+        }
+
+        &.open .chevron-arrow {
+          transform: rotate(180deg);
+          color: $color-navbar-title-hover;
+        }
+      }
+
+      .submenu-wrapper {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+        padding-left: 1rem;
+
+        &.expanded {
+          max-height: 600px;
+          opacity: 1;
+          margin-top: 0.4rem;
+          margin-bottom: 0.4rem;
+        }
+
+        .submenu-group {
+          margin-bottom: 0.8rem;
+
+          .submenu-heading {
+            display: block;
+            color: rgba(255, 235, 180, 0.5);
+            font-size: 0.7rem;
+            letter-spacing: 0.12rem;
+            text-transform: uppercase;
+            padding: 0.4rem 1rem 0.2rem 1rem;
+          }
+
+          .submenu-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            .sub-link {
+              font-size: 0.95rem;
+              padding: 0.4rem 1rem;
+              color: rgba(255, 255, 255, 0.8);
+
+              &:hover {
+                color: #ffffff;
+              }
+
+              &.active {
+                color: $color-navbar-title-hover;
+              }
+            }
+          }
         }
       }
     }

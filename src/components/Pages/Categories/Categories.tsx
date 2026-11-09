@@ -9,66 +9,55 @@ import "./categories.scss";
 
 const Categories: React.FC = () => {
   const { t } = useTranslation();
-
-  // Slice exactly the top 4 structural categories for the master showcase row
   const featuredCategories = CATEGORY_COVERS.slice(0, 4);
 
   return (
-    <section className="categories-section">
-      <header className="categories-header">
-        <h2 className="categories-title">
-          {t("categories.title", "Fine Art by Ilya Medvedev")}
-        </h2>
-        
-        <div className="categories-line-divider" />
-
-        <p className="categories-subtitle">
+    <section className="home-categories-section">
+      <header className="home-categories-header">
+        <p className="home-categories-subtitle">
           {t("categories.subtitle", "Categories")}
         </p>
+        <div className="home-categories-divider" />
       </header>
 
-      <div className="categories-museum-grid">
+      <div className="home-categories-grid style-grid-three">
         {featuredCategories.map((category) => {
           return (
             <Link
               href={`/categories/${category.slug}`}
               key={category.id}
-              className="category-museum-card"
+              className="home-category-card"
             >
-              {/* Aspect ratio is safely handled via global stylesheet variables to prevent TS errors */}
-              <div className="category-frame-wrapper">
-                
-                {/* BACK GLOW (From WelcomeHero) */}
-                <div className="category-ambient-glow" />
+              <div className="home-category-frame-wrap">
+                <div className="home-category-glow" />
+                <div className="home-category-spotlight" />
 
-                {/* SPOTLIGHT BEAM (From WelcomeHero) */}
-                <div className="category-spotlight-beam" />
-
-                {/* CSS GENERATED LUXURY THIN GOLD FRAME */}
-                <div className="category-luxury-edge">
-                  <div className="category-canvas-container">
+                <div className="home-category-gold-edge">
+                  <div className="home-category-img-box">
                     <Image
                       src={category.cloudinaryId}
-                      alt={t(category.titleKey)}
+                      alt={t(category.titleKey, {
+                        defaultValue: category.slug === "tempera" ? "Tempera" : "",
+                      })}
                       fill
-                      className="category-masterpiece-image"
-                      sizes="(max-width: 600px) 90vw, (max-width: 1100px) 45vw, 320px"
+                      className="home-category-img"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 380px"
                       priority
                     />
                   </div>
                 </div>
 
-                {/* SHADOW BASE (From WelcomeHero) */}
-                <div className="category-floor-shadow" />
+                <div className="home-category-shadow" />
               </div>
 
-              {/* UNIFIED DESIGN TYPOGRAPHY LABELS */}
-              <div className="category-curatorial-details">
-                <h3 className="category-artwork-title">
-                  {t(category.titleKey)}
+              <div className="home-category-info">
+                <h3 className="home-category-title">
+                  {t(category.titleKey, {
+                    defaultValue: category.slug === "tempera" ? "Tempera" : "",
+                  })}
                 </h3>
-                <span className="category-curatorial-meta">
-                  {t("common.viewGallery")}
+                <span className="home-category-meta">
+                  {t("common.viewGallery", "View Gallery")}
                 </span>
               </div>
             </Link>

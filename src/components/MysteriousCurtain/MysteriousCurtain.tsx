@@ -17,7 +17,6 @@ export default function MysteriousCurtain({ children, forceOpen, onOpen }: Curta
     onOpen();
   };
 
-  // FIXED: Explicitly cast to any or define the tuple to satisfy TypeScript
   const transition = {
     duration: 2.8,
     ease: [0.65, 0, 0.35, 1] as any,
@@ -52,13 +51,17 @@ export default function MysteriousCurtain({ children, forceOpen, onOpen }: Curta
         initial={{ width: forceOpen ? '0%' : '50%' }}
         animate={{ width: isOpen ? '0%' : '50%', x: isOpen ? '-5%' : '0%' }}
         transition={transition}
-      />
+      >
+        <img src="/clean-curtain.png" alt="Curtain Left" className="curtain-img" />
+      </motion.div>
       <motion.div
         className="curtain-half right"
         initial={{ width: forceOpen ? '0%' : '50%' }}
         animate={{ width: isOpen ? '0%' : '50%', x: isOpen ? '5%' : '0%' }}
         transition={transition}
-      />
+      >
+        <img src="/clean-curtain.png" alt="Curtain Right" className="curtain-img" />
+      </motion.div>
     </div>
   );
 }

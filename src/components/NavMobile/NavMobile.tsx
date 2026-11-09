@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
@@ -8,24 +8,53 @@ import Hamburger from "hamburger-react";
 import { useTranslation } from "react-i18next";
 import "./navMobile.scss";
 
-interface NavItem {
+interface NavSubItem {
   href: string;
   translationKey: string;
-  defaultText: string;
-  isExternal?: boolean; 
+}
+
+interface NavItem {
+  href?: string;
+  translationKey: string;
+  isExternal?: boolean;
+  subGroups?: {
+    titleKey: string;
+    items: NavSubItem[];
+  }[];
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { href: "/", translationKey: "nav.home", defaultText: "Home" },
-  { href: "/categories/oil-paintings", translationKey: "categories.oil_paintings", defaultText: "Oil" },
-  { href: "/categories/drawings", translationKey: "categories.drawings", defaultText: "Drawings" },
-  { href: "/categories/watercolors", translationKey: "categories.watercolors", defaultText: "Watercolors" },
-  { href: "/categories/other-works", translationKey: "categories.other_works", defaultText: "Other Works" },
-  { href: "/about", translationKey: "about.title", defaultText: "About" },
+  { href: "/", translationKey: "nav.home" },
+  {
+    translationKey: "nav.paintings",
+    subGroups: [
+      {
+        titleKey: "nav.sub.technique",
+        items: [
+          { href: "/categories/oil-paintings", translationKey: "categories.oil_paintings" },
+          { href: "/categories/drawings", translationKey: "categories.drawings" },
+          { href: "/categories/watercolors", translationKey: "categories.watercolors" },
+          { href: "/categories/tempera", translationKey: "categories.tempera" },
+        ],
+      },
+      {
+        titleKey: "nav.sub.genre",
+        items: [
+          { href: "/stylecategories/portrait", translationKey: "styleCategories.portrait" },
+          { href: "/stylecategories/nude", translationKey: "styleCategories.nude" },
+          { href: "/stylecategories/landscape-still-life", translationKey: "styleCategories.landscapeStillLife" },
+          { href: "/stylecategories/memento-mori", translationKey: "styleCategories.mementoMori" },
+          { href: "/stylecategories/psychological-realism", translationKey: "styleCategories.psychologicalRealism" },
+          { href: "/stylecategories/heritage-antiques", translationKey: "styleCategories.heritageAntiques" },
+        ],
+      },
+    ],
+  },
+  { href: "/video", translationKey: "nav.video" },
+  { href: "/about", translationKey: "about.title" },
   { 
     href: "https://profineart.ch", 
     translationKey: "nav.fine_art_school", 
-    defaultText: "ProFineArt School",
     isExternal: true 
   },
 ];
@@ -40,6 +69,8 @@ const LANGUAGES = [
 const NavMobile = () => {
   const [isOpen, setOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
+  const [isPaintingsOpen, setIsPaintingsOpen] = useState(false);
+
   const pathname = usePathname();
   const { t, i18n } = useTranslation("translation");
   const langRef = useRef<HTMLDivElement>(null);
@@ -47,6 +78,7 @@ const NavMobile = () => {
   const handleClose = () => {
     setOpen(false);
     setIsLangOpen(false);
+    setIsPaintingsOpen(false);
   };
 
   const changeLanguage = (lng: string) => {
@@ -70,13 +102,10 @@ const NavMobile = () => {
     <header className="header-mobile">
       <nav className="navbarmobile" aria-label="Mobile Navigation">
         <Link href="/" className="mobile-logo" onClick={handleClose}>
-          <Image 
+          <img 
             src="/Group 49.1.svg" 
             alt="Logo" 
-            width={120} 
-            height={40} 
             className="mobile-logo-img"
-            priority
           />
         </Link>
 
@@ -119,15 +148,56 @@ const NavMobile = () => {
         aria-hidden={!isOpen}
       >
         <ul className="mobile-list">
-          {NAV_ITEMS.map(({ href, translationKey, defaultText, isExternal }) => {
-            const isActive = pathname === href;
-            const labelText = t(translationKey, defaultText);
-            
+          {NAV_ITEMS.map((item) => {
+            const labelText = t(item.translationKey);
+
+            if (item.subGroups) {
+              return (
+                <li key={item.translationKey} className="mobile-item has-submenu">
+                  <button 
+                    className={`mobile-link submenu-toggle ${isPaintingsOpen ? "open" : ""}`}
+                    onClick={() => setIsPaintingsOpen(!isPaintingsOpen)}
+                  >
+                    <span>{labelText}</span>
+                    <span className="chevron-arrow">▾</span>
+                  </button>
+
+                  <div className={`submenu-wrapper ${isPaintingsOpen ? "expanded" : ""}`}>
+                    {item.subGroups.map((group) => (
+                      <div key={group.titleKey} className="submenu-group">
+                        <span className="submenu-heading">
+                          {t(group.titleKey)}
+                        </span>
+                        <ul className="submenu-list">
+                          {group.items.map((subItem) => {
+                            const isSubActive = pathname === subItem.href;
+                            return (
+                              <li key={subItem.href}>
+                                <Link
+                                  href={subItem.href}
+                                  className={`mobile-link sub-link ${isSubActive ? "active" : ""}`}
+                                  onClick={handleClose}
+                                >
+                                  {t(subItem.translationKey)}
+                                </Link>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </li>
+              );
+            }
+
+            const isActive = pathname === item.href;
+
             return (
-              <li key={href} className="mobile-item">
-                {isExternal ? (
+              <li key={item.href} className="mobile-item">
+                {item.isExternal ? (
                   <a 
-                    href={href} 
+                    href={item.href} 
                     className="mobile-link"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -137,7 +207,7 @@ const NavMobile = () => {
                   </a>
                 ) : (
                   <Link 
-                    href={href} 
+                    href={item.href!} 
                     className={`mobile-link ${isActive ? "active" : ""}`} 
                     onClick={handleClose}
                   >

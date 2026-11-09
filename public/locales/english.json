@@ -1,10 +1,33 @@
 {
+  "nav": {
+    "home": "Home",
+    "paintings": "Paintings",
+    "video": "Video",
+    "fine_art_school": "ProFineArt School",
+    "sub": {
+      "technique": "By Technique",
+      "genre": "By Genre"
+    }
+  },
+
   "categories": {
-    "pageTitle": "Art Gallery",
+    "subtitle": "Paintings by Technique",
     "oil_paintings": "Oil",
     "drawings": "Drawings",
     "watercolors": "Watercolors",
-    "other_works": "Heritage & Antiquities"
+    "other_works": "Heritage & Antiquities",
+    "tempera": "Tempera"
+  },
+  "styleCategories": {
+    "subtitle": "Paintings by Genre",
+    "comingSoon": "Coming Soon",
+    "inPreparation": "In Preparation",
+    "portrait": "Portrait",
+    "nude": "Nude",
+    "landscapeStillLife": "Landscape ",
+    "mementoMori": "Memento Mori & Mortality",
+    "psychologicalRealism": "Psychological Realism",
+    "heritageAntiques": "Heritage & Antiques"
   },
   "subcategories": {
     "all": "All",
@@ -24,6 +47,12 @@
     "lenaScanned": { "title": "Tattoed Nude on Sofa", "medium": "Oil Pastels on Paper, 21 x 29 cm" },
     "autopsia": { "title": "Autopsy of Commited Suicide young Woman", "medium": "Oil on canvas 65 x 45 cm" },
     "imgp0914": { "title": "Virgin and the Child", "medium": "Egg Tempera and 24K Gold Leafs on primed Wood Panel, 20 x 30 x 3 cm" }
+  },
+  "video": {
+    "title": "painting process video",
+    "subtitle": "Watch Video",
+    "artworkTitle": "Fine Art Technique & Studio Practice",
+    "curatorialMeta": "Demonstration & Oil Painting Workflow"
   },
   "artwork": {
     "medium": "Medium",
@@ -60,13 +89,13 @@
       "drw_12": { "title": "Portrait of girl from Brasil", "medium": "Graphite on Paper", "size": "21 x 29.7 cm" },
       "drw_13": { "title": "Anna the Pro-Palestine Activist", "medium": "Oil Pastels on Paper", "size": "21 x 29.7 cm" },
       "drw_14": { "title": "Portrait of Vincent", "medium": "Oil Pastels on Paper", "size": "21 x 29.7 cm" },
-      "drw_15": { "title": "Vagina", "medium": "Graphite on Paper", "size": "21 x 29.7 cm" },
+      "drw_15": { "title": "Vulva and Anus", "medium": "Graphite on Paper", "size": "21 x 29.7 cm" },
       "drw_16": { "title": "Portrait of Dorna", "medium": "Oil Pastels on Paper", "size": "21 x 29.7 cm" },
       "drw_17": { "title": "Nude posing on the Beach", "medium": "Oil Pastels on Paper", "size": "21 x 29.7 cm" },
       "drw_18": { "title": "Portrait of Anna", "medium": "Pencil on Paper", "size": "40 x 55 cm" },
       "drw_19": { "title": "Tattoed Nude on Sofa", "medium": "Oil Pastels on Paper", "size": "21 x 29.7 cm" },
       "drw_20": { "title": "Portrait of old Schimpanzee", "medium": "Oil Pastels on Paper", "size": "21 x 29.7 cm" },
-      "drw_21": { "title": "Vagina posing on the Beach", "medium": "Oil Pastels and Markers on Paper", "size": "21 x 29.7 cm" },
+      "drw_21": { "title": "Vulva posing on the Beach", "medium": "Oil Pastels and Markers on Paper", "size": "21 x 29.7 cm" },
       "drw_22": { "title": "Nude by the River in Zurich", "medium": "Oil Pastels and Markers on Paper", "size": "29.7 x 42 cm" },
       "drw_23": { "title": "Roger's Penis", "medium": "Oil Pastels and Markers on Paper", "size": "29.7 x 42 cm" },
       "drw_24": { "title": "Portrait of Olga", "medium": "Oil Pastels on Paper", "size": "21 x 29.7 cm" },
@@ -84,6 +113,7 @@
       "drw_36": { "title": "Portrait of a girl with two different eye colors", "medium": "Oil Pastels on Paper", "size": "21 x 29.7 cm" },
       "drw_37": { "title": "Atomium", "medium": "Oil Pastels on Paper", "size": "21 x 29.7 cm" },
       "drw_38": { "title": "Solaris Beach in Istria, Croatia", "medium": "Oil Pastels on Paper", "size": "21 x 29.7 cm" },
+      "drw_39": { "title": "Ed Gein", "medium": "Graphite on Paper", "size": "21 x 29.7 cm" },
 
 
 
@@ -121,7 +151,14 @@
       "oth_06": { "title": "Virgin Mary at Annunciation", "medium": "Egg Tempera on primed Wood Panel", "size": "36 x 47 x 2 cm" },
       "oth_07": { "title": "Gorgon Medusa", "medium": "Egg Tempera on primed antigue Roman Marble", "size": "4.5 x 5.5 x 2.3 cm" },
       "oth_08": { "title": "Angel of God", "medium": "Egg Tempera on primed Stone", "size": "11 x 14 x 5 cm" },
-      "oth_09": { "title": "Prophet Mouses", "medium": "Egg Tempera on primed Wood Panel", "size": "36 x 46 x 2 cm" }
+      "oth_09": { "title": "Prophet Mouses", "medium": "Egg Tempera on primed Wood Panel", "size": "36 x 46 x 2 cm" },
+      "oth_10": { "title": "Unknown Saint. Artificial Aged Icon", "medium": "Egg Tempera and 24K Gold Leafs on primed Wood Panel", "size": "14.6x 20.3 x 2 cm" },
+
+
+      "psy_01": { "title": "McDonald's Meal in Moscow, Pushkin Square", "medium": "Oil on Canvas", "size": "145 x 191 cm" },
+      "psy_02": { "title": "Cold World", "medium": "Oil on Canvas", "size": "70.5 x 104.5 cm" },
+      "psy_03": { "title": "Friendship", "medium": "Oil on Canvas", "size": "190 x 135 cm" }
+
     },
   
   
@@ -161,40 +198,36 @@
   },
 
 "footer": {
-  "company": {
-    "name": "Ilya Medvedev",
-    "description": "ProFineArt School"
+    "company": {
+      "name": "Ilya Medvedev"
+    },
+    "explore": {
+      "title": "Explore",
+      "home": "Home",
+      "about": "About",
+      "video": "Video",
+      "studio": "ProFineArt Studio Basel"
+      
+    },
+    "connect": {
+      "title": "Contact",
+      "email": "info@profineart.ch"
+    },
+    "payments": {
+      "title": "Payments",
+      "processedBy": "Securely processed by",
+      "methods": ["Visa", "Mastercard", "Google Pay", "Apple Pay", "Twint", "Klarna"]
+    },
+    "bottom": {
+      "copyright": "© 2012-2026 Ilya Medvedev.",
+      "rights": "All rights reserved.",
+      "legal": "Legal Info",
+      "terms": "Terms of Use"
+    },
+    "actions": {
+      "install": "Install Web App"
+    }
   },
-  "explore": {
-    "title": "Explore",
-    "home": "Home",
-    "oil": "Oil",
-    "drawings": "Drawings",
-    "watercolors": "Watercolors",
-    "other": "Other Works",
-    "studio": "ProFineArt Studio Basel"
-  },
-  "connect": {
-    "title": "Contact",
-    "email": "info@profineart.ch",
-    "about": "About"
-  },
-  "payments": {
-    "title": "Payments",
-    "processedBy": "Securely processed by",
-    "methods": ["Visa", "Mastercard", "Google Pay", "Apple Pay", "Twint", "Klarna"]
-  },
-  "bottom": {
-    "copyright": "© 2012-2026 Ilya Medvedev.",
-    "rights": "All rights reserved.",
-    "legal": "Legal Info",
-    "terms": "Terms of Use"
-  },
-  "actions": {
-    "install": "Install Web App"
-  }
-},
-
 
   "legal_info": {
     "title": "Legal Information",

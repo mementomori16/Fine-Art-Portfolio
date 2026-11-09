@@ -1,4 +1,4 @@
-@import '../../../app/global.scss';
+@use '../../../app/global' as *;
 
 // PALETTE
 $bg-deep: #0a0a09;
@@ -6,85 +6,155 @@ $white: #ffffff;      // Titles, Icons, Bottom Links
 $muted: #d1d1d1;      // Description, Nav items, Payment badges
 
 .footer {
-    width: 100%;
-    background-color: $bg-deep;
-    padding: $space-md $space-lg $space-sm;
-    color: $white;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  width: 100%;
+  background-color: $bg-deep;
+  padding: $space-sm $space-lg 0.4rem;
+  color: $white;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
 
-    .footer-content {
-        max-width: $breakpoint-xl;
-        margin: 0 auto;
+  .footer-content {
+    max-width: $breakpoint-xl;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1.3fr 1.1fr;
+    gap: $space-md;
+    padding-bottom: $space-sm;
+
+    @media (max-width: $breakpoint-lg) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: $space-sm;
+    }
+    @media (max-width: $breakpoint-sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .footer-column {
+    .footer-header {
+      color: $white;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+      letter-spacing: 0.08rem;
+
+      &.sub-header {
+        margin-top: 0.6rem;
+      }
+    }
+
+    .footer-description {
+      color: $muted;
+      font-size: 0.8rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .footer-nav-link {
+      color: $muted;
+      font-size: 0.78rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: opacity 0.2s ease;
+      line-height: 1.35;
+      &:hover { opacity: 0.7; }
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        margin-bottom: 0.15rem;
+      }
+
+      &.compact-nav {
+        li { margin-bottom: 0.15rem; }
+      }
+
+      &.grid-links {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: $space-lg;
-        padding-bottom: $space-md;
-
-        @media (max-width: $breakpoint-lg) { grid-template-columns: repeat(2, 1fr); }
-        @media (max-width: $breakpoint-sm) { grid-template-columns: 1fr; }
+        grid-template-columns: 1fr;
+        gap: 0.15rem 0.5rem;
+      }
     }
 
-    .footer-column {
-        .footer-header {
-            color: $white;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            margin-bottom: $space-sm;
-            letter-spacing: 0.1rem;
-        }
-
-        // Muted text
-        .footer-description, .footer-nav-link {
-            color: $muted;
-            font-size: 0.85rem;
-            text-decoration: none;
-            display: inline-block;
-            transition: opacity 0.3s ease;
-            &:hover { opacity: 0.7; }
-        }
-
-        .footer-links { list-style: none; padding: 0; margin: 0; li { margin-bottom: 0.3rem; } }
-
-        // White icons
-        .footer-contact-item { 
-            display: flex; align-items: center; gap: 8px; margin-bottom: 0.3rem;
-            .footer-icon { color: $white; flex-shrink: 0; font-size: 0.8rem; }
-        }
-        
-        .footer-stripe-info { 
-            display: flex; align-items: center; gap: 6px; color: $muted; margin-bottom: 0.5rem;
-            .footer-icon-lock { color: $white; flex-shrink: 0; font-size: 0.7rem; }
-            strong { color: $white; }
-        }
-
-        .footer-payment-icons { 
-            display: flex; flex-wrap: wrap; gap: 4px; 
-            .payment-badge {
-                font-size: 0.65rem;
-                padding: 2px 6px;
-                background: rgba(255, 255, 255, 0.05);
-                border: 1px solid rgba(255, 255, 255, 0.1);
-                border-radius: 2px;
-                color: $muted;
-            }
-        }
+    .footer-contact-item { 
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 0.2rem;
+      .footer-icon { color: $white; flex-shrink: 0; font-size: 0.75rem; }
     }
 
-    .footer-bottom {
-        max-width: $breakpoint-xl;
-        margin: 0 auto;
-        padding-top: $space-sm;
-        border-top: 1px solid rgba(255, 255, 255, 0.2);
-        
-        .footer-bottom-container {
-            display: flex; justify-content: space-between; align-items: center;
-        }
-
-        // White bottom links
-        .footer-copyright, .footer-bottom-link, .footer-separator {
-            color: $white; 
-            font-size: 0.75rem;
-            text-decoration: none;
-        }
+    .footer-payment-wrapper {
+      margin-top: 0.3rem;
     }
+    
+    .footer-stripe-info { 
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: $muted;
+      font-size: 0.72rem;
+      margin-bottom: 0.3rem;
+      .footer-icon-lock { color: $white; flex-shrink: 0; font-size: 0.65rem; }
+      strong { color: $white; }
+    }
+
+    .footer-payment-icons { 
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px; 
+      .payment-badge {
+        font-size: 0.6rem;
+        padding: 1px 5px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 2px;
+        color: $muted;
+      }
+    }
+
+    .footer-install-btn {
+      margin-top: 0.5rem;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: $white;
+      padding: 3px 8px;
+      font-size: 0.7rem;
+      border-radius: 2px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: background 0.2s ease;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .footer-icon-btn {
+        font-size: 0.65rem;
+      }
+    }
+  }
+
+  .footer-bottom {
+    max-width: $breakpoint-xl;
+    margin: 0 auto;
+    padding-top: 0.3rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    
+    .footer-bottom-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-copyright, .footer-bottom-link, .footer-separator {
+      color: $white; 
+      font-size: 0.7rem;
+      text-decoration: none;
+    }
+  }
 }

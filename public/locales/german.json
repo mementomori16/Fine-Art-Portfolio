@@ -3,7 +3,7 @@
     "pageTitle": "Kunstgalerie",
     "oil_paintings": "Ölgemälde",
     "drawings": "Zeichnungen",
-    "watercolors": "Aquarelle",
+    "watercolors": "Wasserfarben",
     "other_works": "Kulturerbe & Antiquitäten"
   },
   "subcategories": {
@@ -44,7 +44,7 @@
     "oil_14": { "title": "Wladimir Lenin", "medium": "Öl auf Leinwand", "size": "39 x 45 cm" },
     "oil_15": { "title": "Februarnachmittag in Kleinbasel", "medium": "Öl auf Leinwand", "size": "47 x 65 cm" },
 
-    "drw_01": { "title": "Fußstudie", "medium": "Ölpastell auf Papier", "size": "21 x 29.7 cm" },
+    "drw_01": { "title": "Fussstudie", "medium": "Ölpastell auf Papier", "size": "21 x 29.7 cm" },
     "drw_02": { "title": "Porträt von Celine", "medium": "Ölpastell auf Papier", "size": "29.7 x 42 cm" },
     "drw_03": { "title": "Papagei", "medium": "Mischtechnik auf Karton", "size": "21 x 29.7 cm" },
     "drw_04": { "title": "Akt am Fluss", "medium": "Ölpastell auf Papier", "size": "21 x 29.7 cm" },
@@ -58,13 +58,13 @@
     "drw_12": { "title": "Porträt eines Mädchens aus Brasilien", "medium": "Graphit auf Papier", "size": "21 x 29.7 cm" },
     "drw_13": { "title": "Anna, die Pro-Palästina-Aktivistin", "medium": "Ölpastell auf Papier", "size": "21 x 29.7 cm" },
     "drw_14": { "title": "Porträt von Vincent", "medium": "Ölpastell auf Papier", "size": "21 x 29.7 cm" },
-    "drw_15": { "title": "Vagina", "medium": "Graphit auf Papier", "size": "21 x 29.7 cm" },
+    "drw_15": { "title": "Vulva", "medium": "Graphit auf Papier", "size": "21 x 29.7 cm" },
     "drw_16": { "title": "Porträt von Dorna", "medium": "Ölpastell auf Papier", "size": "21 x 29.7 cm" },
     "drw_17": { "title": "Akt posierend am Strand", "medium": "Ölpastell auf Papier", "size": "21 x 29.7 cm" },
     "drw_18": { "title": "Porträt von Anna", "medium": "Bleistift auf Papier", "size": "40 x 55 cm" },
     "drw_19": { "title": "Tätowierter Akt auf Sofa", "medium": "Ölpastell auf Papier", "size": "21 x 29.7 cm" },
     "drw_20": { "title": "Porträt eines alten Schimpansen", "medium": "Ölpastell auf Papier", "size": "21 x 29.7 cm" },
-    "drw_21": { "title": "Vagina posierend am Strand", "medium": "Ölpastell und Marker auf Papier", "size": "21 x 29.7 cm" },
+    "drw_21": { "title": "Vulva posierend am Strand", "medium": "Ölpastell und Marker auf Papier", "size": "21 x 29.7 cm" },
     "drw_22": { "title": "Akt am Fluss in Zürich", "medium": "Ölpastell und Marker auf Papier", "size": "29.7 x 42 cm" },
     "drw_23": { "title": "Rogers Penis", "medium": "Ölpastell und Marker auf Papier", "size": "29.7 x 42 cm" },
     "drw_24": { "title": "Porträt von Olga", "medium": "Ölpastell auf Papier", "size": "21 x 29.7 cm" },

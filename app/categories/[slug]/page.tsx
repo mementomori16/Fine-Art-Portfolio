@@ -9,7 +9,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const category = CATEGORY_COVERS.find((c) => c.slug === slug);
   if (!category) return { title: "Gallery | Ilya Medvedev" };
   
-  const title = (englishData as any)?.categories?.[category.titleKey.replace("categories.", "")] || "Category";
+  const rawKey = category.titleKey 
+    ? category.titleKey.replace(/^categories\./, "").replace(/^styleCategories\./, "")
+    : slug.replace(/-/g, "_");
+
+  const title = 
+    (englishData as any)?.categories?.[rawKey] || 
+    (englishData as any)?.categories?.[slug.replace(/-/g, "_")] ||
+    (englishData as any)?.categories?.[category.slug] ||
+    "Category";
+
   return { title: `${title} | Ilya Medvedev` };
 }
 
@@ -23,7 +32,13 @@ export default async function CategoryPage({ params }: PageProps) {
   const currentCategory = CATEGORY_COVERS.find((c) => c.slug === slug);
   if (!currentCategory) notFound();
 
-  const categoryPaintings = PAINTINGS.filter((p) => p.category === slug && p.images);
+  // Strict category filter
+  const categoryPaintings = PAINTINGS.filter((p) => {
+    if (slug === "tempera") {
+      return (p.category === "tempera" || p.category === "other-works") && p.images;
+    }
+    return p.category === slug && p.images;
+  });
 
   return (
     <main className="category-gallery-page">
