@@ -7,8 +7,17 @@
     padding: 0 2rem 5rem 2rem; // Убран верхний padding (было 3rem), чтобы убрать гэп сверху
     width: 100%;
     box-sizing: border-box;
-    overflow: hidden;
     background: transparent;
+
+    // Свечение не должно обрезаться сверху и снизу: именно срез давал «полосу» на стыке с главной.
+    // По горизонтали обрезаем (clip), чтобы не появилась прокрутка страницы
+    overflow-x: clip;
+    overflow-y: visible;
+
+    // Старые браузеры без overflow: clip: безопасный вариант (свечение у краёв секции может срезаться)
+    @supports not (overflow: clip) {
+        overflow-x: hidden;
+    }
 
     // Если это отдельная страница — возвращаем полноценные отступы и темный фон
     &.video-page-standalone {
@@ -24,6 +33,8 @@
    2. HEADER BLOCK
    ========================================================================== */
 .video-page-header {
+    position: relative;
+    z-index: 2; // выше свечения карточек, чтобы оно не подкрашивало заголовок
     padding-top: 0; // Обнулено, чтобы заголовок не отталкивался от верха секции
     margin-bottom: 3.5rem;
     text-align: center;
@@ -47,12 +58,12 @@
     .video-page-line-divider {
         width: 40px;
         height: 1px;
-        background: rgba(255, 235, 180, 0.45); 
+        background: rgba(255, 235, 180, 0.45);
         margin-bottom: $space-md;
     }
 
     .video-page-subtitle {
-        color: rgba(215, 235, 240, 0.75); 
+        color: rgba(215, 235, 240, 0.75);
         font-family: $font-family-base;
         font-weight: $font-weight-light;
         font-size: 0.72rem;
@@ -96,24 +107,27 @@
     transform-style: preserve-3d;
     z-index: 1;
 
-    &::before {
-        content: '';
-        position: absolute;
-        top: -15%;
-        left: -20%;
-        width: 140%;
-        height: 110%;
-        background: radial-gradient(
-            circle at center,
-            rgba(255, 238, 180, 0.65) 0%, 
-            rgba(255, 185, 95, 0.3) 40%, 
-            rgba(255, 160, 70, 0.06) 65%,
-            transparent 100%
-        );
-        filter: blur(3rem);
-        z-index: -1; 
-        pointer-events: none;
-        opacity: 0.85; 
+    // Дополнительное свечение ::before убрано: оно дублировало ambient-glow и давало «полосу» на стыке.
+    // Эффект наведения такой же, как у карточек в Categories (artworkCard.scss)
+    &:hover {
+        .video-page-ambient-glow {
+            opacity: 0.9;
+            transform: scale(1.12);
+            background: radial-gradient(
+                circle,
+                rgba(255, 230, 160, 0.85),
+                rgba(255, 185, 90, 0.45),
+                transparent 75%
+            );
+            filter: blur(4rem);
+        }
+
+        .video-page-luxury-edge {
+            box-shadow:
+                0 0 0 0.06rem rgba(0, 0, 0, 0.95),
+                0 1.2rem 2.5rem rgba(0, 0, 0, 0.8),
+                0 0 25px rgba(255, 215, 130, 0.2);
+        }
     }
 }
 
@@ -123,7 +137,7 @@
 .video-page-frame-wrapper {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 9; 
+    aspect-ratio: 16 / 9;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -136,7 +150,7 @@
     position: relative;
     width: 100%;
     height: 100%;
-    padding: 0.22rem; 
+    padding: 0.22rem;
     background: linear-gradient(135deg, #4a3d2c 0%, #261f17 100%);
     border-radius: 0.1rem;
     z-index: 2;
@@ -144,6 +158,7 @@
     box-shadow:
         0 0 0 0.06rem rgba(0, 0, 0, 0.88),
         0 0.7rem 1.8rem rgba(0, 0, 0, 0.65);
+    transition: box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 
     &::before {
         content: '';
@@ -208,6 +223,8 @@
     );
     filter: blur(3.8rem);
     z-index: 0;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
 }
 
 .video-page-spotlight-beam {
