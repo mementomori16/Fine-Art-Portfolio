@@ -48,7 +48,7 @@ export default function ArtworkCard({
                 fill
                 sizes="(max-width: 600px) 90vw, (max-width: 1100px) 45vw, 320px"
                 className="category-masterpiece-image"
-                priority={index < 3} // Optimization rule loading top canvas images instantly
+                priority={index < 3}
               />
             ) : (
               <div className="artwork-missing-canvas">{t("common.missingImage", "Canvas Missing")}</div>
@@ -60,12 +60,9 @@ export default function ArtworkCard({
         <div className="category-floor-shadow" />
       </div>
 
-      {/* CURATORIAL LABELS STACK */}
+      {/* MUSEUM-GRADE CLEAN TITLE BLOCK */}
       <div className="category-curatorial-details">
         <h3 className="category-artwork-title">{t(title)}</h3>
-        <span className="category-curatorial-meta">
-          {t("common.viewGallery", t("common.viewArtwork", "View Gallery"))}
-        </span>
       </div>
     </div>
   );

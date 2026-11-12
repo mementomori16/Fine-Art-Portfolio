@@ -22,7 +22,7 @@
     position: relative;
     z-index: 2; 
     width: 100%;
-    max-width: 1450px;
+    max-width: 1650px; // Расширяем контейнер, чтобы крупные горизонтальные карточки дышали
     margin: 0 auto;
     padding: 4rem 3rem 6rem 3rem;
 }
@@ -63,26 +63,23 @@
 }
 
 /* =========================================================================
-    3. ARTWORK ARCHITECTURE GRID & LOCALIZED LIGHTING WRAPPER
+    3. ARTWORK ARCHITECTURE GRID (Крупные тумбнейлы, 3 в ряд)
 ========================================================================= */
 .artwork-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    // Increased row gap slightly to safely provide overflow headroom for wrapping texts
-    gap: 9rem 3.5rem; 
-    // FIXED: Elements stretch uniformly in height so variations in title length 
-    // never pull or push neighboring images out of line.
+    grid-template-columns: repeat(3, 1fr); // Строго 3 колонки
+    gap: 4rem 2.5rem; // Комфортные промежутки
     align-items: stretch; 
     justify-content: center;
     width: 100%;
-    max-width: 1100px; 
+    max-width: 1500px; 
     margin: 0 auto;
 }
 
 .artwork-card-wrapper {
     position: relative;
     width: 100%;
-    max-width: 280px; 
+    max-width: 520px; // Сделали карточки крупными и солидными, как в Categories
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -112,50 +109,10 @@
 /* =========================================================================
     4. PLATFORM RESPONSIVENESS
 ========================================================================= */
-@media (max-width: 72rem) {
-    .category-container {
-        padding: 3.5rem 3rem 5rem 3rem; 
-    }
-    .artwork-grid {
-        gap: 7.5rem 2.5rem;
-        max-width: 960px;
-    }
-}
-
-@media (max-width: 64rem) { 
-    .category-container {
-        padding: 3rem 3.5rem 5rem 3.5rem; 
-    }
-
+@media (max-width: 78rem) {
     .artwork-grid {
         grid-template-columns: repeat(2, 1fr);
-        max-width: 680px;
-        gap: 7.5rem 3.5rem;
-    }
-
-    .artwork-card-wrapper {
-        max-width: 260px; 
-    }
-    
-    .individual-artwork-glow {
-        filter: blur(4rem);
-        inset: -15%;
-        background: radial-gradient(
-            circle at center,
-            rgba(255, 225, 150, 0.20) 0%,
-            rgba(255, 185, 95, 0.06) 45%,
-            transparent 100%
-        );
-    }
-}
-
-@media (max-width: 42rem) {
-    .category-container {
-        padding: 2.5rem 2rem 4rem 2rem; 
-    }
-    .artwork-grid {
-        max-width: 520px;
-        gap: 6.5rem 2rem;
+        max-width: 1000px;
     }
 }
 
@@ -166,8 +123,8 @@
 
     .artwork-grid {
         grid-template-columns: 1fr;
-        max-width: 420px;
-        gap: 6.5rem;
+        max-width: 440px;
+        gap: 3rem;
     }
 
     .artwork-card-wrapper {

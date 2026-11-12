@@ -10,12 +10,12 @@
   display: flex;
   justify-content: center;
 
-  background: radial-gradient(
-    circle at 50% 30%,
-    #2a2a2a 0%,
-    #0c0c0c 65%,
-    #050505 100
-  ) fixed !important;
+background: linear-gradient(
+    to bottom,
+    #1a1a1a 0%,
+    #0c0c0c 50%,
+    #050505 100%
+  );
 }
 
 /* =========================================================================

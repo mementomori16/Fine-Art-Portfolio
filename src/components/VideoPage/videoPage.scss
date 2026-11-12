@@ -1,21 +1,30 @@
 @use "../../../app/global.scss" as *;
 
 /* ==========================================================================
-   1. SECTION CONTAINER (MATCHING CATEGORIES BACKGROUND)
+   1. SECTION CONTAINER (Transparent for Homepage integration)
    ========================================================================== */
 .video-page-section {
-    padding: 3rem 2rem 5rem 2rem; 
+    padding: 0 2rem 5rem 2rem; // Убран верхний padding (было 3rem), чтобы убрать гэп сверху
     width: 100%;
     box-sizing: border-box;
     overflow: hidden;
     background: transparent;
+
+    // Если это отдельная страница — возвращаем полноценные отступы и темный фон
+    &.video-page-standalone {
+        background: #0b0f12;
+        min-height: 100vh;
+        width: 100vw;
+        position: relative;
+        padding: 3rem 2rem 5rem 2rem;
+    }
 }
 
 /* ==========================================================================
-   2. HEADER BLOCK (MATCHING CATEGORIES TITLE SYSTEM)
+   2. HEADER BLOCK
    ========================================================================== */
 .video-page-header {
-    padding-top: 1rem; 
+    padding-top: 0; // Обнулено, чтобы заголовок не отталкивался от верха секции
     margin-bottom: 3.5rem;
     text-align: center;
     display: flex;
@@ -54,11 +63,25 @@
 }
 
 /* ==========================================================================
-   3. SHOWCASE CONTAINER & MUSEUM CARD
+   3. LIST CONTAINER (Grid / Row Layout for Desktop)
+   ========================================================================== */
+.video-page-list-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3.5rem;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   4. SHOWCASE CONTAINER & MUSEUM CARD
    ========================================================================== */
 .video-page-showcase-container {
-    max-width: 900px;
-    margin: 0 auto;
+    flex: 1 1 520px;
+    max-width: 650px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -95,7 +118,7 @@
 }
 
 /* ==========================================================================
-   4. FRAME WRAPPER & 16:9 ASPECT RATIO
+   5. FRAME WRAPPER & 16:9 ASPECT RATIO
    ========================================================================== */
 .video-page-frame-wrapper {
     position: relative;
@@ -107,7 +130,7 @@
 }
 
 /* ==========================================================================
-   5. LUXURY THIN GOLD FRAME
+   6. LUXURY THIN GOLD FRAME
    ========================================================================== */
 .video-page-luxury-edge {
     position: relative;
@@ -151,7 +174,7 @@
 }
 
 /* ==========================================================================
-   6. VIDEO CANVAS & IFRAME
+   7. VIDEO CANVAS & IFRAME
    ========================================================================== */
 .video-page-canvas-container {
     position: relative;
@@ -171,7 +194,7 @@
 }
 
 /* ==========================================================================
-   7. AMBIENT LIGHTING & FLOOR SHADOW
+   8. AMBIENT LIGHTING & FLOOR SHADOW
    ========================================================================== */
 .video-page-ambient-glow {
     position: absolute;
@@ -221,46 +244,11 @@
 }
 
 /* ==========================================================================
-   8. TYPOGRAPHY LABELS
-   ========================================================================== */
-.video-page-curatorial-details {
-    margin-top: $space-lg; 
-    text-align: center;
-    position: relative;
-    z-index: 6;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-
-    .video-page-artwork-title {
-        color: rgba(255, 255, 255, 0.95);
-        font-family: $font-family-base;
-        font-weight: $font-weight-normal;
-        font-size: 0.95rem; 
-        letter-spacing: 0.14rem;
-        text-transform: uppercase;
-        margin: 0;
-        line-height: 1.3;
-    }
-
-    .video-page-curatorial-meta {
-        color: rgba(200, 200, 200, 0.65); 
-        font-family: $font-family-base;
-        font-weight: $font-weight-light;
-        font-size: 0.75rem;
-        letter-spacing: 0.12rem;
-        text-transform: uppercase;
-        margin: 0;
-    }
-}
-
-/* ==========================================================================
    9. RESPONSIVITY
    ========================================================================== */
 @media (max-width: 68rem) {
     .video-page-header {
-        padding-top: 4rem;
+        padding-top: 0;
         margin-bottom: 4rem;
     }
 
@@ -275,11 +263,7 @@
     }
 
     .video-page-header {
-        padding-top: 3rem;
+        padding-top: 0;
         margin-bottom: 3rem;
-    }
-
-    .video-page-curatorial-details .video-page-artwork-title {
-        font-size: 0.85rem;
     }
 }

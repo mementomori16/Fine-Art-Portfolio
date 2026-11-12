@@ -93,10 +93,10 @@ export default function ArtworkViewer({ painting, currentImageIndex, onBackActio
 
       <div className="navigation-actions">
         <button className="back-button" onClick={handleBackClick} type="button">
-          ← {t("artwork.back") || "Back to Gallery"}
+          ← {t("artwork.back")}
         </button>
         <button className="explore-button" onClick={handleScrollToSimilar} type="button">
-          {t("artwork.more_works") || "Explore Similar"} ↓
+          {t("artwork.similar_works")} ↓
         </button>
       </div>
 
