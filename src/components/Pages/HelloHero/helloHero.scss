@@ -9,28 +9,24 @@
   padding: 0;
   box-sizing: border-box;
   background-color: #050505;
+  isolation: isolate;
 }
 
 /* ───────── Слайды ───────── */
 
+// Слой отвечает только за прозрачность: никаких transform на большой поверхности.
+// Запас 112% по высоте: те же значения, что в LAYER_SCALE в HelloHero.tsx
 .verticalScanLayer {
   position: absolute;
-  top: -12%;
+  top: -6%;
   left: 0;
   width: 100%;
-  height: 124%;
-
-  background-image: var(--hero-img);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center top;
+  height: 112%;
+  overflow: hidden;
 
   opacity: 0;
   z-index: 0;
   pointer-events: none;
-
-  will-change: transform, opacity, background-position;
-  transform-origin: center top;
 
   // уходящий слой: остаётся виден и продолжает свою анимацию
   &.leaving {
@@ -44,23 +40,48 @@
     z-index: 2;
     transition: opacity var(--fade-duration, 0.35s) ease-in-out;
   }
+}
 
-  // одна и та же анимация у active и leaving, поэтому при смене класса она не сбрасывается.
-  // linear: движение не замедляется к концу и обрывается ровно в момент смены
-  &.active,
-  &.leaving {
-    animation: verticalScan var(--scan-duration, 3.4s) linear forwards;
+// Картина: размер и позицию задаёт JS (cover считается так же, как у background-size: cover).
+// Одна анимация transform вместо двух вложенных: вдвое меньше нагрузки на GPU.
+// will-change нет намеренно: анимируемый transform браузер и так выносит в слой сам
+.verticalScanImage {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  display: block;
+  max-width: none; // глобальный reset img { max-width: 100% } сломал бы размер
+  transform-origin: center top;
+  transform: translate3d(0, var(--ty0, 0px), 0) scale(1.08);
+  user-select: none;
+}
+
+.verticalScanLayer.active .verticalScanImage,
+.verticalScanLayer.leaving .verticalScanImage {
+  animation: heroScan var(--scan-duration, 3.4s) linear forwards;
+}
+
+// Наезд (1.08 → 1.02) и проезд сверху вниз в одном transform.
+// --ty0 / --ty1 считает JS для каждой картины отдельно
+@keyframes heroScan {
+  from {
+    transform: translate3d(0, var(--ty0, 0px), 0) scale(1.08);
+  }
+  to {
+    transform: translate3d(0, var(--ty1, 0px), 0) scale(1.02);
   }
 }
 
-@keyframes verticalScan {
-  0% {
-    background-position: center top;
-    transform: scale(1.08) translate3d(0, -2%, 0);
+// Режим без движения (слабые устройства или motion={false}): остаётся только кроссфейд.
+// Картина стоит посередине своего проезда
+.helloHeroSection[data-motion='off'] {
+  .verticalScanLayer.active .verticalScanImage,
+  .verticalScanLayer.leaving .verticalScanImage {
+    animation: none;
   }
-  100% {
-    background-position: center bottom;
-    transform: scale(1.02) translate3d(0, 2%, 0);
+
+  .verticalScanImage {
+    transform: translate3d(0, calc(var(--pan, 0px) / 2), 0) scale(1.04);
   }
 }
 
@@ -78,8 +99,11 @@
   text-align: center;
   padding: 0 5vw;
 
-  // мягкая виньетка + затемнение низа: картины остаются главными
+  // 1) мягкое затемнение за именем: радиальный градиент без краёв, плавно уходит в прозрачность
+  //    (заменяет drop-shadow, который обрезался маской и давал прямоугольник)
+  // 2) виньетка по краям, 3) затемнение верха и низа: картины остаются главными
   background:
+    radial-gradient(ellipse 55% 30% at 50% 50%, rgba(5, 5, 5, 0.38) 0%, rgba(5, 5, 5, 0) 100%),
     radial-gradient(ellipse at center, rgba(5, 5, 5, 0.1) 0%, rgba(5, 5, 5, 0.55) 100%),
     linear-gradient(
       to bottom,
@@ -88,16 +112,6 @@
       transparent 60%,
       rgba(5, 5, 5, 0.7) 100%
     );
-
-  // зерно плёнки (статичное, без нагрузки на GPU)
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    opacity: 0.07;
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-  }
 }
 
 .heroTitle {
@@ -107,18 +121,24 @@
   z-index: 1;
 }
 
+// Маска-обёртка: анимируется только она (clip-path + сдвиг).
+// Внутри нет теней и размытий, которые маска могла бы обрезать в прямоугольник
+.heroLogoMask {
+  display: block;
+  line-height: 0;
+  clip-path: inset(0 100% 0 0);
+  transform: translateY(10px);
+  animation: logoReveal 1.3s cubic-bezier(0.77, 0, 0.175, 1) 0.4s forwards;
+}
+
 .heroLogo {
   display: block;
   width: clamp(220px, 30vw, 440px);
   height: auto;
 
-  // белый логотип с лёгким тёплым оттенком (цвет бумаги в каталогах), не стерильный #fff
-  filter: brightness(0) invert(1) sepia(0.15) drop-shadow(0 2px 20px rgba(0, 0, 0, 0.4));
-
-  // имя проявляется слева направо, как открывающаяся рама
-  clip-path: inset(0 100% 0 0);
-  transform: translateY(10px);
-  animation: logoReveal 1.3s cubic-bezier(0.77, 0, 0.175, 1) 0.4s forwards;
+  // белый логотип с лёгким тёплым оттенком (цвет бумаги в каталогах).
+  // drop-shadow убран: размытая тень, обрезанная маской, давала прямоугольник на фоне
+  filter: brightness(0) invert(1) sepia(0.15);
 }
 
 .heroSubtitle {
@@ -131,6 +151,7 @@
   text-indent: 0.45em; // компенсирует хвост letter-spacing, чтобы текст был по центру
   text-transform: uppercase;
   color: rgba(244, 239, 230, 0.78);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.5); // тень по контуру букв, не прямоугольник
   opacity: 0;
   transform: translateY(8px);
   animation: fadeUp 1s ease-out 1.3s forwards;
@@ -169,12 +190,16 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .verticalScanLayer.active,
-  .verticalScanLayer.leaving {
+  .verticalScanLayer.active .verticalScanImage,
+  .verticalScanLayer.leaving .verticalScanImage {
     animation: none;
   }
 
-  .heroLogo,
+  .verticalScanImage {
+    transform: translate3d(0, calc(var(--pan, 0px) / 2), 0) scale(1.04);
+  }
+
+  .heroLogoMask,
   .heroSubtitle {
     animation: none;
     clip-path: none;
