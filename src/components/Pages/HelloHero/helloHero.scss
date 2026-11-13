@@ -12,6 +12,17 @@
   isolation: isolate;
 }
 
+/* ───────── Ожидание открытия штор: всё стоит на паузе ───────── */
+
+.helloHeroSection:not([data-ready='true']) {
+  .heroLogoMask,
+  .heroSubtitle,
+  .heroSubtitle::before,
+  .verticalScanLayer .verticalScanImage {
+    animation-play-state: paused;
+  }
+}
+
 /* ───────── Слайды ───────── */
 
 // Слой отвечает только за прозрачность: никаких transform на большой поверхности.
@@ -44,7 +55,6 @@
 
 // Картина: размер и позицию задаёт JS (cover считается так же, как у background-size: cover).
 // Одна анимация transform вместо двух вложенных: вдвое меньше нагрузки на GPU.
-// will-change нет намеренно: анимируемый transform браузер и так выносит в слой сам
 .verticalScanImage {
   position: absolute;
   top: 0;
@@ -59,6 +69,18 @@
 .verticalScanLayer.active .verticalScanImage,
 .verticalScanLayer.leaving .verticalScanImage {
   animation: heroScan var(--scan-duration, 3.4s) linear forwards;
+}
+
+// Настольные устройства с мышью: слои подготавливаются заранее (там хватает памяти).
+// На телефонах will-change не ставим: именно он давал чёрные плитки
+@media (hover: hover) and (pointer: fine) {
+  .verticalScanLayer {
+    will-change: opacity;
+  }
+
+  .verticalScanImage {
+    will-change: transform;
+  }
 }
 
 // Наезд (1.08 → 1.02) и проезд сверху вниз в одном transform.
@@ -99,8 +121,7 @@
   text-align: center;
   padding: 0 5vw;
 
-  // 1) мягкое затемнение за именем: радиальный градиент без краёв, плавно уходит в прозрачность
-  //    (заменяет drop-shadow, который обрезался маской и давал прямоугольник)
+  // 1) мягкое затемнение за именем (без краёв, плавно уходит в прозрачность),
   // 2) виньетка по краям, 3) затемнение верха и низа: картины остаются главными
   background:
     radial-gradient(ellipse 55% 30% at 50% 50%, rgba(5, 5, 5, 0.38) 0%, rgba(5, 5, 5, 0) 100%),
@@ -122,13 +143,15 @@
 }
 
 // Маска-обёртка: анимируется только она (clip-path + сдвиг).
-// Внутри нет теней и размытий, которые маска могла бы обрезать в прямоугольник
+// Внутри нет теней и размытий, которые маска могла бы обрезать в прямоугольник.
+// Старт отсчитывается после открытия штор + revealDelay
 .heroLogoMask {
   display: block;
   line-height: 0;
   clip-path: inset(0 100% 0 0);
   transform: translateY(10px);
-  animation: logoReveal 1.3s cubic-bezier(0.77, 0, 0.175, 1) 0.4s forwards;
+  animation: logoReveal 1.3s cubic-bezier(0.77, 0, 0.175, 1)
+    calc(var(--reveal-delay, 0ms) + 0.4s) forwards;
 }
 
 .heroLogo {
@@ -136,8 +159,7 @@
   width: clamp(220px, 30vw, 440px);
   height: auto;
 
-  // белый логотип с лёгким тёплым оттенком (цвет бумаги в каталогах).
-  // drop-shadow убран: размытая тень, обрезанная маской, давала прямоугольник на фоне
+  // белый логотип с лёгким тёплым оттенком (цвет бумаги в каталогах)
   filter: brightness(0) invert(1) sepia(0.15);
 }
 
@@ -154,7 +176,7 @@
   text-shadow: 0 1px 12px rgba(0, 0, 0, 0.5); // тень по контуру букв, не прямоугольник
   opacity: 0;
   transform: translateY(8px);
-  animation: fadeUp 1s ease-out 1.3s forwards;
+  animation: fadeUp 1s ease-out calc(var(--reveal-delay, 0ms) + 1.3s) forwards;
 
   // тонкая линия отделяет имя от статуса, как на музейных табличках
   &::before {
@@ -165,7 +187,8 @@
     margin: 0 auto clamp(12px, 1.8vh, 18px);
     background: rgba(244, 239, 230, 0.5);
     transform: scaleX(0);
-    animation: lineGrow 0.9s cubic-bezier(0.77, 0, 0.175, 1) 1.2s forwards;
+    animation: lineGrow 0.9s cubic-bezier(0.77, 0, 0.175, 1)
+      calc(var(--reveal-delay, 0ms) + 1.2s) forwards;
   }
 }
 

@@ -7,7 +7,9 @@
   overflow: hidden;
   background-color: #000;
 
-  transform: translateZ(0);
+  // transform: translateZ(0) убран: он заставлял рендерить весь hero в отдельную
+  // полноэкранную поверхность даже после открытия шторы (лишняя нагрузка на 4K)
+  isolation: isolate;
 
   &.is-open {
     height: auto !important;
@@ -20,7 +22,7 @@
   position: relative;
   z-index: 1;
   isolation: isolate;
-  backface-visibility: hidden;
+  // backface-visibility: hidden убран: создавал ещё один полноэкранный композитный слой
 }
 
 .curtain-active-area {
@@ -82,13 +84,13 @@
 .curtain-half {
   position: absolute;
   top: 0;
+  width: 50%; // фиксированная ширина: половины двигаются через transform, а не меняют размер
   height: 100%;
   z-index: 1000;
   overflow: hidden;
   background-color: #1a1a1a;
   box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.8);
-
-  // ⚠️ Блок &::after с паттерном /icon1.svg УДАЛЁН — логотипов на шторке больше нет.
+  will-change: transform;
 
   &.left {
     left: 0;

@@ -1,6 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import './mysteriousCurtain.scss';
 
 interface CurtainProps {
@@ -9,32 +9,60 @@ interface CurtainProps {
   onOpen: () => void;
 }
 
+const OPEN_DURATION = 2.2; // сек (было 2.8)
+const transition = {
+  duration: OPEN_DURATION,
+  ease: [0.65, 0, 0.35, 1] as const,
+};
+
 export default function MysteriousCurtain({ children, forceOpen, onOpen }: CurtainProps) {
   const [isOpen, setIsOpen] = useState(forceOpen);
+  // шторы убираем из DOM, когда они уехали: не держим в памяти картинку 200vw
+  const [curtainGone, setCurtainGone] = useState(forceOpen);
+  const openedRef = useRef(forceOpen);
 
   // Синхронизация: если forceOpen меняется после первого рендера
   // (deep-link, reduced-motion, восстановление состояния) — шторка открывается.
   useEffect(() => {
-    if (forceOpen) setIsOpen(true);
+    if (forceOpen) {
+      openedRef.current = true;
+      setIsOpen(true);
+    }
   }, [forceOpen]);
 
-  const handleOpen = () => {
-    if (isOpen) return;
+  const handleOpen = useCallback(() => {
+    if (openedRef.current) return;
+    openedRef.current = true;
     setIsOpen(true);
     onOpen();
-  };
+  }, [onOpen]);
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      handleOpen();
-    }
-  };
+  // Пока шторы закрыты: Enter и пробел открывают сразу (надпись ENTER это обещает),
+  // и прокрутка страницы заблокирована
+  useEffect(() => {
+    if (isOpen) return;
 
-  const transition = {
-    duration: 2.8,
-    ease: [0.65, 0, 0.35, 1] as const,
-  };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleOpen();
+      }
+    };
+    window.addEventListener('keydown', onKey);
+
+    const html = document.documentElement;
+    const body = document.body;
+    const prevHtml = html.style.overflow;
+    const prevBody = body.style.overflow;
+    html.style.overflow = 'hidden';
+    body.style.overflow = 'hidden';
+
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      html.style.overflow = prevHtml;
+      body.style.overflow = prevBody;
+    };
+  }, [isOpen, handleOpen]);
 
   // Надёжный проброс start в одиночный child (HelloHero).
   const injectStart = (node: React.ReactNode): React.ReactNode => {
@@ -70,9 +98,8 @@ export default function MysteriousCurtain({ children, forceOpen, onOpen }: Curta
           className="curtain-active-area"
           role="button"
           tabIndex={0}
-          aria-label="Открыть сайт"
+          aria-label="Enter the site"
           onClick={handleOpen}
-          onKeyDown={handleKeyDown}
         >
           <div className="curtain-vignette" />
           <div className="curtain-hint-container">
@@ -82,22 +109,30 @@ export default function MysteriousCurtain({ children, forceOpen, onOpen }: Curta
         </div>
       )}
 
-      <motion.div
-        className="curtain-half left"
-        initial={{ width: forceOpen ? '0%' : '50%' }}
-        animate={{ width: isOpen ? '0%' : '50%', x: isOpen ? '-5%' : '0%' }}
-        transition={transition}
-      >
-        <img src="/clean-curtain.png" alt="" aria-hidden="true" className="curtain-img" />
-      </motion.div>
-      <motion.div
-        className="curtain-half right"
-        initial={{ width: forceOpen ? '0%' : '50%' }}
-        animate={{ width: isOpen ? '0%' : '50%', x: isOpen ? '5%' : '0%' }}
-        transition={transition}
-      >
-        <img src="/clean-curtain.png" alt="" aria-hidden="true" className="curtain-img" />
-      </motion.div>
+      {!curtainGone && (
+        <>
+          {/* Половины едут через transform (GPU), а не через width: без перерасчёта раскладки */}
+          <motion.div
+            className="curtain-half left"
+            initial={false}
+            animate={{ x: isOpen ? '-100%' : '0%' }}
+            transition={transition}
+            onAnimationComplete={() => {
+              if (isOpen) setCurtainGone(true);
+            }}
+          >
+            <img src="/clean-curtain.png" alt="" aria-hidden="true" className="curtain-img" />
+          </motion.div>
+          <motion.div
+            className="curtain-half right"
+            initial={false}
+            animate={{ x: isOpen ? '100%' : '0%' }}
+            transition={transition}
+          >
+            <img src="/clean-curtain.png" alt="" aria-hidden="true" className="curtain-img" />
+          </motion.div>
+        </>
+      )}
     </div>
   );
 }

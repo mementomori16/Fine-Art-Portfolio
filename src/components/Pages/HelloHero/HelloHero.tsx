@@ -13,8 +13,6 @@ const HERO_IMAGES = [
 
 // Высота слоя относительно секции: должна совпадать с height: 112% в helloHero.scss
 const LAYER_SCALE = 1.12;
-// Максимальная ширина картинки при загрузке: меньше памяти на декодирование
-const MAX_WIDTH = 2200;
 
 // Cloudinary: добавляем f_auto,q_auto и ограничение ширины. Остальные URL не трогаем
 const optimizeSrc = (url: string, width: number): string => {
@@ -29,10 +27,16 @@ interface HelloHeroProps {
   slideDuration?: number; // мс между сменами
   fadeDuration?: number; // мс самого перехода
   navbarHeight?: string;
+  /** false, пока закрыты шторы; true, когда они начали открываться. Без шторы по умолчанию true */
+  start?: boolean;
+  /** Пауза (мс) после открытия до появления имени: пока шторы расходятся */
+  revealDelay?: number;
   /** false: без движения картин, только кроссфейд (для слабых устройств и проверки) */
   motion?: boolean;
-  /** true: Cloudinary отдаёт уменьшенные копии (f_auto,q_auto,w_2200) */
+  /** true: Cloudinary отдаёт уменьшенные копии (f_auto,q_auto) */
   optimizeCloudinary?: boolean;
+  /** Максимальная ширина загружаемой картинки, px. На 4K-мониторах можно поставить 3200 */
+  maxWidth?: number;
 }
 
 export default function HelloHero({
@@ -40,8 +44,11 @@ export default function HelloHero({
   slideDuration = 3000,
   fadeDuration = 350,
   navbarHeight = '0px',
+  start = true,
+  revealDelay = 900,
   motion = true,
   optimizeCloudinary = true,
+  maxWidth = 2200,
 }: HelloHeroProps) {
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -59,8 +66,8 @@ export default function HelloHero({
 
   // Что реально грузим: оригинальные ссылки или уменьшенные копии
   const srcs = useMemo(
-    () => images.map((u) => (optimizeCloudinary ? optimizeSrc(u, MAX_WIDTH) : u)),
-    [images, optimizeCloudinary]
+    () => images.map((u) => (optimizeCloudinary ? optimizeSrc(u, maxWidth) : u)),
+    [images, optimizeCloudinary, maxWidth]
   );
 
   // Слабое устройство (deviceMemory есть в Chrome/Android): движение отключаем, остаётся кроссфейд
@@ -69,7 +76,8 @@ export default function HelloHero({
     if (typeof mem === 'number' && mem <= 2) setLowEnd(true);
   }, []);
 
-  // Предзагрузка + декодирование. Ссылки на Image храним, чтобы браузер не выбросил декодированный кадр
+  // Предзагрузка + декодирование. Ссылки на Image храним, чтобы браузер не выбросил декодированный кадр.
+  // Идёт и за закрытыми шторами, поэтому к открытию картины уже готовы
   useEffect(() => {
     let cancelled = false;
 
@@ -113,9 +121,9 @@ export default function HelloHero({
     return () => ro.disconnect();
   }, []);
 
-  // Смена слайдов
+  // Смена слайдов: начинается только после открытия штор
   useEffect(() => {
-    if (images.length <= 1) return;
+    if (!start || images.length <= 1) return;
 
     let timer: ReturnType<typeof setTimeout> | undefined;
     let fallback: ReturnType<typeof setTimeout> | undefined;
@@ -155,7 +163,7 @@ export default function HelloHero({
       clearTimeout(timer);
       clearTimeout(fallback);
     };
-  }, [images, slideDuration, fadeDuration]);
+  }, [start, images, slideDuration, fadeDuration]);
 
   // Какая картинка будет следующей: её слой монтируем заранее (с opacity 0), чтобы смена шла без «вспышки»
   let nextIndex: number | null = null;
@@ -176,11 +184,13 @@ export default function HelloHero({
       ref={sectionRef}
       className="helloHeroSection"
       data-motion={motionOn ? 'on' : 'off'}
+      data-ready={start}
       style={
         {
           '--nav-height': navbarHeight,
           '--fade-duration': `${fadeDuration}ms`,
           '--scan-duration': scanDuration,
+          '--reveal-delay': `${revealDelay}ms`,
         } as React.CSSProperties
       }
     >
@@ -240,7 +250,7 @@ export default function HelloHero({
           <span className="heroLogoMask">
             <img
               className="heroLogo"
-              src="/ILYA MEDVEDEV.svg"
+              src="/ilya-medvedev.svg"
               alt="Илья Медведев"
               draggable={false}
             />
