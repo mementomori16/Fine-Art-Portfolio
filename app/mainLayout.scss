@@ -11,3 +11,34 @@
   padding-bottom: 2rem;
   background: transparent !important;
 }
+
+/* ==========================================================================
+   MOBILE TAP RESET
+   Убирает синюю подсветку касания (Chrome/Android, Safari/iOS).
+   На десктопе её нет, поэтому там ничего не меняется.
+========================================================================== */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Кликабельные элементы: без задержки нажатия и зума двойным тапом,
+   без выделения текста при долгом нажатии */
+a,
+button,
+[role="button"],
+.artwork-card,
+.thumbnail {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+/* Рамка фокуса остаётся только для управления с клавиатуры.
+   После касания пальцем или клика мышью она не показывается */
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible),
+[role="button"]:focus:not(:focus-visible),
+.artwork-card:focus:not(:focus-visible) {
+  outline: none;
+}
