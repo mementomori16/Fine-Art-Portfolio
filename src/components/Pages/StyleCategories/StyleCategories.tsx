@@ -5,8 +5,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import { STYLE_CATEGORIES } from "../../../../app/data/paintings";
-import englishData from "../../../../public/locales/english.json";
 import "./styleCategories.scss";
+
+const slugToTitle = (slug: string) =>
+  slug.replace(/-/g, " ").replace(/\b\w/g, (c: string) => c.toUpperCase());
 
 const StyleCategories: React.FC = () => {
   const { t } = useTranslation();
@@ -15,7 +17,7 @@ const StyleCategories: React.FC = () => {
     <section className="home-categories-section">
       <header className="home-categories-header">
         <p className="home-categories-subtitle">
-          {String((englishData as any)?.styleCategories?.subtitle || "Paintings by Categories")}
+          {String(t("styleCategories.subtitle", "Paintings by Genre"))}
         </p>
         <div className="home-categories-divider" />
       </header>
@@ -25,25 +27,18 @@ const StyleCategories: React.FC = () => {
           const imageSrc = item.coverImage;
           if (!imageSrc) return null;
 
+          // ключ жанра: из titleKey (или slug), без префиксов
           const rawKey = String(item.titleKey || item.slug || "")
             .replace(/^styleCategories\./, "")
             .replace(/^styles\./, "");
 
-          let titleValue: any = (englishData as any)?.styleCategories?.[rawKey] || item.name;
+          // название берётся из выбранного языка; английский из данных только запасной вариант
+          const translatedTitle = String(
+            t(`styleCategories.${rawKey}`, {
+              defaultValue: item.name || slugToTitle(String(item.slug || rawKey)),
+            })
+          ).trim();
 
-          if (!titleValue) {
-            const fallback = item.slug === "landscape-still-life" 
-              ? "Landscape & Still Life" 
-              : item.slug === "memento-mori" 
-                ? "Memento Mori & Mortality" 
-                : item.slug === "heritage-antiques"
-                  ? "Heritage & Antiques"
-                  : item.slug.replace(/-/g, " ").replace(/\b\w/g, (c: string) => c.toUpperCase());
-            
-            titleValue = t(item.titleKey, fallback);
-          }
-
-          const translatedTitle = String(titleValue);
           const href = item.isUpcoming ? "#" : `/stylecategories/${item.slug}`;
 
           return (
@@ -68,7 +63,7 @@ const StyleCategories: React.FC = () => {
                     />
                     {item.isUpcoming && (
                       <div className="home-upcoming-badge">
-                        <span>{String((englishData as any)?.styleCategories?.comingSoon || "Coming Soon")}</span>
+                        <span>{String(t("styleCategories.comingSoon", "Coming Soon"))}</span>
                       </div>
                     )}
                   </div>
@@ -81,7 +76,7 @@ const StyleCategories: React.FC = () => {
                 <h3 className="home-category-title">{translatedTitle}</h3>
                 <span className="home-category-meta">
                   {item.isUpcoming
-                    ? String((englishData as any)?.styleCategories?.inPreparation || "In Preparation")
+                    ? String(t("styleCategories.inPreparation", "In Preparation"))
                     : String(t("common.viewGallery", "View Gallery"))}
                 </span>
               </div>

@@ -1,0 +1,239 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "paintings": "Peintures",
+    "video": "Vidéo",
+    "fine_art_school": "École ProFineArt",
+    "sub": {
+      "technique": "Par technique",
+      "genre": "Par genre"
+    }
+  },
+  "categories": {
+    "subtitle": "Peintures par technique",
+    "oil_paintings": "Huile",
+    "drawings": "Dessins",
+    "watercolors": "Aquarelles",
+    "other_works": "Patrimoine & Antiquités",
+    "tempera": "Tempera"
+  },
+  "styleCategories": {
+    "subtitle": "Peintures par genre",
+    "comingSoon": "Bientôt disponible",
+    "inPreparation": "En préparation",
+    "portrait": "Portrait",
+    "nude": "Nu",
+    "landscapeStillLife": "Paysage ",
+    "mementoMori": "Memento Mori & Mortalité",
+    "psychologicalRealism": "Réalisme psychologique",
+    "heritageAntiques": "Patrimoine & Antiquités"
+  },
+  "subcategories": {
+    "all": "Tout",
+    "portraits": "Portraits",
+    "nude": "Nu",
+    "general": "Toutes les œuvres"
+  },
+  "common": {
+    "viewGallery": "Voir la galerie"
+  },
+  "welcomehero": {
+    "royalGore": { "title": "Nu sur une chaise", "medium": "Huile sur toile, 80 x 120 cm" },
+    "portraitStudy": { "title": "Tchikatilo", "medium": "Huile sur toile 144 x 160 cm" },
+    "vanitas": { "title": "Crânes masculin et féminin", "medium": "Huile sur toile 120 x 60 cm" },
+    "compositionIV": { "title": "Portrait de Tereza", "medium": "Huile sur toile, 55 x 65 cm" },
+    "varnishedStudy": { "title": "Défiguré ", "medium": "Huile sur toile, 40 x 50 cm" },
+    "lenaScanned": { "title": "Nu tatoué sur un canapé", "medium": "Pastels à l'huile sur papier, 21 x 29 cm" },
+    "autopsia": { "title": "Autopsie d'une jeune femme suicidée", "medium": "Huile sur toile 65 x 45 cm" },
+    "imgp0914": { "title": "La Vierge et l'Enfant", "medium": "Tempera à l'œuf et feuilles d'or 24 carats sur panneau de bois apprêté, 20 x 30 x 3 cm" }
+  },
+  "video": {
+    "title": "vidéo du processus de peinture",
+    "subtitle": "Regarder la vidéo",
+    "artworkTitle": "Technique des beaux-arts et pratique d'atelier",
+    "curatorialMeta": "Démonstration et processus de peinture à l'huile"
+  },
+  "artwork": {
+    "medium": "Technique",
+    "dimensions": "Dimensions",
+    "share": "Partager l'œuvre",
+    "back": "Retour à la galerie",
+    "similar_works": "Œuvres similaires",
+    "oil_02": { "title": "Crânes masculin et féminin", "medium": "Huile sur toile", "size": "120 x 60 cm" },
+    "oil_03": { "title": "Autopsie d'une jeune femme suicidée", "medium": "Huile sur toile", "size": "65 x 45 cm" },
+    "oil_04": { "title": "Étude de nu", "medium": "Huile sur toile", "size": "80 x 120 cm" },
+    "oil_06": { "title": "La Danse", "medium": "Huile sur toile", "size": "111 x 200 cm" },
+    "oil_07": { "title": "Défiguré ", "medium": "Huile sur toile", "size": "40 x 50 cm" },
+    "oil_08": { "title": "Portrait de Tereza", "medium": "Huile sur toile", "size": "60 x 70 cm" },
+    "oil_09": { "title": "Ed Gein apparaissant sous les traits d'une femme", "medium": "Huile sur toile", "size": "75 x 100 cm" },
+    "oil_11": { "title": "Portrait d'une femme noyée", "medium": "Huile sur toile", "size": "40 x 50 cm" },
+    "oil_12": { "title": "Nu sur une chaise", "medium": "Huile sur toile", "size": "80 x 100 cm" },
+    "oil_13": { "title": "Le tueur en série Tchikatilo assassinant Lubov Zueva", "medium": "Huile sur toile", "size": "160 x 144 cm" },
+    "oil_14": { "title": "Vladimir Lénine", "medium": "Huile sur toile", "size": "39 x 45 cm" },
+    "oil_15": { "title": "Après-midi de février dans le Petit-Bâle", "medium": "Huile sur toile", "size": "47 x 65 cm" },
+    "drw_01": { "title": "Étude de pieds", "medium": "Pastels à l'huile sur papier", "size": "21 x 29.7 cm" },
+    "drw_02": { "title": "Portrait de Céline", "medium": "Pastels à l'huile sur papier", "size": "29.7 x 42 cm" },
+    "drw_03": { "title": "Perroquet", "medium": "Technique mixte sur carton", "size": "21 x 29.7 cm" },
+    "drw_04": { "title": "Nu au bord de la rivière", "medium": "Pastels à l'huile sur papier", "size": "21 x 29.7 cm" },
+    "drw_05": { "title": "Portrait d'Alina", "medium": "Pastels à l'huile sur papier", "size": "21 x 29.7 cm" },
+    "drw_06": { "title": "Portrait de Dorkas", "medium": "Pastels secs sur carton", "size": "21 x 29.7 cm" },
+    "drw_07": { "title": "Portrait de Joe Pesci", "medium": "Pastels secs sur papier teinté", "size": "29.7 x 42 cm" },
+    "drw_08": { "title": "Portrait d'Alla", "medium": "Graphite sur papier", "size": "29.7 x 42 cm" },
+    "drw_09": { "title": "E.T.", "medium": "Technique mixte sur carton", "size": "21 x 29.7 cm" },
+    "drw_10": { "title": "Nu sur le lit", "medium": "Graphite sur papier", "size": "21 x 29.7 cm" },
+    "drw_11": { "title": "Vue sur la mer en Espagne", "medium": "Pastels à l'huile sur papier", "size": "21 x 29.7 cm" },
+    "drw_12": { "title": "Portrait d'une jeune fille du Brésil", "medium": "Graphite sur papier", "size": "21 x 29.7 cm" },
+    "drw_13": { "title": "Anna, la militante pro-palestinienne", "medium": "Pastels à l'huile sur papier", "size": "21 x 29.7 cm" },
+    "drw_14": { "title": "Portrait de Vincent", "medium": "Pastels à l'huile sur papier", "size": "21 x 29.7 cm" },
+    "drw_15": { "title": "Vulve et anus", "medium": "Graphite sur papier", "size": "21 x 29.7 cm" },
+    "drw_16": { "title": "Portrait de Dorna", "medium": "Pastels à l'huile sur papier", "size": "21 x 29.7 cm" },
+    "drw_17": { "title": "Nu posant sur la plage", "medium": "Pastels à l'huile sur papier", "size": "21 x 29.7 cm" },
+    "drw_18": { "title": "Portrait d'Anna", "medium": "Crayon sur papier", "size": "40 x 55 cm" },
+    "drw_19": { "title": "Nu tatoué sur un canapé", "medium": "Pastels à l'huile sur papier", "size": "21 x 29.7 cm" },
+    "drw_20": { "title": "Portrait d'un vieux chimpanzé", "medium": "Pastels à l'huile sur papier", "size": "21 x 29.7 cm" },
+    "drw_21": { "title": "Vulve posant sur la plage", "medium": "Pastels à l'huile et marqueurs sur papier", "size": "21 x 29.7 cm" },
+    "drw_22": { "title": "Nu au bord de la rivière à Zurich", "medium": "Pastels à l'huile et marqueurs sur papier", "size": "29.7 x 42 cm" },
+    "drw_23": { "title": "Le pénis de Roger", "medium": "Pastels à l'huile et marqueurs sur papier", "size": "29.7 x 42 cm" },
+    "drw_24": { "title": "Portrait d'Olga", "medium": "Pastels à l'huile sur papier", "size": "21 x 29.7 cm" },
+    "drw_25": { "title": "Portrait de Hen", "medium": "Pastels à l'huile sur papier", "size": "21 x 29.7 cm" },
+    "drw_26": { "title": "Nu transgenre", "medium": "Graphite sur papier", "size": "29.7 x 42 cm" },
+    "drw_27": { "title": "Pénis posant", "medium": "Pastels à l'huile et marqueurs sur papier", "size": "21 x 29.7 cm" },
+    "drw_28": { "title": "Seins nus au bord du fleuve à Bâle", "medium": "Pastels à l'huile et marqueurs sur papier", "size": "21 x 29.7 cm" },
+    "drw_29": { "title": "Portrait de Lily endormie", "medium": "Pastels à l'huile sur papier", "size": "21 x 29.7 cm" },
+    "drw_30": { "title": "Portrait spontané à Bruxelles", "medium": "Pastels à l'huile sur papier", "size": "21 x 29.7 cm" },
+    "drw_31": { "title": "Lionceau", "medium": "Technique mixte sur papier", "size": "21 x 29.7 cm" },
+    "drw_32": { "title": "Portrait de Groben", "medium": "Pastels à l'huile et marqueurs sur papier", "size": "21 x 29.7 cm" },
+    "drw_33": { "title": "Nu dans la nature", "medium": "Pastels à l'huile et marqueurs sur papier", "size": "29.7 x 42 cm" },
+    "drw_34": { "title": "Fesses, anus et long pénis", "medium": "Pastels à l'huile et marqueurs sur papier", "size": "21 x 29.7 cm" },
+    "drw_35": { "title": "Croquis spontané à Birsfelden", "medium": "Graphite sur papier", "size": "29.7 x 42 cm" },
+    "drw_36": { "title": "Portrait d'une jeune fille aux yeux vairons", "medium": "Pastels à l'huile sur papier", "size": "21 x 29.7 cm" },
+    "drw_37": { "title": "Atomium", "medium": "Pastels à l'huile sur papier", "size": "21 x 29.7 cm" },
+    "drw_38": { "title": "Plage Solaris en Istrie, Croatie", "medium": "Pastels à l'huile sur papier", "size": "21 x 29.7 cm" },
+    "drw_39": { "title": "Ed Gein", "medium": "Graphite sur papier", "size": "21 x 29.7 cm" },
+    "wat_01": { "title": "Nu sur un canapé avec un crâne", "medium": "Aquarelle sur papier coton", "size": "36 x 26 cm" },
+    "wat_02": { "title": "Nu enceinte près des rochers en bord de mer", "medium": "Aquarelle sur papier coton", "size": "38 x 56 cm" },
+    "wat_03": { "title": "Nu avec crânes masculin et féminin", "medium": "Aquarelle sur papier coton", "size": "48 x 75 cm" },
+    "wat_04": { "title": "Maison Saint-Pierre dans le port de Jaffa", "medium": "Aquarelle sur papier coton", "size": "30 x 45 cm" },
+    "wat_05": { "title": "Nu dans l'obscurité", "medium": "Acrylique sur papier", "size": "29 x 42 cm" },
+    "wat_06": { "title": "Vue sur les ruines de Palestine occupée", "medium": "Aquarelle sur papier coton", "size": "32 x 43 cm" },
+    "wat_07": { "title": "Aqueduc romain en ruines de Césarée", "medium": "Aquarelle sur papier coton", "size": "26 x 45 cm" },
+    "wat_08": { "title": "Les lions porte-écus de Bâle", "medium": "Acrylique sur papier", "size": "21 x 29.7 cm" },
+    "wat_09": { "title": "Pont du Milieu à Bâle", "medium": "Acrylique sur papier", "size": "21 x 29.7 cm" },
+    "wat_10": { "title": "Porte de Spalen à Bâle", "medium": "Acrylique sur papier", "size": "21 x 29.7 cm" },
+    "wat_11": { "title": "Vue de la cathédrale depuis la promenade du Petit-Bâle", "medium": "Acrylique sur papier", "size": "21 x 29.7 cm" },
+    "wat_12": { "title": "Vue du vieux Jaffa depuis le port des pêcheurs", "medium": "Acrylique sur papier", "size": "21 x 29.7 cm" },
+    "wat_13": { "title": "Vue de l'église Saint-Pierre et de la mosquée Al-Bahr depuis la promenade du vieux Jaffa", "medium": "Acrylique sur papier", "size": "21 x 29.7 cm" },
+    "wat_14": { "title": "L'étang de la Petite Camargue Alsacienne en France", "medium": "Acrylique sur papier", "size": "21 x 29.7 cm" },
+    "wat_15": { "title": "Midi sur la Barfüsserplatz, Bâle", "medium": "Acrylique sur papier", "size": "21 x 29.7 cm" },
+    "wat_16": { "title": "Vieille porte", "medium": "Acrylique sur papier", "size": "21 x 29.7 cm" },
+    "wat_17": { "title": "Relations sexuelles en plein air à Tel-Aviv", "medium": "Aquarelle sur papier", "size": "21 x 29.7 cm" },
+    "wat_18": { "title": "Césarée", "medium": "Aquarelle sur papier coton", "size": "29 x 42 cm" },
+    "oth_01": { "title": "Christ Pantocrator", "medium": "Tempera à l'œuf et feuilles d'or 24 carats sur panneau de bois apprêté", "size": "30 x 40 x 3 cm" },
+    "oth_02": { "title": "La Vierge et l'Enfant", "medium": "Tempera à l'œuf et feuilles d'or 24 carats sur panneau de bois apprêté", "size": "20 x 30 x 3 cm" },
+    "oth_03": { "title": "Hermaphrodite endormi", "medium": "Tempera à l'œuf sur marbre romain antique apprêté", "size": "9 x 7 x 1.5 cm" },
+    "oth_04": { "title": "Présentation de Jésus au Temple", "medium": "Tempera à l'œuf sur panneau de bois apprêté", "size": "47 x 57 x 3.5 cm" },
+    "oth_05": { "title": "Vénus de Lely", "medium": "Tempera à l'œuf sur marbre romain antique apprêté", "size": "8 x 15 x 3.5 cm" },
+    "oth_06": { "title": "La Vierge Marie à l'Annonciation", "medium": "Tempera à l'œuf sur panneau de bois apprêté", "size": "36 x 47 x 2 cm" },
+    "oth_07": { "title": "Gorgone Méduse", "medium": "Tempera à l'œuf sur marbre romain antique apprêté", "size": "4.5 x 5.5 x 2.3 cm" },
+    "oth_08": { "title": "Ange de Dieu", "medium": "Tempera à l'œuf sur pierre apprêtée", "size": "11 x 14 x 5 cm" },
+    "oth_09": { "title": "Prophète Moïse", "medium": "Tempera à l'œuf sur panneau de bois apprêté", "size": "36 x 46 x 2 cm" },
+    "oth_10": { "title": "Saint inconnu. Icône vieillie artificiellement", "medium": "Tempera à l'œuf et feuilles d'or 24 carats sur panneau de bois apprêté", "size": "14.6x 20.3 x 2 cm" },
+    "psy_01": { "title": "Repas McDonald's à Moscou, place Pouchkine", "medium": "Huile sur toile", "size": "145 x 191 cm" },
+    "psy_02": { "title": "Monde froid", "medium": "Huile sur toile", "size": "70.5 x 104.5 cm" },
+    "psy_03": { "title": "Amitié", "medium": "Huile sur toile", "size": "190 x 135 cm" }
+  },
+  "about": {
+    "title": "À propos",
+    "bioParagraph": "Ilya Medvedev (né en 1981) est un artiste contemporain et pédagogue établi en Suisse, dont la pratique multidisciplinaire englobe la peinture à l'huile grand format, le dessin, la photographie et les installations in situ. Vivant et travaillant actuellement à Bâle, en Suisse, Medvedev construit un univers visuel brut qui explore l'anatomie humaine, les traditions classiques et les réalités psychologiques de la condition humaine.",
+    "section1Title": "Origines et racines théâtrales",
+    "section1Text1": "Les fondements de cet élan artistique remontent à d'intenses rencontres durant l'enfance avec la mise en scène visuelle et la forme classique, vers l'âge de six ans. Enfant d'une figure dirigeante du théâtre de marionnettes de Tachkent, Medvedev a passé des années formatrices au cœur d'un environnement fait de narration dramatique, de répétitions à huis clos et de fabrication physique de figurines.",
+    "section1Text2": "Parallèlement, les premières impulsions créatives personnelles ont été éveillées par des ouvrages marquants conservés au sein du foyer familial. Medvedev a commencé à copier de manière obsessionnelle des compositions classiques tirées d'un livre de gravures de Rembrandt, trouvant un motif récurrent de prédilection dans l'imagerie intense de la crucifixion. À cela s'ajoutait une fascination pour la forme physique brute, nourrie par l'esquisse de planches anatomiques de nus issues d'un manuel médical, ainsi que par la copie des peintures à l'huile préhistoriques, dramatiques et texturées, de l'illustrateur tchèque Zdeněk Burian. Ces premiers piliers esthétiques ont fusionné un intérêt durable pour la gravité classique, l'anatomie brute et la mise en scène visuelle délibérée.",
+    "section2Title": "Méthodologie d'atelier et prototype mis en scène",
+    "section2Text": "La pratique d'atelier mature de Medvedev opère à la croisée de la performance et de la composition, reposant sur un processus connu dans l'art contemporain sous le nom de travail à partir de références photographiques construites. Au sein de l'atelier, l'artiste orchestre des installations physiques complexes à l'aide de modèles vivants, de crânes humains anatomiques, d'éléments de nature morte sélectionnés et d'accessoires spécifiques — un processus qui reflète directement une familiarité précoce avec l'assemblage théâtral. Ces scènes méticuleusement mises en scène sont documentées par une photographie précise, servant de prototype visuel définitif. Medvedev transpose ensuite ces références photographiques sur la toile finale, équilibrant des agencements théâtraux hautement stylisés avec une exécution froide et précise.",
+    "section3Title": "Observation spontanée dans l'espace public",
+    "section3Text": "En contraste direct avec l'espace contrôlé de l'atelier, le dessin d'après modèle vivant en séance constitue un pilier vital et spontané de la pratique. Medvedev quitte l'espace de travail traditionnel pour dessiner en temps réel au sein d'environnements publics dynamiques, notamment dans les rues de la ville, les parcs, les plages et les lieux fréquentés. Ces séances publiques privilégient l'immédiateté brute de l'instant. Dessiner directement d'après nature établit un contact viscéral et sans filtre avec la personnalité unique du sujet. Le lien énergétique forgé entre l'artiste et l'individu durant cet instant précis devient le sens profond de l'œuvre, capturant des réalités psychologiques fugaces qui ne peuvent être simulées par un matériel de référence secondaire ou artificiel.",
+    "section4Title": "Parcours académique et évolution stylistique",
+    "section4Text1": "La maîtrise technique et la profondeur théorique qui sous-tendent cette pratique ont été affinées au fil d'un parcours académique rigoureux en plusieurs étapes. La formation officielle de Medvedev a débuté par une spécialisation approfondie en peinture d'icônes byzantines au Patriarcat grec-orthodoxe de Jérusalem, apportant une maîtrise fondamentale des médiums techniques traditionnels, de la précision et des techniques historiques de glacis. Cette discipline classique s'est ensuite élargie aux contextes académiques contemporains, avec l'obtention d'un baccalauréat en éducation artistique (B.Ed. FA) à l'Académie des arts de Beit Berl à Kfar Saba, suivi d'un master en beaux-arts (MFA) de la prestigieuse Académie des beaux-arts et du design Bezalel à Jérusalem.",
+    "section4Text2": "Tout au long de ce parcours académique et d'une période ultérieure de cinq ans en tant que tatoueur professionnel, le vocabulaire de Medvedev n'a cessé d'évoluer. L'artiste a approfondi l'esthétique délibérément brute et transgressive du mouvement « Bad Painting », utilisant une touche expressive et sans concession pour défier les normes académiques conventionnelles, tout en affûtant une sensibilité graphique précise à l'anatomie humaine.",
+    "section4Text3": "La pratique contemporaine synthétise ces voies parallèles en un profond réalisme psychologique. L'imagerie aborde des territoires viscéraux à travers des séries récurrentes consacrées au grotesque, à l'anatomie des autopsies, au portrait de nu et aux interprétations modernes du memento mori. Cette production visuelle s'inscrit à l'intersection définitive de la révérence classique et de l'audace contemporaine, puisant des repères structurels chez les maîtres anciens et dans le cinéma d'horreur, tout en étant portée par des univers sonores variés allant des compositions classiques aux textures de la musique électronique underground et des musiques lourdes.",
+    "section4Text4": "Parallèlement à un fonds d'atelier prolifique de plus de mille œuvres professionnelles, Medvedev canalise cet héritage technique et académique dans un projet éducatif privé intensif, <a href=\"https://profineart.ch\" target=\"_blank\" rel=\"noopener noreferrer\">Profineart Studio Basel</a>, offrant un mentorat spécialisé en beaux-arts dans toute la région bâloise.",
+    "exhibitionsTitle": "Expositions sélectionnées",
+    "viewOnArtfacts": "Suivre sur Artfacts",
+    "exhibitionsList": [
+      { "year": "2025", "title": "Groupe : Dreams and Memories", "location": "Meta Space Gallery, Londres" },
+      { "year": "2013", "title": "Cargo Cult", "location": "Musée d'art contemporain MoBY, Bat Yam" },
+      { "year": "2012", "title": "Bezalel MFA Open Studio", "location": "Ateliers MFA Bezalel, Tel-Aviv" },
+      { "year": "2016", "title": "Groupe : A Way of Thinking", "location": "Serge Tirosh Contemporary, Jaffa" },
+      { "year": "2011", "title": "Solo : Distorted Idyll", "location": "Serge Tirosh Contemporary, Jaffa" },
+      { "year": "2010", "title": "Solo : Exposition de fin d'études", "location": "HaMidrasha - Faculté des arts, Kfar Saba" },
+      { "year": "2011", "title": "Groupe : Rodina", "location": "Centre contemporain HaPiramida, Haïfa" },
+      { "year": "2012", "title": "Groupe : Without Money", "location": "Galerie Gross, Tel-Aviv" },
+      { "year": "2010", "title": "Groupe : Story Slam", "location": "Galerie Kishon, Tel-Aviv" },
+      { "year": "2010", "title": "Art mural", "location": "Lycée Herzliya, Tel-Aviv" }
+    ]
+  },
+  "footer": {
+    "company": {
+      "name": "Ilya Medvedev"
+    },
+    "explore": {
+      "title": "Explorer",
+      "home": "Accueil",
+      "about": "À propos",
+      "video": "Vidéo",
+      "studio": "ProFineArt Studio Basel"
+    },
+    "connect": {
+      "title": "Contact",
+      "email": "info@profineart.ch"
+    },
+    "payments": {
+      "title": "Paiements",
+      "processedBy": "Traitement sécurisé par",
+      "methods": ["Visa", "Mastercard", "Google Pay", "Apple Pay", "Twint", "Klarna"]
+    },
+    "bottom": {
+      "copyright": "© 2012-2026 Ilya Medvedev.",
+      "rights": "Tous droits réservés.",
+      "legal": "Mentions légales",
+      "terms": "Conditions d'utilisation"
+    },
+    "actions": {
+      "install": "Installer l'application web"
+    }
+  },
+  "legal_info": {
+    "title": "Mentions légales",
+    "data_protection": {
+      "title": "Protection des données",
+      "content": "Conformément à la loi fédérale suisse sur la protection des données (LPD) et au RGPD, les données sont traitées exclusivement pour les services nécessaires. Des données techniques (adresse IP, type d'appareil) sont collectées à des fins de sécurité. Aucun suivi publicitaire n'est utilisé."
+    },
+    "hosting": {
+      "title": "Hébergement et localisation des données",
+      "content": "Cette application est hébergée sur Google Cloud (Firebase) avec des serveurs situés à Zurich, en Suisse, garantissant que les données restent soumises à la juridiction suisse."
+    },
+    "user_rights": {
+      "title": "Vos droits",
+      "content": "Vous disposez à tout moment d'un droit d'accès, de rectification ou d'effacement de vos données personnelles. Veuillez utiliser le formulaire de contact de ce site pour exercer ces droits."
+    }
+  },
+  "terms_of_use": {
+    "title": "Conditions d'utilisation",
+    "intellectual_property": {
+      "title": "Propriété intellectuelle",
+      "content": "L'ensemble des œuvres d'art, images et contenus sont la propriété exclusive d'Ilya Medvedev. Tous droits réservés."
+    },
+    "no_unauthorized_use": {
+      "title": "Utilisations interdites",
+      "content": "La copie, le téléchargement ou la reproduction des œuvres sous quelque forme que ce soit sont strictement interdits. Pour toute demande de licence ou d'acquisition, veuillez contacter directement la direction du site."
+    },
+    "liability": {
+      "title": "Responsabilité",
+      "content": "La galerie fournit les contenus « en l'état » et décline toute responsabilité en cas d'interruption technique ou d'inexactitude."
+    },
+    "governing_law": {
+      "title": "Droit applicable",
+      "content": "Le présent accord est régi par le droit suisse. Le for juridique est Bâle."
+    }
+  }
+}

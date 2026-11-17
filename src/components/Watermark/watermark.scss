@@ -1,0 +1,101 @@
+.wm {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none; // не мешает кликам, зуму и перетаскиванию
+  user-select: none;
+  overflow: hidden;
+}
+
+/* ───── Подпись внизу ───── */
+.wm-sig {
+  position: absolute;
+  bottom: var(--wm-off, 8px);
+  width: var(--wm-w, 100px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--wm-gap, 4px);
+
+  &--bottom-center {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &--bottom-right {
+    right: var(--wm-off, 8px);
+  }
+
+  &--bottom-left {
+    left: var(--wm-off, 8px);
+  }
+}
+
+// Иконка: круг с тонким светлым ободком и тёмной тенью, как выпуклая печать
+.wm-icon {
+  display: block;
+  width: var(--wm-icon, 20px);
+  height: var(--wm-icon, 20px);
+  border-radius: 50%;
+  object-fit: cover;
+  opacity: 0.78;
+  box-shadow: 0 0 0 0.6px rgba(255, 255, 255, 0.55), 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+// Имя: белое, полупрозрачное, светлый край сверху-слева и тёмный снизу-справа (эффект выпуклости).
+// opacity() внутри filter: края остаются чёткими, а не теряются вместе с заливкой
+.wm-logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  filter: brightness(0) invert(1) opacity(0.55) drop-shadow(-0.6px -0.6px 0 #ffffff) drop-shadow(0.8px 0.9px 0 #000000);
+}
+
+.wm-line {
+  display: block;
+  width: 28%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.55);
+}
+
+.wm-site {
+  font-size: var(--wm-fs, 8px);
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-indent: 0.24em; // компенсирует хвост разрядки: текст по центру
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.6);
+  text-shadow: -0.5px -0.5px 0 rgba(255, 255, 255, 0.55), 0.7px 0.8px 0 rgba(0, 0, 0, 0.7);
+}
+
+/* ───── Диагональная сетка ───── */
+.wm-tiles {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: translate(-50%, -50%) rotate(-28deg);
+}
+
+.wm-row {
+  display: flex;
+  flex: 0 0 auto;
+}
+
+.wm-cell {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wm-tile {
+  display: block;
+  max-width: none;
+  filter: brightness(0) invert(1) opacity(0.2) drop-shadow(-0.5px -0.5px 0 #ffffff) drop-shadow(0.7px 0.8px 0 #000000);
+}

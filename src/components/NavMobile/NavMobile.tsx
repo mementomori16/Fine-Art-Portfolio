@@ -62,8 +62,8 @@ const NAV_ITEMS: NavItem[] = [
 const LANGUAGES = [
   { code: "en", label: "EN" },
   { code: "de", label: "DE" },
-  { code: "fr", label: "FR" },
-  { code: "ru", label: "RU" }
+  { code: "fr", label: "FR" }
+  
 ];
 
 const NavMobile = () => {

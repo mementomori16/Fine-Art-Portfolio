@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import "./artworkInfo.scss";
 
@@ -26,6 +26,14 @@ interface Props {
 
 export default function ArtworkInfo({ painting, currentImageIndex = 0, setCurrentImageIndex }: Props) {
   const { t, i18n } = useTranslation();
+  const [isShareSupported, setIsShareSupported] = useState(false);
+
+  // Безопасная проверка поддержки Web Share API только на клиенте (устраняет Hydration Error)
+  useEffect(() => {
+    if (typeof window !== "undefined" && !!navigator.share) {
+      setIsShareSupported(true);
+    }
+  }, []);
 
   if (!painting) {
     return <div className="artwork-info-loading-skeleton" />;
@@ -39,13 +47,12 @@ export default function ArtworkInfo({ painting, currentImageIndex = 0, setCurren
     painting.thumbnail3
   ].filter((url): url is string => !!url);
 
-const titleKey = `artwork.${painting.id}.title`;
-const mediumKey = `artwork.${painting.id}.medium`;
-const sizeKey = `artwork.${painting.id}.size`;
-const descriptionKey = painting.descriptionKey || `artwork.${painting.id}.description`;
+  const titleKey = `artwork.${painting.id}.title`;
+  const mediumKey = `artwork.${painting.id}.medium`;
+  const sizeKey = `artwork.${painting.id}.size`;
+  const descriptionKey = painting.descriptionKey || `artwork.${painting.id}.description`;
   
   const hasDescription = i18n.exists(descriptionKey) && t(descriptionKey) !== descriptionKey;
-  const isShareSupported = typeof window !== "undefined" && !!navigator.share;
 
   const handleShare = async () => {
     if (!isShareSupported) return;

@@ -72,6 +72,7 @@
       "oil_13": { "title": "Serial Killer Chikatilo Murdering Lubov Zueva", "medium": "Oil on Canvas", "size": "160 x 144 cm" },
       "oil_14": { "title": "Vladimir Lenin", "medium": "Oil on Canvas", "size": "39 x 45 cm" },
       "oil_15": { "title": "February Afternoon in Kleinbasel", "medium": "Oil on Canvas", "size": "47 x 65 cm" },
+      "oil_16": { "title": "Claraplatz in Basel", "medium": "Oil on Paper", "size": "29.7 x 42 cm" },
 
       
       
@@ -114,6 +115,9 @@
       "drw_37": { "title": "Atomium", "medium": "Oil Pastels on Paper", "size": "21 x 29.7 cm" },
       "drw_38": { "title": "Solaris Beach in Istria, Croatia", "medium": "Oil Pastels on Paper", "size": "21 x 29.7 cm" },
       "drw_39": { "title": "Ed Gein", "medium": "Graphite on Paper", "size": "21 x 29.7 cm" },
+      "drw_40": { "title": "Nicolas Cage", "medium": "Soft Pastels on Paper", "size": "21 x 29.7 cm" },
+      "drw_41": { "title": "Judge from Berlin", "medium": "Oil Pastels on Paper", "size": "21 x 29.7 cm" },
+
 
 
 
@@ -157,7 +161,13 @@
 
       "psy_01": { "title": "McDonald's Meal in Moscow, Pushkin Square", "medium": "Oil on Canvas", "size": "145 x 191 cm" },
       "psy_02": { "title": "Cold World", "medium": "Oil on Canvas", "size": "70.5 x 104.5 cm" },
-      "psy_03": { "title": "Friendship", "medium": "Oil on Canvas", "size": "190 x 135 cm" }
+      "psy_03": { "title": "Friendship", "medium": "Oil on Canvas", "size": "190 x 135 cm" },
+      "psy_04": { "title": "Talking about Underground Music", "medium": "Oil on Canvas", "size": "120 x 100 cm" },
+      "psy_05": { "title": "Driven Boy with a Machine Gun", "medium": "Oil on Canvas", "size": "143 x 193 cm" },
+      "psy_06": { "title": "Doggys", "medium": "Oil on Canvas", "size": "143 x 193 cm" },
+      "psy_07": { "title": "Lost Teacher", "medium": "Oil on Canvas", "size": "120 x 100 cm" }
+
+
 
     },
   

@@ -272,6 +272,16 @@ export const PAINTINGS: Painting[] = [
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1791054706/IMG_8563paint-ph2026-500kb_lja2dj.jpg"
     ),
   },
+  {
+    id: "oil_16",
+    slug: "landscape",
+    category: "oil-paintings",
+    style: "landscape",
+    tags: ["landscape"],
+    images: makeImageSet(
+      "https://res.cloudinary.com/dpayqcrg5/image/upload/v1794908023/IMG_3206-2026-500kb_dzu18l.jpg"
+    ),
+  },
 
   // =========================
   // DRAWINGS
@@ -705,6 +715,28 @@ export const PAINTINGS: Painting[] = [
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1792150132/IMG_3260-500kb_olvdjk.jpg"
     ),
   },
+  {
+    id: "drw_40",
+    slug: "nicolas-cage-portrait",
+    category: "drawings",
+    subcategory: "portrait",
+    style: "portrait",
+    tags: ["portrait"],
+    images: makeImageSet(
+      "https://res.cloudinary.com/dpayqcrg5/image/upload/v1794773795/nikki_22_photoshop2026-2-500kb_pk49lj.jpg"
+    ),
+  },
+  {
+    id: "drw_41",
+    slug: "judge-portrait",
+    category: "drawings",
+    subcategory: "portrait",
+    style: "portrait",
+    tags: ["portrait"],
+    images: makeImageSet(
+      "https://res.cloudinary.com/dpayqcrg5/image/upload/v1794864748/IMG_3247ph-26_qkhhkk.jpg"
+    ),
+  },
 
   // =========================
   // WATERCOLORS
@@ -1009,6 +1041,8 @@ export const PAINTINGS: Painting[] = [
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1792244691/3ph-26_fz4haa.png"
     ),
   },
+
+
 // =========================
 // PSYCHOLOGICAL REALISM 
 // =========================
@@ -1023,27 +1057,88 @@ export const PAINTINGS: Painting[] = [
   ),
   thumbnail:
     "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032416/IMG_5405-500kb_xeo7dh.jpg",
-  isFeatured: true,
+ 
+  thumbnail2:
+      "https://res.cloudinary.com/dpayqcrg5/image/upload/v1794780473/IMG_5425ph-2026-500kb_vhnhxl.jpg",
+  
 },
+ 
 {
   id: "psy_02",
-  slug: "expressive-figure-study",
+  slug: "psychological-realism",
   category: "oil-paintings",
   style: "psychological-realism, landscape",
-  tags: ["psychological-realism",],
+  tags: ["psychological-realism","oil"],
   images: makeImageSet(
     "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032409/Cold_World_2011.ph2026-500kb_uzoqft.jpg"
   ),
+  thumbnail:
+    "https://res.cloudinary.com/dpayqcrg5/image/upload/v1794778932/photoshoped-2026-500kb_mp6lpf.jpg",
+  isFeatured: true,
 },
 {
   id: "psy_03",
-  slug: "psychological-portrait-study-2",
+  slug: "psychological-realism",
   category: "oil-paintings",
   style: "psychological-realism",
-  tags: ["psychological-realism","portrait"],
+  tags: ["psychological-realism","portrait","oil"],
   images: makeImageSet(
     "https://res.cloudinary.com/dpayqcrg5/image/upload/v1792083937/IMG_5474_photoshoped_2025-500kb_c0mv4n.jpg"
-  )
+  ),
+  thumbnail:
+    "https://res.cloudinary.com/dpayqcrg5/image/upload/v1794775887/IMG_5476-500kb_ohbtnv.jpg",
+  isFeatured: true,
+},
+{
+  id: "psy_04",
+  slug: "psychological-realism",
+  category: "oil-paintings",
+  style: "psychological-realism",
+  tags: ["psychological-realism","portrait","oil"],
+  images: makeImageSet(
+    "https://res.cloudinary.com/dpayqcrg5/image/upload/v1794774876/Talking_about_undergraund_music_2011._Oil_on_canvas_120_x_100_cm_photoshoped_2026-500kb_jc040r.jpg",
+  ),
+      thumbnail:
+    "https://res.cloudinary.com/dpayqcrg5/image/upload/v1794909711/IMG_8456-ph2026-500kb_cinoeu.jpg",
+  
+},
+{
+  id: "psy_05",
+  slug: "psychological-realism",
+  category: "oil-paintings",
+  style: "psychological-realism",
+  tags: ["psychological-realism","portrait", "oil", "memento-mori"],
+  images: makeImageSet(
+    "https://res.cloudinary.com/dpayqcrg5/image/upload/v1794776908/Drived_boy_with_a_machine_gun_in_his_hands._Oil_on_canvas_143_x_193_cm._2010_ph.2026-500kb_mp9ibx.jpg"
+  ),
+    thumbnail:
+      "https://res.cloudinary.com/dpayqcrg5/image/upload/v1794849304/IMG_5504-ph2026-700kb_fegdqu.jpg",
+  
+},
+{
+  id: "psy_06",
+  slug: "psychological-realism",
+  category: "oil-paintings",
+  style: "psychological-realism",
+  tags: ["psychological-realism","portrait", "oil"],
+  images: makeImageSet(
+    "https://res.cloudinary.com/dpayqcrg5/image/upload/v1779979449/IMG_5294photoshoped_2026-500kb_sm9hwq.jpg"
+  ),
+    thumbnail:
+      "https://res.cloudinary.com/dpayqcrg5/image/upload/v1794866436/IMG_5327_myejbr.jpg",
+        thumbnail2:
+      "https://res.cloudinary.com/dpayqcrg5/image/upload/v1794867010/IMG_5384-ph2026-500kb_gkjnpx.jpg",
+  
+},
+{
+  id: "psy_07",
+  slug: "psychological-realism",
+  category: "oil-paintings",
+  style: "psychological-realism",
+  tags: ["psychological-realism","portrait", "oil"],
+  images: makeImageSet(
+    "https://res.cloudinary.com/dpayqcrg5/image/upload/v1794909719/IMG_9810repaired2025-ph2026-500kb_gegbqi.jpg"
+  ),
 }
 ];
 
@@ -1116,7 +1211,7 @@ export const STYLE_CATEGORIES: StyleCategory[] = [
     slug: "psychological-realism",
     titleKey: "styleCategories.psychologicalRealism",
     name: "Psychological Realism",
-    coverImage: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1779979449/IMG_5294photoshoped_2026-500kb_sm9hwq.jpg",
+    coverImage: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1794863514/The_Gym-detail-ph2026-500kb_joz5rd.jpg",
     isUpcoming: false,
   },
   {
