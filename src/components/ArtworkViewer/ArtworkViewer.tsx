@@ -3,6 +3,8 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import ViewGallery from "../ViewGallery/ViewGallery";
+import ProgressiveImage from "../common/ProgressiveImage";
+import { applyWatermark } from "../../utils/paintingsAdapter";
 import "./artworkViewer.scss";
 
 interface PaintingData {
@@ -38,7 +40,6 @@ export default function ArtworkViewer({ painting, currentImageIndex, onBackActio
     );
   }
 
-  // Standardized list of all available images
   const galleryArray = [
     painting.images?.large,
     painting.thumbnail,
@@ -49,7 +50,8 @@ export default function ArtworkViewer({ painting, currentImageIndex, onBackActio
   const activeImageSrc = galleryArray[currentImageIndex] || galleryArray[0] || "";
 
   const galleryImagesFormatted = galleryArray.map((url) => ({
-    url,
+    url: applyWatermark(url),
+    fallbackUrl: url,
     title: t(`artwork.${painting.id}.title`),
     date: t(`artwork.${painting.id}.size`),
     thumbnail: url
@@ -72,11 +74,11 @@ export default function ArtworkViewer({ painting, currentImageIndex, onBackActio
       <div className="main-image-exhibit-container">
         <div className="viewer-ambient-glow" />
         <div className="viewer-spotlight-beam" />
-        
+
         <div className="viewer-luxury-edge" onClick={() => setOpen(true)}>
           <div className="viewer-canvas-container">
             {activeImageSrc ? (
-              <img
+              <ProgressiveImage
                 src={activeImageSrc}
                 alt={t(`artwork.items.${painting.id}.title`)}
                 className="viewer-masterpiece-image"

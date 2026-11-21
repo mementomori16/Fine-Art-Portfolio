@@ -10,6 +10,7 @@ import "./viewGallery.scss";
 
 interface ImageData {
   url: string;
+  fallbackUrl?: string;
   title: string;
   date: string;
   thumbnail?: string;
@@ -22,7 +23,7 @@ interface ViewGalleryProps {
 }
 
 const SWIPE_THRESHOLD = 50;
-const ZOOMED_SCALE = 1.02; // выше этого значения картина считается увеличенной
+const ZOOMED_SCALE = 1.02;
 
 const ViewGallery: React.FC<ViewGalleryProps> = ({
   images,
@@ -31,15 +32,12 @@ const ViewGallery: React.FC<ViewGalleryProps> = ({
 }) => {
   const [currentIndex, setCurrentIndex] = useState(currentImageId);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [opacity, setOpacity] = useState(1);
+  const [activeSrc, setActiveSrc] = useState("");
   const [maxScale, setMaxScale] = useState(5);
 
   const containerRef = useRef<HTMLDivElement | null>(null);
   const transformRef = useRef<ReactZoomPanPinchRef | null>(null);
-  const switchTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const isSwitching = useRef(false);
 
-  // Состояние текущего жеста пальцем (ref: не сбрасывается при ререндере)
   const gesture = useRef({
     active: false,
     startX: 0,
@@ -50,18 +48,10 @@ const ViewGallery: React.FC<ViewGalleryProps> = ({
 
   const transitionToImage = (index: number) => {
     if (index === currentIndex) return;
-    if (switchTimer.current) clearTimeout(switchTimer.current);
-
-    isSwitching.current = true;
-    setOpacity(0);
-    setIsLoaded(false);
-    switchTimer.current = setTimeout(() => {
-      setCurrentIndex(index);
-      transformRef.current?.resetTransform(0);
-    }, 400);
+    setCurrentIndex(index);
+    transformRef.current?.resetTransform(0);
   };
 
-  // Всегда актуальные значения для нативных обработчиков (они регистрируются один раз)
   const latest = useRef({ currentIndex, length: images.length, transitionToImage });
   latest.current = { currentIndex, length: images.length, transitionToImage };
 
@@ -69,7 +59,6 @@ const ViewGallery: React.FC<ViewGalleryProps> = ({
     const el = containerRef.current;
     if (!el) return;
 
-    // Масштаб читаем из CSS transform самой картинки: не зависит от версии библиотеки
     const getScale = (): number => {
       const content = el.querySelector<HTMLElement>(".react-transform-component");
       if (!content) return 1;
@@ -82,7 +71,6 @@ const ViewGallery: React.FC<ViewGalleryProps> = ({
 
     const onStart = (e: TouchEvent) => {
       if (e.touches.length === 1) {
-        // новый жест
         gesture.current = {
           active: true,
           startX: e.touches[0].clientX,
@@ -91,7 +79,6 @@ const ViewGallery: React.FC<ViewGalleryProps> = ({
           wasZoomed: getScale() > ZOOMED_SCALE,
         };
       } else {
-        // добавился второй палец: это щипок
         gesture.current.maxTouches = Math.max(
           gesture.current.maxTouches,
           e.touches.length
@@ -100,22 +87,19 @@ const ViewGallery: React.FC<ViewGalleryProps> = ({
     };
 
     const onEnd = (e: TouchEvent) => {
-      if (e.touches.length > 0) return; // ещё остались пальцы: жест не закончен
+      if (e.touches.length > 0) return;
 
       const g = gesture.current;
       if (!g.active) return;
       g.active = false;
 
-      // зум двумя пальцами, перемещение увеличенной картины или идущее переключение: не свайп
       if (g.maxTouches > 1) return;
       if (g.wasZoomed || getScale() > ZOOMED_SCALE) return;
-      if (isSwitching.current) return;
 
       const t = e.changedTouches[0];
       const dx = g.startX - t.clientX;
       const dy = g.startY - t.clientY;
 
-      // длинное и преимущественно горизонтальное движение
       if (Math.abs(dx) < SWIPE_THRESHOLD || Math.abs(dx) < Math.abs(dy) * 1.5) {
         return;
       }
@@ -129,7 +113,6 @@ const ViewGallery: React.FC<ViewGalleryProps> = ({
       gesture.current.active = false;
     };
 
-    // capture: обработчики срабатывают раньше библиотеки зума, и она не может «съесть» событие
     const opts = { capture: true, passive: true } as const;
     el.addEventListener("touchstart", onStart, opts);
     el.addEventListener("touchend", onEnd, opts);
@@ -143,30 +126,43 @@ const ViewGallery: React.FC<ViewGalleryProps> = ({
   }, []);
 
   useEffect(() => {
-    if (!images[currentIndex]) return;
+    const current = images[currentIndex];
+    if (!current) return;
+
+    setIsLoaded(false);
+    setActiveSrc(current.url);
+
     const img = new Image();
-    img.src = images[currentIndex].url;
-    img.onload = () => {
-      const isSmall = img.width < 1000 || img.height < 1000;
+    img.src = current.url;
+
+    if (img.complete && img.naturalWidth > 0) {
+      const isSmall = img.naturalWidth < 1000 || img.naturalHeight < 1000;
       setMaxScale(isSmall ? 3 : 6);
       setIsLoaded(true);
-      setOpacity(1);
-      isSwitching.current = false;
+      return;
+    }
+
+    img.onload = () => {
+      const isSmall = img.naturalWidth < 1000 || img.naturalHeight < 1000;
+      setMaxScale(isSmall ? 3 : 6);
+      setIsLoaded(true);
     };
+
     img.onerror = () => {
-      isSwitching.current = false;
+      const fallback = current.fallbackUrl || current.thumbnail || "";
+      if (fallback && fallback !== current.url) {
+        setActiveSrc(fallback);
+      }
+      setIsLoaded(true);
     };
+
     return () => {
       img.onload = null;
       img.onerror = null;
     };
   }, [currentIndex, images]);
 
-  useEffect(() => {
-    return () => {
-      if (switchTimer.current) clearTimeout(switchTimer.current);
-    };
-  }, []);
+  const currentImg = images[currentIndex];
 
   return (
     <div className="viewGallery">
@@ -189,12 +185,15 @@ const ViewGallery: React.FC<ViewGalleryProps> = ({
           {({ zoomIn, zoomOut }) => (
             <>
               <TransformComponent>
-                {images.length > 0 && (
+                {currentImg && (
                   <img
-                    src={images[currentIndex].url}
+                    src={activeSrc || currentImg.url}
                     alt="artwork"
                     className={`largeImage ${isLoaded ? "loaded" : ""}`}
-                    style={{ opacity: isLoaded ? opacity : 0 }}
+                    style={{
+                      opacity: isLoaded ? 1 : 0.7,
+                      transition: "opacity 0.2s ease",
+                    }}
                   />
                 )}
               </TransformComponent>
@@ -229,10 +228,10 @@ const ViewGallery: React.FC<ViewGalleryProps> = ({
         </TransformWrapper>
       </div>
 
-      {images.length > 0 && (
-        <div className="imageInfo" style={{ opacity }}>
-          <h2 className="imageTitle">{images[currentIndex].title}</h2>
-          <p className="imageDate">{images[currentIndex].date}</p>
+      {currentImg && (
+        <div className="imageInfo">
+          <h2 className="imageTitle">{currentImg.title}</h2>
+          <p className="imageDate">{currentImg.date}</p>
         </div>
       )}
 

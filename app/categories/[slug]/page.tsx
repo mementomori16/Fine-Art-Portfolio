@@ -48,12 +48,12 @@ export default async function CategoryPage({ params }: PageProps) {
             <div key={painting.id} className="artwork-card-wrapper">
               <div className="individual-artwork-glow" />
               <ArtworkCard
-                id={painting.id}
-                category={painting.category}
-                image={painting.images.large}
-                title={`artwork.${painting.id}.title`}
-                index={index}
-              />
+  id={painting.id}
+  category={painting.category}
+  image={painting.images.medium || painting.images.large}
+  title={`artwork.${painting.id}.title`}
+  index={index}
+/>
             </div>
           ))}
         </div>

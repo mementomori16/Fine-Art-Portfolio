@@ -206,7 +206,7 @@ export const PAINTINGS: Painting[] = [
     style: "memento-mori",
     tags: ["memento-mori"],
     images: makeImageSet(
-      "https://res.cloudinary.com/dpayqcrg5/image/upload/v1783015237/Untitled_Panorama-24-500b_b4z8vu.jpg"
+      "https://res.cloudinary.com/dpayqcrg5/image/upload/v1795113336/edgein-new-21ph2026-500kb_rxq3rg.jpg"
     ),
     thumbnail:
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1780072416/ed500kb_eb2ppw.jpg",
@@ -260,7 +260,7 @@ export const PAINTINGS: Painting[] = [
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1791048507/IMG_4285-2ph2026-500kb_gxegvt.jpg"
     ),
     thumbnail:
-      "https://res.cloudinary.com/dpayqcrg5/image/upload/v1791053467/IMG_4293-2-ph2026-500kb_qygshe.jpg",
+      "https://res.cloudinary.com/dpayqcrg5/image/upload/v1791641325/IMG_4285-2ph2026-2-500kb_i00dnd.jpg",
   },
   {
     id: "oil_15",
@@ -525,7 +525,7 @@ export const PAINTINGS: Painting[] = [
     style: "nude",
     tags: ["nude"],
     images: makeImageSet(
-      "https://res.cloudinary.com/dpayqcrg5/image/upload/v1780312012/Annushka-500kb_exb2gc.jpg"
+      "https://res.cloudinary.com/dpayqcrg5/image/upload/v1795123512/Annushkaph26-500kb_pkswzz.jpg"
     ),
   },
   {
@@ -735,6 +735,17 @@ export const PAINTINGS: Painting[] = [
     tags: ["portrait"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1794864748/IMG_3247ph-26_qkhhkk.jpg"
+    ),
+  },
+   {
+    id: "drw_42",
+    slug: "feet",
+    category: "drawings",
+    subcategory: "nude",
+    style: "nude",
+    tags: ["nude"],
+    images: makeImageSet(
+      "https://res.cloudinary.com/dpayqcrg5/image/upload/v1795293231/IMG_3216-2026-500kb_cocjgn.jpg"
     ),
   },
 
@@ -1138,6 +1149,17 @@ export const PAINTINGS: Painting[] = [
   tags: ["psychological-realism","portrait", "oil"],
   images: makeImageSet(
     "https://res.cloudinary.com/dpayqcrg5/image/upload/v1794909719/IMG_9810repaired2025-ph2026-500kb_gegbqi.jpg"
+  ), thumbnail:
+      "https://res.cloudinary.com/dpayqcrg5/image/upload/v1795292532/IMG_9819-photoshoped2026-500kb_ik27pm.jpg",
+},
+{
+  id: "psy_08",
+  slug: "psychological-realism",
+  category: "oil-paintings",
+  style: "psychological-realism",
+  tags: ["psychological-realism","portrait", "oil"],
+  images: makeImageSet(
+    "https://res.cloudinary.com/dpayqcrg5/image/upload/v1795161868/IMGP4635_1_photoshoped_big_2025-2026-500kb_h0w8ya.jpg"
   ),
 }
 ];
@@ -1179,7 +1201,7 @@ export const STYLE_CATEGORIES: StyleCategory[] = [
     slug: "portrait",
     titleKey: "styleCategories.portrait",
     name: "Portrait",
-    coverImage: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1791053467/IMG_4293-2-ph2026-500kb_qygshe.jpg",
+    coverImage: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1791641325/IMG_4285-2ph2026-2-500kb_i00dnd.jpg",
     isUpcoming: false,
   },
   {
