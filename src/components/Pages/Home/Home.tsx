@@ -24,8 +24,14 @@ const Home: React.FC = () => {
       <HelloHero />
 
       <div ref={categoriesSectionRef}>
-        <StyleCategories />
-        <Categories />
+        <section id="genre">
+          <StyleCategories />
+        </section>
+
+        <section id="technique">
+          <Categories />
+        </section>
+
         <VideoPage />
       </div>
     </div>

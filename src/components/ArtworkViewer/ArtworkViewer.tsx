@@ -10,6 +10,8 @@ import "./artworkViewer.scss";
 interface PaintingData {
   id: string;
   category: string;
+  title?: string;
+  size?: string;
   images?: {
     small?: string;
     medium?: string;
@@ -40,11 +42,18 @@ export default function ArtworkViewer({ painting, currentImageIndex, onBackActio
     );
   }
 
+  const resolvedTitle = String(
+    t(`artwork.${painting.id}.title`, { defaultValue: painting.title || painting.id })
+  );
+  const resolvedSize = String(
+    t(`artwork.${painting.id}.size`, { defaultValue: painting.size || "" })
+  );
+
   const galleryArray = [
     painting.images?.large,
     painting.thumbnail,
     painting.thumbnail2,
-    painting.thumbnail3
+    painting.thumbnail3,
   ].filter((url): url is string => !!url);
 
   const activeImageSrc = galleryArray[currentImageIndex] || galleryArray[0] || "";
@@ -52,9 +61,9 @@ export default function ArtworkViewer({ painting, currentImageIndex, onBackActio
   const galleryImagesFormatted = galleryArray.map((url) => ({
     url: applyWatermark(url),
     fallbackUrl: url,
-    title: t(`artwork.${painting.id}.title`),
-    date: t(`artwork.${painting.id}.size`),
-    thumbnail: url
+    title: resolvedTitle,
+    date: resolvedSize,
+    thumbnail: url,
   }));
 
   const handleBackClick = () => {
@@ -80,7 +89,7 @@ export default function ArtworkViewer({ painting, currentImageIndex, onBackActio
             {activeImageSrc ? (
               <ProgressiveImage
                 src={activeImageSrc}
-                alt={t(`artwork.items.${painting.id}.title`)}
+                alt={resolvedTitle}
                 className="viewer-masterpiece-image"
                 loading="eager"
               />

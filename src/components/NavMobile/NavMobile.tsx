@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Hamburger from "hamburger-react";
@@ -13,14 +12,17 @@ interface NavSubItem {
   translationKey: string;
 }
 
+interface NavSubGroup {
+  titleKey: string;
+  href?: string;
+  items: NavSubItem[];
+}
+
 interface NavItem {
   href?: string;
   translationKey: string;
   isExternal?: boolean;
-  subGroups?: {
-    titleKey: string;
-    items: NavSubItem[];
-  }[];
+  subGroups?: NavSubGroup[];
 }
 
 const NAV_ITEMS: NavItem[] = [
@@ -30,6 +32,7 @@ const NAV_ITEMS: NavItem[] = [
     subGroups: [
       {
         titleKey: "nav.sub.technique",
+        href: "/#technique",
         items: [
           { href: "/categories/oil-paintings", translationKey: "categories.oil_paintings" },
           { href: "/categories/drawings", translationKey: "categories.drawings" },
@@ -39,6 +42,7 @@ const NAV_ITEMS: NavItem[] = [
       },
       {
         titleKey: "nav.sub.genre",
+        href: "/#genre",
         items: [
           { href: "/stylecategories/portrait", translationKey: "styleCategories.portrait" },
           { href: "/stylecategories/nude", translationKey: "styleCategories.nude" },
@@ -52,18 +56,17 @@ const NAV_ITEMS: NavItem[] = [
   },
   { href: "/video", translationKey: "nav.video" },
   { href: "/about", translationKey: "about.title" },
-  { 
-    href: "https://profineart.ch", 
-    translationKey: "nav.fine_art_school", 
-    isExternal: true 
+  {
+    href: "https://profineart.ch",
+    translationKey: "nav.fine_art_school",
+    isExternal: true,
   },
 ];
 
 const LANGUAGES = [
   { code: "en", label: "EN" },
   { code: "de", label: "DE" },
-  { code: "fr", label: "FR" }
-  
+  { code: "fr", label: "FR" },
 ];
 
 const NavMobile = () => {
@@ -81,6 +84,15 @@ const NavMobile = () => {
     setIsPaintingsOpen(false);
   };
 
+  // Ссылка на секцию Home: закрываем меню и просим штору открыться и проскроллить
+  const goToSection = (href: string) => {
+    handleClose();
+    const id = href.split("#")[1];
+    if (id) {
+      window.dispatchEvent(new CustomEvent("curtain:skip", { detail: id }));
+    }
+  };
+
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
     setIsLangOpen(false);
@@ -96,30 +108,28 @@ const NavMobile = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const currentLangLabel = LANGUAGES.find(l => l.code === i18n.language)?.label || "EN";
+  const currentLangLabel =
+    LANGUAGES.find((l) => l.code === i18n.language)?.label || "EN";
 
   return (
     <header className="header-mobile">
       <nav className="navbarmobile" aria-label="Mobile Navigation">
         <Link href="/" className="mobile-logo" onClick={handleClose}>
-          <img 
-            src="/Group 49.1.svg" 
-            alt="Logo" 
-            className="mobile-logo-img"
-          />
+          <img src="/Group 49.1.svg" alt="Logo" className="mobile-logo-img" />
         </Link>
 
         <div className="mobile-right">
           <div className="mobile-lang-dropdown" ref={langRef}>
-            <button 
+            <button
               className={`lang-trigger ${isLangOpen ? "open" : ""}`}
               onClick={() => setIsLangOpen(!isLangOpen)}
               aria-label="Change Language"
+              aria-expanded={isLangOpen}
             >
               {currentLangLabel}
               <span className="lang-chevron" />
             </button>
-            
+
             {isLangOpen && (
               <ul className="lang-menu">
                 {LANGUAGES.map((lang) => (
@@ -142,9 +152,9 @@ const NavMobile = () => {
         </div>
       </nav>
 
-      <div 
-        className={`mobile-menu ${isOpen ? "active" : ""}`} 
-        role="dialog" 
+      <div
+        className={`mobile-menu ${isOpen ? "active" : ""}`}
+        role="dialog"
         aria-hidden={!isOpen}
       >
         <ul className="mobile-list">
@@ -154,20 +164,30 @@ const NavMobile = () => {
             if (item.subGroups) {
               return (
                 <li key={item.translationKey} className="mobile-item has-submenu">
-                  <button 
+                  <button
                     className={`mobile-link submenu-toggle ${isPaintingsOpen ? "open" : ""}`}
                     onClick={() => setIsPaintingsOpen(!isPaintingsOpen)}
+                    aria-expanded={isPaintingsOpen}
                   >
                     <span>{labelText}</span>
-                    <span className="chevron-arrow">▾</span>
+                    <span className="chevron-arrow" aria-hidden="true" />
                   </button>
 
                   <div className={`submenu-wrapper ${isPaintingsOpen ? "expanded" : ""}`}>
                     {item.subGroups.map((group) => (
                       <div key={group.titleKey} className="submenu-group">
-                        <span className="submenu-heading">
-                          {t(group.titleKey)}
-                        </span>
+                        {group.href ? (
+                          <Link
+                            href={group.href}
+                            className="submenu-heading submenu-heading-link"
+                            onClick={() => goToSection(group.href!)}
+                          >
+                            {t(group.titleKey)}
+                          </Link>
+                        ) : (
+                          <span className="submenu-heading">{t(group.titleKey)}</span>
+                        )}
+
                         <ul className="submenu-list">
                           {group.items.map((subItem) => {
                             const isSubActive = pathname === subItem.href;
@@ -196,8 +216,8 @@ const NavMobile = () => {
             return (
               <li key={item.href} className="mobile-item">
                 {item.isExternal ? (
-                  <a 
-                    href={item.href} 
+                  <a
+                    href={item.href}
                     className="mobile-link"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -206,9 +226,9 @@ const NavMobile = () => {
                     {labelText}
                   </a>
                 ) : (
-                  <Link 
-                    href={item.href!} 
-                    className={`mobile-link ${isActive ? "active" : ""}`} 
+                  <Link
+                    href={item.href!}
+                    className={`mobile-link ${isActive ? "active" : ""}`}
                     onClick={handleClose}
                   >
                     {labelText}

@@ -5,19 +5,37 @@ import { useTranslation } from "react-i18next";
 import ArtworkViewer from "../../../../src/components/ArtworkViewer/ArtworkViewer";
 import ArtworkInfo from "../../../../src/components/ArtworkInfo/ArtworkInfo";
 import SimilarProducts from "../../../../src/components/SimilarProducts/SimilarProducts";
+import MoreWorks from "../../../../src/components/MoreWorks/MoreWorks";
 import "./page.scss";
+
+const resolveLocalizedField = (
+  t: (key: string, options?: Record<string, unknown>) => unknown,
+  key: string,
+  fallback: string
+): string => {
+  const translated = t(key, { defaultValue: fallback });
+  const text = typeof translated === "string" ? translated : String(translated ?? "");
+  if (!text || text === key || text.startsWith("artwork.")) {
+    return fallback;
+  }
+  return text;
+};
 
 export default function ArtworkPageClient({ painting }: { painting: any }) {
   const { t } = useTranslation();
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
   const layoutRef = useRef<HTMLDivElement>(null);
 
-  // Название и размер приходят с сервера на английском (из english.json).
+  const descriptionKey = painting.descriptionKey || `artwork.${painting.id}.description`;
+
+  // Название, материал, размер и описание приходят с сервера на английском (из english.json).
   // Здесь они заменяются на язык посетителя; английский остаётся запасным
   const localized = {
     ...painting,
-    title: String(t(`artwork.${painting.id}.title`, { defaultValue: painting.title })),
-    size: String(t(`artwork.${painting.id}.size`, { defaultValue: painting.size })),
+    title: resolveLocalizedField(t, `artwork.${painting.id}.title`, painting.title || ""),
+    medium: resolveLocalizedField(t, `artwork.${painting.id}.medium`, painting.medium || ""),
+    size: resolveLocalizedField(t, `artwork.${painting.id}.size`, painting.size || ""),
+    description: resolveLocalizedField(t, descriptionKey, painting.description || ""),
   };
 
   // Выбор тумбнейла: меняем картину и, если блок с ней ушёл выше начала экрана
@@ -51,6 +69,7 @@ export default function ArtworkPageClient({ painting }: { painting: any }) {
         </div>
 
         <SimilarProducts currentPaintingId={painting.id} />
+        <MoreWorks currentPaintingId={painting.id} />
       </div>
     </main>
   );

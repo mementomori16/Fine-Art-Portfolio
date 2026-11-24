@@ -25,6 +25,7 @@ export interface Painting {
   category: "oil-paintings" | "drawings" | "watercolors" | "other-works" | "tempera";
   subcategory?: "nude" | "portrait" | "general";
   style?: string;
+  year?: number | string;
   tags?: string[];
   images: PaintingImageSet;
   thumbnail?: string;
@@ -38,6 +39,11 @@ export interface CategoryCover {
   slug: string;
   titleKey: string;
   cloudinaryId: string;
+}
+
+export interface YearGroup {
+  year: number;
+  paintings: Painting[];
 }
 
 // ==========================================
@@ -58,8 +64,121 @@ export const getPaintingTags = (painting: Painting): string[] => {
   return [];
 };
 
+export const getPaintingStartYear = (year?: number | string): number | null => {
+  if (year === undefined || year === null) return null;
+  if (typeof year === "number") {
+    return Number.isFinite(year) && year > 1900 && year < 2100 ? year : null;
+  }
+  const match = String(year).trim().match(/\d{4}/);
+  if (!match) return null;
+  const num = Number(match[0]);
+  return Number.isFinite(num) && num > 1900 && num < 2100 ? num : null;
+};
+
+const parseStartYear = (year?: number | string): number => {
+  return getPaintingStartYear(year) ?? Number.MAX_SAFE_INTEGER;
+};
+
+export function getAvailableYears(paintings: Painting[] = PAINTINGS): number[] {
+  const years = new Set<number>();
+
+  for (const painting of paintings) {
+    if (!painting.images) continue;
+    const startYear = getPaintingStartYear(painting.year);
+    if (startYear !== null) {
+      years.add(startYear);
+    }
+  }
+
+  return Array.from(years).sort((a, b) => a - b);
+}
+
+export function groupPaintingsByYear(paintings: Painting[] = PAINTINGS): YearGroup[] {
+  const map = new Map<number, Painting[]>();
+
+  for (const painting of paintings) {
+    if (!painting.images) continue;
+    const startYear = getPaintingStartYear(painting.year);
+    if (startYear === null) continue;
+
+    const list = map.get(startYear) ?? [];
+    list.push(painting);
+    map.set(startYear, list);
+  }
+
+  return Array.from(map.entries())
+    .sort(([yearA], [yearB]) => yearA - yearB)
+    .map(([year, items]) => ({
+      year,
+      paintings: items,
+    }));
+}
+
+export function mixPaintingsEvenly(paintings: Painting[]): Painting[] {
+  const valid = paintings.filter((painting) => Boolean(painting.images));
+  if (valid.length <= 1) return valid;
+
+  const buckets = new Map<string, Painting[]>();
+  for (const painting of valid) {
+    const key = painting.category || "other";
+    const list = buckets.get(key) ?? [];
+    list.push(painting);
+    buckets.set(key, list);
+  }
+
+  const total = valid.length;
+  const slots: (Painting | null)[] = new Array(total).fill(null);
+
+  const sortedBuckets = Array.from(buckets.values()).sort((a, b) => a.length - b.length);
+
+  for (const bucket of sortedBuckets) {
+    const count = bucket.length;
+    if (count === 0) continue;
+
+    for (let i = 0; i < count; i++) {
+      const idealIndex = Math.floor(((i + 0.5) * total) / count);
+      let pos = Math.min(total - 1, Math.max(0, idealIndex));
+
+      if (slots[pos] !== null) {
+        let offset = 1;
+        while (pos - offset >= 0 || pos + offset < total) {
+          if (pos - offset >= 0 && slots[pos - offset] === null) {
+            pos = pos - offset;
+            break;
+          }
+          if (pos + offset < total && slots[pos + offset] === null) {
+            pos = pos + offset;
+            break;
+          }
+          offset++;
+        }
+      }
+
+      slots[pos] = bucket[i];
+    }
+  }
+
+  return slots.filter((item): item is Painting => item !== null);
+}
+
 export function getPaintingsByStyle(styleIdOrSlug: string): Painting[] {
   const query = styleIdOrSlug.toLowerCase().trim();
+
+  if (query === "all-paintings" || query === "all-works") {
+    return mixPaintingsEvenly(PAINTINGS);
+  }
+
+  if (query === "works-by-years") {
+    const withYear = PAINTINGS.filter(
+      (painting) => Boolean(painting.images) && getPaintingStartYear(painting.year) !== null
+    );
+
+    if (withYear.length > 0) {
+      return [...withYear].sort((a, b) => parseStartYear(a.year) - parseStartYear(b.year));
+    }
+
+    return mixPaintingsEvenly(PAINTINGS);
+  }
 
   // Explicit guard for Heritage & Antiques
   if (query === "heritage-antiques" || query === "heritage" || query === "antiques") {
@@ -132,9 +251,10 @@ export const PAINTINGS: Painting[] = [
     slug: "Male and Female Skulls Oil Painting",
     category: "oil-paintings",
     style: "memento-mori",
-    tags: ["memento-mori","vanitas", "still-life"],
+    year: "2020-2021",
+    tags: ["memento-mori","vanitas"],
     images: makeImageSet(
-      "https://res.cloudinary.com/dpayqcrg5/image/upload/v1780939340/1ph2026_zwllbh.jpg"
+      "https://res.cloudinary.com/dpayqcrg5/image/upload/v1795380735/1ph2026-2-1mb_arkevn.jpg"
     ),
     thumbnail:
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1779781725/detal-2021-ph2026_eu8ac6.jpg",
@@ -143,10 +263,11 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "oil_03",
-    slug: "memento-mori",
+    slug: "commited-suicide-girl",
     category: "oil-paintings",
     style: "memento-mori",
-    tags: ["memento-mori"],
+    year: "2018",
+    tags: ["memento-mori", "vanitas"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613732/IMG_8469ph2026-500kb_fipv2h.jpg"
     ),
@@ -155,43 +276,47 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "oil_04",
-    slug: "nude",
+    slug: "nude-study",
     category: "oil-paintings",
     subcategory: "nude",
     style: "nude",
+    year: "2012",
     tags: ["nude"],
     images: makeImageSet(
-      "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032416/IMG_4906_photoshoped_12.2025-500kb_xdkpzo.jpg"
+      "https://res.cloudinary.com/dpayqcrg5/image/upload/v1795381537/IMG_4906_photoshoped_12.2025-2026-500kb_ee9h5q.jpg"
     ),
     thumbnail:
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1782937567/good_Alla_2026_photoshop-500kb_q5prhs.jpg",
   },
   {
     id: "oil_06",
-    slug: "nude",
+    slug: "nude-dance",
     category: "oil-paintings",
     subcategory: "nude",
     style: "nude",
-    tags: ["nude"],
+    year: "2008",
+    tags: ["nude","vanitas"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1770367743/photoshoped_2025_Royal_Gore._Oil_on_canvas_111_x_200_cm._2008._500kb_e9z43l.jpg"
     ),
   },
   {
     id: "oil_07",
-    slug: "memento-mori",
+    slug: "skinned",
     category: "oil-paintings",
     style: "memento-mori",
-    tags: ["memento-mori"],
+    year: "2018",
+    tags: ["memento-mori", "vanitas"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613731/varnished-and-photoshoped-small-2-500kb_jgndqr.jpg"
     ),
   },
   {
     id: "oil_08",
-    slug: "portrait",
+    slug: "Tereza-portrait",
     category: "oil-paintings",
     style: "portrait",
+    year: "2012",
     tags: ["portrait"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613701/IMG_4550ph26-500kb_lqn3zn.jpg"
@@ -201,9 +326,10 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "oil_09",
-    slug: "memento-mori",
+    slug: "ed-gein",
     category: "oil-paintings",
     style: "memento-mori",
+    year: "2018",
     tags: ["memento-mori"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1795113336/edgein-new-21ph2026-500kb_rxq3rg.jpg"
@@ -218,6 +344,7 @@ export const PAINTINGS: Painting[] = [
     slug: "drowned",
     category: "oil-paintings",
     style: "memento-mori",
+    year: "2018",
     tags: ["memento-mori"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1779784466/Portraite_of_drowned_woman_2018500KB_dacbwg.jpg"
@@ -225,10 +352,11 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "oil_12",
-    slug: "study",
+    slug: "nude-on-the-chair",
     category: "oil-paintings",
     subcategory: "nude",
     style: "nude",
+    year: "2008-2009",
     tags: ["nude"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613717/IMGP3286PH26-2-500b_nidce0.jpg"
@@ -238,23 +366,25 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "oil_13",
-    slug: "memento-mori",
+    slug: "serial-killer-chikatilo",
     category: "oil-paintings",
     style: "memento-mori",
+    year: "2013",
     tags: ["memento-mori"],
     images: makeImageSet(
-      "https://res.cloudinary.com/dpayqcrg5/image/upload/v1782914928/Photoshoped-panorama2026-5-500kb_x3gypx.jpg"
+      "https://res.cloudinary.com/dpayqcrg5/image/upload/v1795380713/Photoshoped-panorama2026-5dark-500-2kb_adr2wp.jpg"
     ),
     thumbnail:
-      "https://res.cloudinary.com/dpayqcrg5/image/upload/v1782930873/DSC_0973ph3-2026-500kb_lqj6pp.jpg",
+      "https://res.cloudinary.com/dpayqcrg5/image/upload/v1795380858/DSC_0973ph2026-500kb10_yahfee.jpg",
     thumbnail2:
-      "https://res.cloudinary.com/dpayqcrg5/image/upload/v1782932053/IMG_4880photoshoped_2026-2500kb_mxytkz.jpg",
+      "https://res.cloudinary.com/dpayqcrg5/image/upload/v1795434107/IMG_4880photoshoped_2026-500kb2_iqdro1.jpg",
   },
   {
     id: "oil_14",
-    slug: "portrait",
+    slug: "Lenin-portrait",
     category: "oil-paintings",
     style: "portrait",
+    year: "2026",
     tags: ["portrait"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1791048507/IMG_4285-2ph2026-500kb_gxegvt.jpg"
@@ -264,9 +394,10 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "oil_15",
-    slug: "landscape",
+    slug: "Basel-landscape",
     category: "oil-paintings",
     style: "landscape",
+    year: "2021",
     tags: ["landscape"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1791054706/IMG_8563paint-ph2026-500kb_lja2dj.jpg"
@@ -274,9 +405,10 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "oil_16",
-    slug: "landscape",
+    slug: "Basel Klara",
     category: "oil-paintings",
     style: "landscape",
+    year: "2021",
     tags: ["landscape"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1794908023/IMG_3206-2026-500kb_dzu18l.jpg"
@@ -288,10 +420,11 @@ export const PAINTINGS: Painting[] = [
   // =========================
   {
     id: "drw_01",
-    slug: "drawing-nude-1",
+    slug: "feet-study",
     category: "drawings",
     subcategory: "nude",
     style: "nude",
+    year: "2024",
     tags: ["nude"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1782219354/IMG_2668_photoshoped_2026-2-500kb_q7vlr1.jpg"
@@ -299,10 +432,11 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "drw_02",
-    slug: "drawing-portrait-1",
+    slug: "celine-portrait-1",
     category: "drawings",
     subcategory: "portrait",
     style: "portrait",
+    year: "2017",
     tags: ["portrait"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032516/SKM_C45818070115150_0002small-500kb_kuaces.jpg"
@@ -314,6 +448,7 @@ export const PAINTINGS: Painting[] = [
     category: "drawings",
     subcategory: "general",
     style: "animals",
+    year: 2017,
     tags: ["animals"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032420/Parrot._Scanned_and_photoshoped_smaller2500kb_b6vay5.jpg"
@@ -325,6 +460,7 @@ export const PAINTINGS: Painting[] = [
     category: "drawings",
     subcategory: "nude",
     style: "nude",
+    year: "2024",
     tags: ["nude"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032418/katya_photoshop_2025-ph500kb_aokpyv.jpg"
@@ -332,10 +468,11 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "drw_05",
-    slug: "portrait-sketch-1",
+    slug: "alina",
     category: "drawings",
     subcategory: "general",
     style: "portrait",
+    year: "2024",
     tags: ["portrait"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032414/IMG_3232-500kb_lifcup.jpg"
@@ -347,6 +484,7 @@ export const PAINTINGS: Painting[] = [
     category: "drawings",
     subcategory: "portrait",
     style: "portrait",
+    year: "2017",
     tags: ["portrait"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032411/Dorkas_new_ph_12-25-500kb_nua9wb.jpg"
@@ -358,6 +496,7 @@ export const PAINTINGS: Painting[] = [
     category: "drawings",
     subcategory: "portrait",
     style: "portrait",
+    year: "2018",
     tags: ["portrait"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032418/Joe_Pesci_small-500kb_d6ngvt.jpg"
@@ -365,10 +504,11 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "drw_08",
-    slug: "portrait-sketch-2026",
+    slug: "alla-drawing",
     category: "drawings",
     subcategory: "portrait",
     style: "portrait",
+    year: "2012",
     tags: ["portrait"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1777925635/IMG_4691-ph2026-500kb_iq9ive.jpg"
@@ -376,10 +516,11 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "drw_09",
-    slug: "animal-drawing-study",
+    slug: "e.t",
     category: "drawings",
     subcategory: "general",
     style: "animals",
+    year: "2018",
     tags: ["animals"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032471/photoshoped2025final500kb_n1aj9r.jpg"
@@ -391,6 +532,7 @@ export const PAINTINGS: Painting[] = [
     category: "drawings",
     subcategory: "nude",
     style: "nude",
+    year: "2016",
     tags: ["nude"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032413/IMG_3012closeup500kb_xo89iy.jpg"
@@ -398,10 +540,11 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "drw_11",
-    slug: "landscape-drawing-1",
+    slug: "landscape-spain-drawing",
     category: "drawings",
     subcategory: "general",
     style: "landscape",
+    year: "2024",
     tags: ["landscape"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032411/IMG_2825ph1225-500kb_szirsi.jpg"
@@ -409,10 +552,11 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "drw_12",
-    slug: "portrait-study-2016",
+    slug: "girl-from-brasil",
     category: "drawings",
     subcategory: "portrait",
     style: "portrait",
+    year: "2016",
     tags: ["portrait"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032411/IMG_20161119_202342-500kb_wsdt7u.jpg"
@@ -424,6 +568,7 @@ export const PAINTINGS: Painting[] = [
     category: "drawings",
     subcategory: "portrait",
     style: "portrait",
+    year: "2024",
     tags: ["portrait"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1780058220/Anna_Palestine_22.08.2026-500kb_qyfbpj.jpg"
@@ -435,6 +580,7 @@ export const PAINTINGS: Painting[] = [
     category: "drawings",
     subcategory: "portrait",
     style: "portrait",
+    year: "2024",
     tags: ["portrait"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1780058094/Vincent.2026photoshoped-500kb_ueocvk.jpg"
@@ -442,10 +588,11 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "drw_15",
-    slug: "nude-figure-drawing",
+    slug: "nude-vulva-drawing",
     category: "drawings",
     subcategory: "nude",
     style: "nude",
+    year: "2016",
     tags: ["nude"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613765/IMG_3256ph2026-500kb_hfrcvq.jpg"
@@ -457,6 +604,7 @@ export const PAINTINGS: Painting[] = [
     category: "drawings",
     subcategory: "portrait",
     style: "portrait",
+    year: "2017",
     tags: ["portrait"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1780059850/dorna_scanned-ph2026-500kb_kmobkt.jpg"
@@ -464,10 +612,11 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "drw_17",
-    slug: "nude-drawing-study-2724",
+    slug: "nude-in spain-drawing",
     category: "drawings",
     subcategory: "nude",
     style: "nude",
+    year: "2024",
     tags: ["nude"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1780060152/IMG_2724-500kb_dwm95t.jpg"
@@ -475,10 +624,11 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "drw_18",
-    slug: "portrait-sketch-3009",
+    slug: "portrait-of-anna",
     category: "drawings",
     subcategory: "portrait",
     style: "portrait",
+    year: "2016",
     tags: ["portrait"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1780063098/IMG_3009ph2026_inxb8h.jpg"
@@ -486,10 +636,11 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "drw_19",
-    slug: "lena-scanned-nude-drawing",
+    slug: "lena-on-soda",
     category: "drawings",
     subcategory: "nude",
     style: "nude",
+    year: "2017",
     tags: ["nude"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1780066162/Lena_scannedph26-500kb_lg9xnu.jpg"
@@ -497,10 +648,11 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "drw_20",
-    slug: "animal-detail-drawing",
+    slug: "monkey-detail-drawing",
     category: "drawings",
     subcategory: "general",
     style: "animals",
+    year: "2017",
     tags: ["animals"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1780066797/scanned_small._detail-ph2026-500kb_mjxh6o.jpg"
@@ -508,10 +660,11 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "drw_21",
-    slug: "nude-drawing-study-3445",
+    slug: "vulva-on-the-beach",
     category: "drawings",
     subcategory: "nude",
     style: "nude",
+    year: "2025",
     tags: ["nude"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1780067263/IMG_3445500kb_yti8g7.jpg"
@@ -523,6 +676,7 @@ export const PAINTINGS: Painting[] = [
     category: "drawings",
     subcategory: "nude",
     style: "nude",
+    year: "2026",
     tags: ["nude"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1795123512/Annushkaph26-500kb_pkswzz.jpg"
@@ -534,6 +688,7 @@ export const PAINTINGS: Painting[] = [
     category: "drawings",
     subcategory: "nude",
     style: "nude",
+    year: "2025",
     tags: ["nude"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1780313320/Penis_of_Roger-500kb_dhjkvd.jpg"
@@ -541,10 +696,11 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "drw_24",
-    slug: "portrait-drawing-study-2025",
+    slug: "mother-olga",
     category: "drawings",
     subcategory: "portrait",
     style: "portrait",
+    year: "2025",
     tags: ["portrait"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1780346883/PHOTOSHOPED_2025-500kb_v6fxul.jpg"
@@ -552,10 +708,11 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "drw_25",
-    slug: "portrait-study-2982",
+    slug: "portrait-of-hen",
     category: "drawings",
     subcategory: "portrait",
     style: "portrait",
+    year: "2016",
     tags: ["portrait"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1780353350/IMG_2982ph2026-500kb_pvxpu0.jpg"
@@ -563,10 +720,11 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "drw_26",
-    slug: "anatomical-nude-drawing-8450",
+    slug: "anatomical-nude-trannsexual",
     category: "drawings",
     subcategory: "nude",
     style: "nude",
+    year: "2021",
     tags: ["nude"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1780669428/IMG_8450-500kb_gnmzdx.jpg"
@@ -574,10 +732,11 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "drw_27",
-    slug: "anatomical-nude-drawing-3441",
+    slug: "anatomical-nude-drawing-penis",
     category: "drawings",
     subcategory: "nude",
     style: "nude",
+    year: "2025",
     tags: ["nude"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1780682625/IMG_3441-500kb_rwqgsh.jpg"
@@ -585,10 +744,11 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "drw_28",
-    slug: "nude-drawing-study-3435",
+    slug: "nude-on-rhine-drawing",
     category: "drawings",
     subcategory: "nude",
     style: "nude",
+    year: "2025",
     tags: ["nude"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1780682625/IMG_3435-500kb_vm4wtr.jpg"
@@ -600,6 +760,7 @@ export const PAINTINGS: Painting[] = [
     category: "drawings",
     subcategory: "portrait",
     style: "portrait",
+    year: "2024",
     tags: ["portrait"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1780682883/Lily_18.06.2024-500kb_gisley.jpg"
@@ -607,10 +768,11 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "drw_30",
-    slug: "portrait-sketch-3246",
+    slug: "brussels-drawing",
     category: "drawings",
     subcategory: "portrait",
     style: "portrait",
+    year: "2025",
     tags: ["portrait"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1780682876/IMG_3246-500kb_m9lhwp.jpg"
@@ -618,10 +780,11 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "drw_31",
-    slug: "animal-drawing-study-3271",
+    slug: "lion-cub",
     category: "drawings",
     subcategory: "general",
     style: "animals",
+    year: "2017",
     tags: ["animals"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032414/IMG_3271ph12.2025500kb_gjyybh.jpg"
@@ -629,10 +792,11 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "drw_32",
-    slug: "portrait",
+    slug: "groben-portrait-drawing",
     category: "drawings",
     subcategory: "portrait",
     style: "portrait",
+    year: "2026",
     tags: ["portrait"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1782219702/Groben._Oil_Pastels_on_Paper-500kb_xpitig.jpg"
@@ -640,10 +804,11 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "drw_33",
-    slug: "nude",
+    slug: "Katya-nude-from-the-back",
     category: "drawings",
     subcategory: "nude",
     style: "nude",
+    year: "2026",
     tags: ["nude"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1782220926/Katya-500kb_nuiuux.jpg"
@@ -651,10 +816,11 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "drw_34",
-    slug: "nude",
+    slug: "batt-anus-long-penis",
     category: "drawings",
     subcategory: "nude",
     style: "nude",
+    year: "2024",
     tags: ["nude"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1782236992/IMG_2695ph2026-500kb_b6jdul.jpg"
@@ -662,10 +828,11 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "drw_35",
-    slug: "nude",
+    slug: "birsfelden-nude",
     category: "drawings",
     subcategory: "nude",
     style: "nude",
+    year: "2021",
     tags: ["nude"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1782287753/birsfelden_small_rroyxv.jpg"
@@ -673,10 +840,11 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "drw_36",
-    slug: "portrait",
+    slug: "portrait-anna-berlin",
     category: "drawings",
     subcategory: "portrait",
     style: "portrait",
+    year: "2017",
     tags: ["portrait"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1782287975/scanned_alexandra_or_anna_photoshoped_2026-500kb_dluh1j.jpg"
@@ -684,10 +852,11 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "drw_37",
-    slug: "landscape-still-life",
+    slug: "atomium",
     category: "drawings",
     subcategory: "general",
     style: "landscape",
+    year: "2025",
     tags: ["landscape"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1782289675/IMG_3243_hs1ak8.jpg"
@@ -695,10 +864,11 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "drw_38",
-    slug: "landscape-still-life",
+    slug: "solaris-landscape",
     category: "drawings",
     subcategory: "general",
     style: "landscape",
+    year: "2025",
     tags: ["landscape"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1782933295/IMG_3453%D0%B7%D1%802026-500kb_hbni35.jpg"
@@ -710,6 +880,7 @@ export const PAINTINGS: Painting[] = [
     category: "drawings",
     subcategory: "portrait",
     style: "portrait",
+    year: "2016",
     tags: ["portrait, memento-mori"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1792150132/IMG_3260-500kb_olvdjk.jpg"
@@ -721,6 +892,7 @@ export const PAINTINGS: Painting[] = [
     category: "drawings",
     subcategory: "portrait",
     style: "portrait",
+    year: "2018",
     tags: ["portrait"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1794773795/nikki_22_photoshop2026-2-500kb_pk49lj.jpg"
@@ -732,6 +904,7 @@ export const PAINTINGS: Painting[] = [
     category: "drawings",
     subcategory: "portrait",
     style: "portrait",
+    year: "2024-2025",
     tags: ["portrait"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1794864748/IMG_3247ph-26_qkhhkk.jpg"
@@ -743,30 +916,63 @@ export const PAINTINGS: Painting[] = [
     category: "drawings",
     subcategory: "nude",
     style: "nude",
+    year: "2024",
     tags: ["nude"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1795293231/IMG_3216-2026-500kb_cocjgn.jpg"
     ),
   },
+  {
+    id: "drw_43",
+    slug: "kogan-portrait",
+    category: "drawings",
+    subcategory: "portrait",
+    style: "portrait",
+    year: "2016",
+    tags: ["portrait"],
+    images: makeImageSet(
+      "https://res.cloudinary.com/dpayqcrg5/image/upload/v1795427867/IMG_2985-ph2026-500kb_g8kw3y.jpg"
+    ),
+   },
+   {
+    id: "drw_44",
+    slug: "intimate-portrait-of-katya",
+    category: "drawings",
+    subcategory: "portrait",
+    style: "portrait, nude",
+    year: "2013",
+    tags: ["portrait, nude"],
+    images: makeImageSet(
+      "https://res.cloudinary.com/dpayqcrg5/image/upload/v1795430121/IMG_4738_ph2026-500kb_r0scvu.jpg",
+    ),
+      thumbnail:
+      "https://res.cloudinary.com/dpayqcrg5/image/upload/v1795433076/IMG_4732-500kb_dlkbfc.jpg",
+   },
+ 
+
 
   // =========================
   // WATERCOLORS
   // =========================
   {
     id: "wat_01",
-    slug: "memento-mori",
+    slug: "nude-on-sofa-with-a-skull",
     category: "watercolors",
     style: "memento-mori",
+    year: "2019",
     tags: ["nude", "memento-mori"],
     images: makeImageSet(
-      "https://res.cloudinary.com/dpayqcrg5/image/upload/v1782023532/No_bordersph2026-500kb_dhhteh.jpg"
+      "https://res.cloudinary.com/dpayqcrg5/image/upload/v1795360284/ph2026kineret-3-500kb_tunhel.jpg"
     ),
+     thumbnail:
+      "https://res.cloudinary.com/dpayqcrg5/image/upload/v1795360444/edited-No_borders-croped500kb_jj0ocl.jpg",
   },
   {
     id: "wat_02",
-    slug: "nude",
+    slug: "pregnant-nude",
     category: "watercolors",
     style: "nude",
+    year: "2019",
     tags: ["nude"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032419/NO_BORDERS_Pregnant_Celine_in_Caesaria._Watercolors_on_cotton_paper_2025-500kb_l7clzr.jpg"
@@ -774,9 +980,10 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "wat_03",
-    slug: "memento-mori",
+    slug: "nude-with-skulls",
     category: "watercolors",
     style: "memento-mori",
+    year: "2020",
     tags: ["nude", "memento-mori"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032416/IMG_7751photoshoped_2-2025-500kb_gsfrqk.jpg"
@@ -786,9 +993,10 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "wat_04",
-    slug: "landscape-still-life",
+    slug: "jaffa-landscape",
     category: "watercolors",
     style: "landscape",
+    year: "2019",
     tags: ["landscape"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032415/IMG_4459_no_borders-ph12.25_pswoee.jpg"
@@ -796,9 +1004,10 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "wat_05",
-    slug: "nude-watercolor-study-2020",
+    slug: "nude-in-darkness",
     category: "watercolors",
     style: "nude",
+    year: "2016",
     tags: ["nude"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1779702837/2020ph.2026-500kb_wcsr6l.jpg"
@@ -806,9 +1015,10 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "wat_06",
-    slug: "landscape-still-life",
+    slug: "occupied-palestine-ruins",
     category: "watercolors",
     style: "landscape",
+    year: "2019",
     tags: ["landscape"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1781945130/Beit_Tsedek_Fortress._Aquarelle_on_Cotton_paper_300_gr.ph2026-500kb_xgphml.jpg"
@@ -816,9 +1026,10 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "wat_07",
-    slug: "landscape-still-life",
+    slug: "caesaria-aqueduct",
     category: "watercolors",
     style: "landscape",
+    year: "2019",
     tags: ["landscape"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1781946347/Caesarea_Aqueduk._Aquarelle_on_cotton_paper_300_gr._2019.ph2026-500kb_ruv4vz.jpg"
@@ -826,9 +1037,10 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "wat_08",
-    slug: "landscape-still-life",
+    slug: "lions-of-basel",
     category: "watercolors",
     style: "landscape",
+    year: "2019",
     tags: ["landscape"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1780499087/Basel_lionsph26-500kb_hhp3y1.jpg"
@@ -836,9 +1048,10 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "wat_09",
-    slug: "landscape-still-life",
+    slug: "middle-bridge-in-basel",
     category: "watercolors",
     style: "landscape",
+    year: "2019",
     tags: ["landscape"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1789985281/Middle_bridge_in_Basel-500kb_zwjdrz.jpg"
@@ -846,9 +1059,10 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "wat_10",
-    slug: "landscape-still-life",
+    slug: "basel-spalentor",
     category: "watercolors",
     style: "landscape",
+    year: "2019",
     tags: ["landscape"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1789987959/Basel_Spalentor_2019-PH26-500KB_pqrxq6.jpg"
@@ -856,9 +1070,10 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "wat_11",
-    slug: "landscape-still-life",
+    slug: "view-of-basel-cathedral",
     category: "watercolors",
     style: "landscape",
+    year: "2019",
     tags: ["landscape"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1789988252/Basel_Cathedral-PH2026-500KB_w0ce7b.jpg"
@@ -866,9 +1081,10 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "wat_12",
-    slug: "landscape-still-life",
+    slug: "view-of-jaffa-from-the-sea",
     category: "watercolors",
     style: "landscape",
+    year: "2019",
     tags: ["landscape"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1789989213/jaffa-ph2026-500kb_iz6g87.jpg"
@@ -876,9 +1092,10 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "wat_13",
-    slug: "landscape-still-life",
+    slug: "view-of-st.peter-church-jaffa",
     category: "watercolors",
     style: "landscape",
+    year: "2019",
     tags: ["landscape"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1789990193/jammy-ph2026-500kb_pflfu8.jpg"
@@ -886,9 +1103,10 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "wat_14",
-    slug: "landscape-still-life",
+    slug: "the-pond-of-pettite",
     category: "watercolors",
     style: "landscape",
+    year: "2019",
     tags: ["landscape"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1790000167/IMG_3662-no_borders-ph2026_iedr2w.jpg"
@@ -896,9 +1114,10 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "wat_15",
-    slug: "landscape-still-life",
+    slug: "barfusserplatz-basel",
     category: "watercolors",
     style: "landscape",
+    year: "2019",
     tags: ["landscape"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1790002492/basel-500kb_xmznyi.jpg"
@@ -906,9 +1125,10 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "wat_16",
-    slug: "landscape-still-life",
+    slug: "old-door",
     category: "watercolors",
     style: "landscape",
+    year: "2019",
     tags: ["landscape"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1790004313/neve_tsedek_2019-paint-ph-2026-500kb_xshdyv.jpg"
@@ -916,9 +1136,10 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "wat_17",
-    slug: "nude-watercolor-study-7565",
+    slug: "sex-in-tel-aviv",
     category: "watercolors",
     style: "nude",
+    year: "2020",
     tags: ["nude"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1791059265/IMG_7565photoshoped_2025-500kb1_r8yr9d.jpg"
@@ -926,10 +1147,11 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "wat_18",
-    slug: "landscape-still-life",
+    slug: "caesaria-landscape",
     category: "watercolors",
     style: "landscape",
-    tags: ["landscape", "stone"],
+    year: "2018",
+    tags: ["landscape"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1791066249/CesariaPH2026-500KB_dm00sq.jpg"
     ),
@@ -940,9 +1162,10 @@ export const PAINTINGS: Painting[] = [
   // =========================
   {
     id: "oth_01",
-    slug: "icon-portrait-study-1",
+    slug: "christ-pontikrator",
     category: "tempera",
     style: "portrait",
+    year: "2009",
     tags: ["portrait", "icon"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613730/photoshoped-more_bright-500kb_pcyurk.jpg"
@@ -952,9 +1175,10 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "oth_02",
-    slug: "tempera-icon-portrait",
+    slug: "virgin-and-the-child",
     category: "tempera",
     style: "portrait",
+    year: "2009",
     tags: ["portrait", "icon"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1779703943/IMGP0914ph2026-500kb_eaxsbn.jpg"
@@ -966,6 +1190,7 @@ export const PAINTINGS: Painting[] = [
     category: "tempera",
     subcategory: "nude",
     style: "nude",
+    year: "2018",
     tags: ["nude", "stone", "icon"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032410/Copy_of_marble_sculpture_of_sleeping_Hermaphroditus_ph12-25_500_kb_mmpzxz.jpg"
@@ -975,9 +1200,10 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "oth_04",
-    slug: "icon-portrait-study-2",
+    slug: "presentation-of-jesus-in-the-temple",
     category: "tempera",
     style: "portrait",
+    year: "2007",
     tags: ["portrait", "icon"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032516/smaller2025-Recovered500kb_emgojk.jpg"
@@ -990,6 +1216,7 @@ export const PAINTINGS: Painting[] = [
     slug: "lely-venus-acrylic-on-marble",
     category: "tempera",
     subcategory: "nude",
+    year: "2018",
     style: "nude",
     tags: ["nude", "stone", "icon"],
     images: makeImageSet(
@@ -998,9 +1225,10 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "oth_06",
-    slug: "icon-portrait-study-3",
+    slug: "virgin-at-annunciation",
     category: "tempera",
     style: "portrait",
+    year: "2006",
     tags: ["portrait", "icon"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032415/IMG_4588ph500kb_neokqj.jpg"
@@ -1010,9 +1238,10 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "oth_07",
-    slug: "stone-painting-icon-1",
+    slug: "gorgon-medusa",
     category: "tempera",
     style: "stone",
+    year: "2018",
     tags: ["stone", "icon"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032412/IMG_2652SMALL500kb_dr9xz5.jpg"
@@ -1022,9 +1251,10 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "oth_08",
-    slug: "stone-painting-icon-2",
+    slug: "angel-of-god",
     category: "tempera",
     style: "stone",
+    year: "2007",
     tags: ["stone", "icon"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1780429023/IMG_2783testph2026-500kb_t8roul.jpg"
@@ -1037,6 +1267,7 @@ export const PAINTINGS: Painting[] = [
     slug: "moses-tempera-icon",
     category: "tempera",
     style: "portrait",
+    year: "2008",
     tags: ["portrait", "icon"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1780353361/mosesphotoshopeddark2025-500kb_nx0pnu.jpg"
@@ -1044,9 +1275,10 @@ export const PAINTINGS: Painting[] = [
   },
   {
     id: "oth_10",
-    slug: "tempera-icon",
+    slug: "aged-icon",
     category: "tempera",
     style: "portrait",
+    year: "2009-2010",
     tags: ["portrait", "icon", "heritage-antiques"],
     images: makeImageSet(
       "https://res.cloudinary.com/dpayqcrg5/image/upload/v1792244691/3ph-26_fz4haa.png"
@@ -1059,9 +1291,10 @@ export const PAINTINGS: Painting[] = [
 // =========================
 {
   id: "psy_01",
-  slug: "psychological-realism",
+  slug: "mcdonalds-meal",
   category: "oil-paintings",
   style: "psychological-realism",
+  year: "2009-2010",
   tags: ["psychological-realism","portrait", "oil"],
   images: makeImageSet(
     "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032418/Mcdonalds_2010._Oil_on_canvas_145_x_191_cm._Ilya_Medvedev.ph01.26-500kb_damqkv.jpg"
@@ -1076,9 +1309,10 @@ export const PAINTINGS: Painting[] = [
  
 {
   id: "psy_02",
-  slug: "psychological-realism",
+  slug: "cold-world",
   category: "oil-paintings",
   style: "psychological-realism, landscape",
+  year: "2010",
   tags: ["psychological-realism","oil"],
   images: makeImageSet(
     "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032409/Cold_World_2011.ph2026-500kb_uzoqft.jpg"
@@ -1089,9 +1323,10 @@ export const PAINTINGS: Painting[] = [
 },
 {
   id: "psy_03",
-  slug: "psychological-realism",
+  slug: "frindship",
   category: "oil-paintings",
   style: "psychological-realism",
+  year: "2010",
   tags: ["psychological-realism","portrait","oil"],
   images: makeImageSet(
     "https://res.cloudinary.com/dpayqcrg5/image/upload/v1792083937/IMG_5474_photoshoped_2025-500kb_c0mv4n.jpg"
@@ -1102,9 +1337,10 @@ export const PAINTINGS: Painting[] = [
 },
 {
   id: "psy_04",
-  slug: "psychological-realism",
+  slug: "underground-music",
   category: "oil-paintings",
   style: "psychological-realism",
+  year: "2011",
   tags: ["psychological-realism","portrait","oil"],
   images: makeImageSet(
     "https://res.cloudinary.com/dpayqcrg5/image/upload/v1794774876/Talking_about_undergraund_music_2011._Oil_on_canvas_120_x_100_cm_photoshoped_2026-500kb_jc040r.jpg",
@@ -1115,9 +1351,10 @@ export const PAINTINGS: Painting[] = [
 },
 {
   id: "psy_05",
-  slug: "psychological-realism",
+  slug: "drived-boy",
   category: "oil-paintings",
   style: "psychological-realism",
+  year: "2010",
   tags: ["psychological-realism","portrait", "oil", "memento-mori"],
   images: makeImageSet(
     "https://res.cloudinary.com/dpayqcrg5/image/upload/v1794776908/Drived_boy_with_a_machine_gun_in_his_hands._Oil_on_canvas_143_x_193_cm._2010_ph.2026-500kb_mp9ibx.jpg"
@@ -1131,6 +1368,7 @@ export const PAINTINGS: Painting[] = [
   slug: "psychological-realism",
   category: "oil-paintings",
   style: "psychological-realism",
+  year: "2010",
   tags: ["psychological-realism","portrait", "oil"],
   images: makeImageSet(
     "https://res.cloudinary.com/dpayqcrg5/image/upload/v1779979449/IMG_5294photoshoped_2026-500kb_sm9hwq.jpg"
@@ -1154,9 +1392,10 @@ export const PAINTINGS: Painting[] = [
 },
 {
   id: "psy_08",
-  slug: "psychological-realism",
+  slug: "breastfeeding",
   category: "oil-paintings",
   style: "psychological-realism",
+  year: "2011",
   tags: ["psychological-realism","portrait", "oil"],
   images: makeImageSet(
     "https://res.cloudinary.com/dpayqcrg5/image/upload/v1795161868/IMGP4635_1_photoshoped_big_2025-2026-500kb_h0w8ya.jpg"
@@ -1192,6 +1431,18 @@ export const CATEGORY_COVERS: CategoryCover[] = [
     slug: "watercolors",
     titleKey: "categories.watercolors",
     cloudinaryId: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613728/IMG_7653ph26-500kb_dn9hk7.jpg",
+  },
+  {
+    id: "cat_5",
+    slug: "all-paintings",
+    titleKey: "styleCategories.allPaintings",
+    cloudinaryId: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1783015237/Untitled_Panorama-24-500b_b4z8vu.jpg",
+  },
+  {
+    id: "cat_6",
+    slug: "works-by-years",
+    titleKey: "styleCategories.worksByYears",
+    cloudinaryId: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613717/IMGP3286PH26-2-500b_nidce0.jpg",
   },
 ];
 
@@ -1244,4 +1495,5 @@ export const STYLE_CATEGORIES: StyleCategory[] = [
     coverImage: "https://res.cloudinary.com/dpayqcrg5/image/upload/v1780071445/Copy_of_marble_sculpture_of_Gorgon_Medusa_2_c._BCE._Acrylic_on_Marble._2018500kb_etlsnc.jpg",
     isUpcoming: false,
   },
+  
 ];

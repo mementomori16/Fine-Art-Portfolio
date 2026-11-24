@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Ilya Medvedev | Fine Art Gallery",
     description: "Explore original fine art paintings and drawings by Ilya Medvedev.",
-    images: ["https://res.cloudinary.com/dpayqcrg5/image/upload/v1779613717/IMGP3286PH26-2-500b_nidce0.jpg"],
+    images: ["https://res.cloudinary.com/dpayqcrg5/image/upload/v1779781882/detail2021-ph2026_l7zv21.jpg"],
   },
 };
 

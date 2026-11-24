@@ -9,20 +9,41 @@ interface CurtainProps {
   onOpen: () => void;
 }
 
-const OPEN_DURATION = 2.2; // сек (было 2.8)
+const OPEN_DURATION = 2.2;
 const transition = {
   duration: OPEN_DURATION,
   ease: [0.65, 0, 0.35, 1] as const,
 };
 
+// Пока картинка не загрузилась, шторка плоская тёмная, потом картинка плавно проявляется
+function CurtainImage() {
+  const [loaded, setLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    if (imgRef.current?.complete) setLoaded(true);
+  }, []);
+
+  return (
+    <img
+      ref={imgRef}
+      src="/clean-curtain.png"
+      alt=""
+      aria-hidden="true"
+      className="curtain-img"
+      fetchPriority="high"
+      decoding="async"
+      onLoad={() => setLoaded(true)}
+      style={{ opacity: loaded ? 1 : 0, transition: 'opacity 0.5s ease' }}
+    />
+  );
+}
+
 export default function MysteriousCurtain({ children, forceOpen, onOpen }: CurtainProps) {
   const [isOpen, setIsOpen] = useState(forceOpen);
-  // шторы убираем из DOM, когда они уехали: не держим в памяти картинку 200vw
   const [curtainGone, setCurtainGone] = useState(forceOpen);
   const openedRef = useRef(forceOpen);
 
-  // Синхронизация: если forceOpen меняется после первого рендера
-  // (deep-link, reduced-motion, восстановление состояния) — шторка открывается.
   useEffect(() => {
     if (forceOpen) {
       openedRef.current = true;
@@ -37,8 +58,39 @@ export default function MysteriousCurtain({ children, forceOpen, onOpen }: Curta
     onOpen();
   }, [onOpen]);
 
-  // Пока шторы закрыты: Enter и пробел открывают сразу (надпись ENTER это обещает),
-  // и прокрутка страницы заблокирована
+  // Мгновенно открыть штору без анимации и (если задан id) проскроллить к секции.
+  // Используется ссылками меню /#technique и /#genre.
+  const skipTo = useCallback(
+    (id?: string) => {
+      if (!openedRef.current) {
+        openedRef.current = true;
+        setIsOpen(true);
+        setCurtainGone(true);
+        onOpen();
+      }
+      if (id) {
+        setTimeout(() => {
+          document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 200);
+      }
+    },
+    [onOpen]
+  );
+
+  // Заход по ссылке с якорем (например, с другой страницы на /#technique)
+  useEffect(() => {
+    const id = window.location.hash.replace('#', '');
+    if (id) skipTo(id);
+  }, [skipTo]);
+
+  // Клик по ссылке меню, когда уже находимся на главной
+  useEffect(() => {
+    const onSkip = (e: Event) => skipTo((e as CustomEvent<string>).detail);
+    window.addEventListener('curtain:skip', onSkip);
+    return () => window.removeEventListener('curtain:skip', onSkip);
+  }, [skipTo]);
+
+  // Пока шторы закрыты: Enter и пробел открывают, прокрутка заблокирована
   useEffect(() => {
     if (isOpen) return;
 
@@ -64,7 +116,6 @@ export default function MysteriousCurtain({ children, forceOpen, onOpen }: Curta
     };
   }, [isOpen, handleOpen]);
 
-  // Надёжный проброс start в одиночный child (HelloHero).
   const injectStart = (node: React.ReactNode): React.ReactNode => {
     if (React.isValidElement(node)) {
       return React.cloneElement(node as React.ReactElement<{ start?: boolean }>, {
@@ -111,7 +162,6 @@ export default function MysteriousCurtain({ children, forceOpen, onOpen }: Curta
 
       {!curtainGone && (
         <>
-          {/* Половины едут через transform (GPU), а не через width: без перерасчёта раскладки */}
           <motion.div
             className="curtain-half left"
             initial={false}
@@ -121,7 +171,7 @@ export default function MysteriousCurtain({ children, forceOpen, onOpen }: Curta
               if (isOpen) setCurtainGone(true);
             }}
           >
-            <img src="/clean-curtain.png" alt="" aria-hidden="true" className="curtain-img" />
+            <CurtainImage />
           </motion.div>
           <motion.div
             className="curtain-half right"
@@ -129,7 +179,7 @@ export default function MysteriousCurtain({ children, forceOpen, onOpen }: Curta
             animate={{ x: isOpen ? '100%' : '0%' }}
             transition={transition}
           >
-            <img src="/clean-curtain.png" alt="" aria-hidden="true" className="curtain-img" />
+            <CurtainImage />
           </motion.div>
         </>
       )}

@@ -181,3 +181,13 @@
   background: transparent;
 }
 
+// Gap между Genre и Technique: приводим к тому же ритму, что между Hero и Genre (~4rem)
+#genre .home-categories-section {
+  padding-bottom: 2rem;
+}
+
+#technique .home-categories-section {
+  padding-top: 1rem;
+  
+}
+

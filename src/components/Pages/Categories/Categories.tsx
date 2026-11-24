@@ -9,7 +9,7 @@ import "./categories.scss";
 
 const Categories: React.FC = () => {
   const { t } = useTranslation();
-  const featuredCategories = CATEGORY_COVERS.slice(0, 4);
+  const featuredCategories = CATEGORY_COVERS.slice(0, 6);
 
   return (
     <section className="home-categories-section">

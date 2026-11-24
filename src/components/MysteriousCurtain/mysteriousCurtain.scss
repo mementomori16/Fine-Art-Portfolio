@@ -5,10 +5,8 @@
   width: 100%;
   min-height: 100dvh;
   overflow: hidden;
+  overflow: clip; // clip нельзя прокрутить программно (причина чёрного экрана)
   background-color: #000;
-
-  // transform: translateZ(0) убран: он заставлял рендерить весь hero в отдельную
-  // полноэкранную поверхность даже после открытия шторы (лишняя нагрузка на 4K)
   isolation: isolate;
 
   &.is-open {
@@ -22,7 +20,6 @@
   position: relative;
   z-index: 1;
   isolation: isolate;
-  // backface-visibility: hidden убран: создавал ещё один полноэкранный композитный слой
 }
 
 .curtain-active-area {
@@ -31,7 +28,6 @@
   z-index: 999;
   cursor: pointer;
 
-  // a11y: видимый focus-ring для клавиатуры
   &:focus-visible {
     outline: 2px solid rgba(244, 239, 230, 0.6);
     outline-offset: -4px;
@@ -84,7 +80,7 @@
 .curtain-half {
   position: absolute;
   top: 0;
-  width: 50%; // фиксированная ширина: половины двигаются через transform, а не меняют размер
+  width: 50%;
   height: 100%;
   z-index: 1000;
   overflow: hidden;
