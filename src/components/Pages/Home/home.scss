@@ -19,7 +19,6 @@
     }
 
     .section-header {
-        // Identical to your Reviews header
         margin-bottom: $space-xxxxl;
         border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1);
         padding-bottom: $space-md;
@@ -55,7 +54,6 @@
     border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.05);
 
     @media (min-width: $breakpoint-md) {
-        // 15.625rem is the exact width from your reviews.scss for the left column
         grid-template-columns: 20rem 1fr; 
         gap: $space-xxxl;
         align-items: start;
@@ -69,7 +67,7 @@
     .image-side {
         position: relative;
         width: 100%;
-        aspect-ratio: 1 / 1; // Square or 4/3 works best for art
+        aspect-ratio: 1 / 1;
         overflow: hidden;
 
         .row-img {
@@ -93,7 +91,6 @@
     }
 
     .content-side {
-        // USES WHOLE SPACE - no internal padding
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -127,7 +124,6 @@
         }
 
         .row-desc {
-            // Matches .review-text exactly
             color: rgba(255, 255, 255, 0.85); 
             font-size: 1.0625rem;
             line-height: 1.8;
@@ -137,7 +133,6 @@
             width: 100%; 
         }
 
-        /* CRISP GHOST BUTTON */
         .pill-button-wow {
             background: transparent;
             color: #fff;
@@ -164,14 +159,7 @@
         }
     }
 }
-// =========================================================================
-// Force MysteriousCurtain wrapper to expand with your homepage content
-// =========================================================================
 
-// This targets the curtain container that wraps your homepage content block
-
-
-// Ensure your root page wrapper flows naturally down the page canvas
 .homepage-wrapper {
   display: block !important;
   width: 100% !important;
@@ -181,13 +169,19 @@
   background: transparent;
 }
 
-// Gap между Genre и Technique: приводим к тому же ритму, что между Hero и Genre (~4rem)
-#genre .home-categories-section {
-  padding-bottom: 2rem;
+// Якоря для ссылок меню (отступ под sticky-навбар)
+#genre,
+#technique {
+  scroll-margin-top: 5rem;
 }
 
-#technique .home-categories-section {
-  padding-top: 1rem;
-  
+// Секции не обрезают свечение карточек
+.homepage-wrapper .home-categories-section {
+  overflow: visible !important;
+}
+
+// Gap между Genre и Technique (как между Hero и Genre)
+#technique {
+  margin-top: -5rem;
 }
 

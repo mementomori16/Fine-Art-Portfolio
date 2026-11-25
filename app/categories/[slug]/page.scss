@@ -8,10 +8,10 @@
     overflow-x: clip;
     background: radial-gradient(
         circle at 50% 30vh,
-        #161616 0%,
-        #0a0a0a 70%,
-        #050505 100%
-    ) fixed;
+        #0e0e0e 0%,
+        #070707 65%,
+        #030303 100%
+    ) fixed !important;
     color: rgba(255, 255, 255, 0.95);
 
     /* Свет снизу: заходит на футер, как от видео на Home */

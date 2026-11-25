@@ -5,7 +5,7 @@ import CategoryTitle from "../../../src/components/CategoryTitle/CategoryTitle";
 import englishData from "../../../public/locales/english.json";
 import germanData from "../../../public/locales/german.json";
 import frenchData from "../../../public/locales/french.json";
-import "./page.scss";
+import "../../../src/components/CategoryGallery/categoryGallery.scss";
 
 type LocaleDict = Record<string, any>;
 
